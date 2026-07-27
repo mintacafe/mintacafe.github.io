@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minta Cafè · small, honest apps for iPhone and Mac</title>
+<meta name="description" content="Minta Cafè makes small, honest apps. One payment, round price, no ads, no subscriptions, no tracking. Circell for iPhone, Brillantor for Mac.">
+<meta property="og:title" content="Minta Cafè">
+<meta property="og:description" content="Small, honest apps. One payment, round price, no ads, no subscriptions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mintacafe.com/">
+<meta name="theme-color" content="#F3EEE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#22362D" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F3EEE0'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%237FCBA8' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='7' r='2' fill='%23E8C468'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- Decorative background: sun glow + leaf silhouettes, as in MintaBackground -->
+<div class="backdrop" aria-hidden="true">
+  <div class="backdrop__glow"></div>
+  <svg class="backdrop__leaf backdrop__leaf--a" viewBox="0 0 100 240"><path d="M50 0C18 60 0 120 0 170c0 40 22 70 50 70s50-30 50-70C100 120 82 60 50 0Z"/></svg>
+  <svg class="backdrop__leaf backdrop__leaf--b" viewBox="0 0 100 240"><path d="M50 0C18 60 0 120 0 170c0 40 22 70 50 70s50-30 50-70C100 120 82 60 50 0Z"/></svg>
+  <svg class="backdrop__leaf backdrop__leaf--c" viewBox="0 0 100 240"><path d="M50 0C18 60 0 120 0 170c0 40 22 70 50 70s50-30 50-70C100 120 82 60 50 0Z"/></svg>
+</div>
+
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<header class="head">
+  <a class="brand" href="#top" aria-label="Minta Cafè">
+    <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="2.6"/>
+      <circle cx="20" cy="7" r="2.6" fill="var(--gold)"/>
+      <ellipse cx="31" cy="26" rx="2.4" ry="4.6" fill="var(--mint)" transform="rotate(35 31 26)"/>
+      <ellipse cx="9" cy="26" rx="2.4" ry="4.6" fill="var(--mint)" transform="rotate(-35 9 26)"/>
+    </svg>
+    <span class="brand__name">Minta Cafè</span>
+  </a>
+  <nav class="nav">
+    <a href="#circell">Circell</a>
+    <a href="#brillantor">Brillantor</a>
+    <a href="#promise" data-i18n="nav.promise">The promise</a>
+    <button class="lang" id="langToggle" type="button" aria-label="Canvia la llengua a català">
+      <span class="lang__flip">CA</span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <p class="eyebrow" data-i18n="hero.eyebrow">iPhone &amp; Mac</p>
+    <h1 data-i18n="hero.title">Small apps, made with care.</h1>
+    <p class="lede" data-i18n="hero.lede">One payment, a round price. No ads, no subscriptions, no dark patterns. Each one is a pause, like a coffee.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#circell"><span data-i18n="hero.cta1">Circell for iPhone</span></a>
+      <a class="btn btn--ghost" href="#brillantor"><span data-i18n="hero.cta2">Brillantor for Mac</span></a>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Circell ───────────────────────── -->
+  <section class="app" id="circell">
+    <div class="app__art">
+      <div class="phone">
+        <div class="phone__island" aria-hidden="true"></div>
+        <div class="phone__screen">
+          <p class="phone__wordmark">Circell</p>
+          <p class="phone__tagline" data-i18n="circell.tagline">Turn, join, bloom.</p>
+          <div class="board" id="board" role="group" aria-label="Circell demo board"></div>
+          <p class="phone__status" id="boardStatus" data-i18n="circell.demo.hint">Tap the tiles to close the vine.</p>
+          <button class="pill" id="newBoard" type="button" data-i18n="circell.demo.new">New board</button>
+        </div>
+      </div>
+      <p class="art__caption" data-i18n="circell.demo.caption">A real board. Play it right here.</p>
+    </div>
+
+    <div class="app__text">
+      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.puzzle">Puzzle</span></p>
+      <h2>Circell</h2>
+      <p class="tagline" data-i18n="circell.tagline">Turn, join, bloom.</p>
+      <p data-i18n="circell.body">A puzzle of rotation and connection. Tap the tiles to turn the vine strands 90° until no end is left open and the whole board is one living vine. When the vine closes, a wave of golden light runs through it and it blooms.</p>
+      <ul class="features">
+        <li data-i18n="circell.f1">A gentle ladder of levels that opens up as you go.</li>
+        <li data-i18n="circell.f2">Everything drawn in code: no clutter, no noise.</li>
+        <li data-i18n="circell.f3">Sound synthesised on the fly, and it never interrupts your music.</li>
+        <li data-i18n="circell.f4">English and Catalan, fully localised.</li>
+      </ul>
+      <div class="store" data-store="circell">
+        <a class="btn btn--store is-soon" href="#" data-store-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
+        </a>
+        <span class="soon" data-store-soon data-i18n="store.soon">Link coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── Brillantor ──────────────────────── -->
+  <section class="app app--flip" id="brillantor">
+    <div class="app__art">
+      <div class="mac">
+        <div class="mac__bar" aria-hidden="true">
+          <span class="mac__apple"></span>
+          <span class="mac__menus"><i></i><i></i><i></i></span>
+          <span class="mac__right">
+            <svg class="mac__sun" viewBox="0 0 24 24" aria-hidden="true"><g><circle cx="12" cy="12" r="4.6"/><g class="mac__rays"><rect x="11.1" y="1" width="1.8" height="4" rx=".9"/><rect x="11.1" y="19" width="1.8" height="4" rx=".9"/><rect x="1" y="11.1" width="4" height="1.8" rx=".9"/><rect x="19" y="11.1" width="4" height="1.8" rx=".9"/><rect x="3.6" y="4.4" width="1.8" height="4" rx=".9" transform="rotate(-45 4.5 6.4)"/><rect x="18.6" y="15.6" width="1.8" height="4" rx=".9" transform="rotate(-45 19.5 17.6)"/><rect x="18.6" y="4.4" width="1.8" height="4" rx=".9" transform="rotate(45 19.5 6.4)"/><rect x="3.6" y="15.6" width="1.8" height="4" rx=".9" transform="rotate(45 4.5 17.6)"/></g></g></svg>
+          </span>
+        </div>
+
+        <!-- The dark photo the app is fixing -->
+        <svg class="mac__scene" viewBox="0 0 400 260" role="img" aria-labelledby="sceneTitle">
+          <title id="sceneTitle" data-i18n="brillantor.scene.alt">A dark photo whose shadows lift as you move the slider</title>
+          <defs>
+            <filter id="gammaLift" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+              <feComponentTransfer id="gammaFuncs">
+                <feFuncR type="gamma" exponent="1" amplitude="1" offset="0"/>
+                <feFuncG type="gamma" exponent="1" amplitude="1" offset="0"/>
+                <feFuncB type="gamma" exponent="1" amplitude="1" offset="0"/>
+              </feComponentTransfer>
+            </filter>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#141a2e"/><stop offset=".55" stop-color="#2b2340"/><stop offset="1" stop-color="#4a3346"/>
+            </linearGradient>
+            <radialGradient id="glow" cx=".72" cy=".76" r=".38">
+              <stop offset="0" stop-color="#e8c468" stop-opacity=".85"/><stop offset="1" stop-color="#e8c468" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g filter="url(#gammaLift)">
+            <rect width="400" height="260" fill="url(#sky)"/>
+            <circle cx="288" cy="198" r="70" fill="url(#glow)"/>
+            <circle cx="288" cy="198" r="15" fill="#f0d68f"/>
+            <!-- far hills: barely there, they appear when you lift -->
+            <path d="M0 196c46-26 74-8 118-26s70 10 108-6 96 6 174-14v110H0Z" fill="#1c2333"/>
+            <path d="M0 216c58-18 92 4 142-12s88 14 132 0 86 6 126-8v64H0Z" fill="#151b28"/>
+            <!-- foreground: near-black detail -->
+            <path d="M0 238c70-12 118 10 176-4s104 12 224-6v32H0Z" fill="#0d1119"/>
+            <g fill="#10151d">
+              <path d="M36 260c0-26 8-44 14-56 4 14 10 22 12 34 4-8 8-12 12-16 2 14 4 24 4 38Z"/>
+              <path d="M330 260c-2-30 6-50 12-62 5 16 12 26 14 40 4-10 8-14 12-18 3 16 5 26 5 40Z"/>
+            </g>
+            <g fill="#171e28">
+              <rect x="120" y="222" width="46" height="38" rx="4"/>
+              <rect x="176" y="232" width="34" height="28" rx="4"/>
+            </g>
+            <rect x="132" y="232" width="9" height="9" rx="2" fill="#2a2f2a"/>
+            <rect x="147" y="232" width="9" height="9" rx="2" fill="#2a2f2a"/>
+          </g>
+        </svg>
+
+        <!-- The menu-bar popover: it acts on the screen you opened it from -->
+        <div class="popover">
+          <p class="popover__header" data-i18n="brillantor.screen">Built-in Display</p>
+          <div class="popover__row">
+            <svg class="popover__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
+            <input class="slider" id="boost" type="range" min="-1" max="1" step="0.01" value="0"
+                   aria-label="Screen light" data-i18n-aria="brillantor.slider.label">
+            <svg class="popover__icon popover__icon--max" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><g><rect x="11.1" y="1.5" width="1.8" height="3.4" rx=".9"/><rect x="11.1" y="19.1" width="1.8" height="3.4" rx=".9"/><rect x="1.5" y="11.1" width="3.4" height="1.8" rx=".9"/><rect x="19.1" y="11.1" width="3.4" height="1.8" rx=".9"/></g></svg>
+          </div>
+          <hr>
+          <p class="popover__item is-off" id="offRow" data-i18n="brillantor.off">Turn Off</p>
+          <hr>
+          <p class="popover__item popover__item--quiet">Quit Brillantor</p>
+        </div>
+      </div>
+      <p class="art__caption" data-i18n="brillantor.demo.caption">Move the slider both ways. The photo is the same one.</p>
+      <p class="art__readout" id="boostReadout">Neutral</p>
+    </div>
+
+    <div class="app__text">
+      <p class="eyebrow"><span data-i18n="platform.mac">Mac</span> · <span data-i18n="label.utility">Menu bar utility</span></p>
+      <h2>Brillantor</h2>
+      <p class="tagline" data-i18n="brillantor.tagline">Lighter shadows, darker nights.</p>
+      <p data-i18n="brillantor.body">A small sun in your menu bar. Open it on any screen and you get one slider for that screen. Push it right and the dark parts of the picture open up, for a film that is too dark to follow. Push it left and the screen goes darker than macOS will let it go, for reading in bed at three in the morning.</p>
+      <ul class="features">
+        <li data-i18n="brillantor.f1">One slider. That is the whole app.</li>
+        <li data-i18n="brillantor.f2">Each display keeps its own light, and gets it back when you plug it in again.</li>
+        <li data-i18n="brillantor.f3">Darker than the system minimum, when the room is dark too.</li>
+        <li data-i18n="brillantor.f4">Restores your colours the moment you quit. Nothing is permanent.</li>
+      </ul>
+      <div class="store" data-store="brillantor">
+        <a class="btn btn--store is-soon" href="#" data-store-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.mac">Download on the</small><strong>Mac App Store</strong></span>
+        </a>
+        <span class="soon" data-store-soon data-i18n="store.soon">Link coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Promise ───────────────────────── -->
+  <section class="promise" id="promise">
+    <h2 data-i18n="promise.title">How we sell things</h2>
+    <p class="lede" data-i18n="promise.lede">The same rules for every app we make. Written here so you can hold us to them.</p>
+    <div class="cards">
+      <article class="card">
+        <span class="card__num">01</span>
+        <h3 data-i18n="promise.c1.t">One payment</h3>
+        <p data-i18n="promise.c1.b">You buy it once and it is yours. No subscription on what you already own.</p>
+      </article>
+      <article class="card">
+        <span class="card__num">02</span>
+        <h3 data-i18n="promise.c2.t">A round price</h3>
+        <p data-i18n="promise.c2.b">Whole numbers. Nothing ends in .99 to look smaller than it is.</p>
+      </article>
+      <article class="card">
+        <span class="card__num">03</span>
+        <h3 data-i18n="promise.c3.t">No ads</h3>
+        <p data-i18n="promise.c3.b">Nothing interrupts you, nothing asks you to wait or watch.</p>
+      </article>
+      <article class="card">
+        <span class="card__num">04</span>
+        <h3 data-i18n="promise.c4.t">No tracking</h3>
+        <p data-i18n="promise.c4.b">No analytics, no ad profiles, no accounts, nothing about you sold.</p>
+      </article>
+    </div>
+
+    <p class="fineprint" data-i18n="promise.fine">The small print, and it really is small. If we ever make a game that needs a server to connect players, that server costs us money every month, so that game may carry a subscription. We will say so here and on the App Store before you pay, never after. A game that talks to a server also has to send something, and we will spell out exactly what leaves your device and why. What we will never do is take something you have already bought and put it behind a subscription.</p>
+  </section>
+
+  <!-- ───────────────────────── Brewing ───────────────────────── -->
+  <section class="brewing" id="brewing">
+    <h2 data-i18n="brewing.title">Brewing</h2>
+    <p class="lede" data-i18n="brewing.lede">Being made now, in the same cup.</p>
+    <ul class="brew">
+      <li>
+        <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><path d="M10 46c10-4 12-16 20-20s16 2 20-12" fill="none" stroke="var(--mint)" stroke-width="4.5" stroke-linecap="round"/><circle cx="10" cy="46" r="4" fill="var(--gold)"/></svg>
+        <h3>Traç</h3><p data-i18n="brew.trac">One green line.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><rect x="10" y="10" width="18" height="18" rx="3" fill="var(--gold)"/><rect x="32" y="10" width="18" height="18" rx="3" fill="none" stroke="var(--mint)" stroke-width="3.5"/><rect x="10" y="32" width="18" height="18" rx="3" fill="none" stroke="var(--mint)" stroke-width="3.5"/><rect x="32" y="32" width="18" height="18" rx="3" fill="var(--mint)"/></svg>
+        <h3>Vitrall</h3><p data-i18n="brew.vitrall">Light, cell by cell.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><rect x="20" y="6" width="20" height="6" rx="2" fill="var(--terracotta)"/><rect x="15" y="14" width="30" height="38" rx="7" fill="none" stroke="var(--mint)" stroke-width="3.5"/><circle cx="25" cy="41" r="7" fill="var(--gold)"/><circle cx="37" cy="44" r="5" fill="var(--terracotta)"/><circle cx="32" cy="29" r="5.5" fill="var(--mint)"/></svg>
+        <h3>Confitura</h3><p data-i18n="brew.confitura">Fruit falls, the jar fills.</p>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="foot" id="support">
+  <div class="foot__inner">
+    <p class="foot__brand">Minta Cafè</p>
+    <p class="foot__line" data-i18n="foot.support">Questions, bugs, ideas. Write to us and a person answers.</p>
+    <p><a href="mailto:info@mintacafe.com">info@mintacafe.com</a></p>
+    <nav class="foot__nav">
+      <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
+      <span aria-hidden="true">·</span>
+      <a href="#top" data-i18n="foot.top">Back to top</a>
+    </nav>
+    <p class="foot__fine"><span data-i18n="foot.made">Made in Catalonia.</span> © <span id="year">2026</span> Minta Cafè.</p>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
