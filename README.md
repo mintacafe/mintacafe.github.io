@@ -25,6 +25,32 @@ I obre <http://localhost:8000>. (Dins de Claude Code també hi ha la
 configuració `mintacafe-web`, que serveix aquesta carpeta amb
 `.claude/serve.js` al port 8766.)
 
+## Forçar la llengua per URL
+
+El web tria la llengua sol (el que vas triar l'últim cop, i si no, el
+navegador), però es pot manar des de la URL. Serveix per als enllaços de
+suport de l'App Store, o per enviar una pàgina a algú sabent com la veurà.
+
+| Enllaç | Què obre |
+|---|---|
+| `mintacafe.com/?lang=ca` | portada en català |
+| `mintacafe.com/privacy.html?lang=en` | privadesa en anglès |
+| `mintacafe.com/ca/` | el mateix que `/?lang=ca` |
+| `mintacafe.com/ca/privacy.html` | el mateix que `/privacy.html?lang=ca` |
+
+Qui mana de debò és **`?lang=`**. Les carpetes `ca/` i `en/` són quatre fitxers
+d'una línia que hi redirigeixen, perquè GitHub Pages és estàtic i no pot
+reescriure rutes. Així el contingut no està duplicat enlloc: hi ha un sol
+`index.html` i un sol `privacy.html`.
+
+La llengua demanada per URL es desa, perquè els enllaços interns no porten el
+paràmetre i si no es perdria en el primer clic. I el botó CA/EN actualitza
+l'adreça, o sigui que copiar-la de la barra ja dona un enllaç que obre la
+pàgina tal com la veus.
+
+⚠️ Si hi afegeixes pàgines noves, recorda fer-ne els dos redirectors a `ca/` i
+`en/`, o les rutes boniques donaran 404 per a aquella pàgina.
+
 ## Quan tinguis els enllaços de l'App Store
 
 Només cal tocar una cosa. A dalt de tot de `assets/app.js`:

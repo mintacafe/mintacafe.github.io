@@ -207,8 +207,27 @@ const I18N = {
 /* ── Language machinery ───────────────────────────────────── */
 
 const LANG_KEY = "minta-lang";
-let lang = localStorage.getItem(LANG_KEY)
+const saved = localStorage.getItem(LANG_KEY);
+const asked = (new URLSearchParams(location.search).get("lang") || "").toLowerCase();
+
+/* Ordre: mana la URL, després el que vas triar l'últim cop, i si no, el
+   navegador. ?lang=ca és on van a parar les rutes /ca/, i és el que poden
+   dur els enllaços de suport de l'App Store. */
+let lang = (I18N[asked] && asked)
+        || (I18N[saved] && saved)
         || ((navigator.language || "en").toLowerCase().startsWith("ca") ? "ca" : "en");
+
+/* Una llengua demanada per URL es recorda, perquè els enllaços interns no
+   porten el paràmetre i si no es perdria en el primer clic. */
+if (I18N[asked]) localStorage.setItem(LANG_KEY, lang);
+
+/* Que l'adreça digui la veritat: així copiar-la de la barra ja és un enllaç
+   que obre la pàgina en la llengua que estàs veient. */
+function syncLangUrl() {
+  const url = new URL(location.href);
+  url.searchParams.set("lang", lang);
+  history.replaceState(null, "", url);
+}
 
 function t(key) {
   return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
@@ -241,6 +260,7 @@ function applyLang() {
 document.getElementById("langToggle")?.addEventListener("click", () => {
   lang = lang === "ca" ? "en" : "ca";
   localStorage.setItem(LANG_KEY, lang);
+  syncLangUrl();
   applyLang();
 });
 
@@ -471,6 +491,15 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   }, { rootMargin: "-40px" });
   targets.forEach(el => io.observe(el));
 }
+
+/* Xarxa de seguretat per a l'àncora: el navegador hi salta abans que el text
+   es tradueixi i que les seccions revelades agafin l'alçada final, i llavors
+   el punt on ha anat ja no és el bo. Ho refem quan la pàgina ja té la mida
+   definitiva. Importa perquè /#support és l'enllaç de suport de l'App Store. */
+addEventListener("load", () => {
+  const el = location.hash && document.getElementById(location.hash.slice(1));
+  if (el) requestAnimationFrame(() => el.scrollIntoView());
+});
 
 /* ── Go ───────────────────────────────────────────────────── */
 
