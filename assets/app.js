@@ -11,8 +11,8 @@
    "Link coming soon" note. Fill it in and the button lights up.
    Nothing else needs changing.                                */
 const STORE_LINKS = {
-  circell:    "",   // e.g. "https://apps.apple.com/app/circell/id0000000000"
-  brillantor: ""    // e.g. "https://apps.apple.com/app/brillantor/id0000000000"
+  circell:    "https://apps.apple.com/us/app/circell/id6795101676",           // iPhone, live 2026-10-06
+  brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12"   // Mac, live 2026-08-10
 };
 
 /* ── 2. Copy, in both languages ───────────────────────────── */

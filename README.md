@@ -51,19 +51,21 @@ pàgina tal com la veus.
 ⚠️ Si hi afegeixes pàgines noves, recorda fer-ne els dos redirectors a `ca/` i
 `en/`, o les rutes boniques donaran 404 per a aquella pàgina.
 
-## Quan tinguis els enllaços de l'App Store
+## Enllaços de l'App Store
 
-Només cal tocar una cosa. A dalt de tot de `assets/app.js`:
+Són a dalt de tot de `assets/app.js`, i és l'únic lloc on cal tocar:
 
 ```js
 const STORE_LINKS = {
-  circell:    "",   // enganxa-hi la URL
-  brillantor: ""
+  circell:    "https://apps.apple.com/us/app/circell/id6795101676",
+  brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12"
 };
 ```
 
-Amb la cadena buida, el botó queda esmorteït i surt l'etiqueta «Enllaç a punt
-aviat». Quan hi poses una URL, el botó s'encén tot sol.
+Circell (iPhone) va sortir el 6/10/2026 i Brillantor (Mac) el 10/8/2026.
+Per a una app nova, afegeix-hi la clau. Amb la cadena buida, el botó queda
+esmorteït i surt l'etiqueta «Enllaç a punt aviat». Quan hi poses una URL, el
+botó s'encén tot sol.
 
 ## Desplegar a GitHub Pages
 
@@ -77,11 +79,9 @@ aviat». Quan hi poses una URL, el botó s'encén tot sol.
 
 ## Coses que hi ha per decidir
 
-- **Nom de l'app de Mac.** Al codi (`Apps/Brillant/`) l'app es diu **Brillant**;
-  al web hi ha posat **Brillantor**, que és com me'n vas parlar. Si el nom bo és
-  «Brillant», és un «Cerca i reemplaça» a `index.html` i `assets/app.js`.
-- **Preus.** No n'hi ha cap d'escrit enlloc, perquè no els sé. El compromís
-  («un sol pagament, preu rodó») sí que hi és.
+- **Preus.** Totes dues apps costen 3 € (3 $), però no surt escrit enlloc del
+  web, i així no s'ha de mantenir per a cada país. El compromís («un sol
+  pagament, preu rodó») sí que hi és.
 - **Botons de l'App Store.** Són fets a mà amb la tipografia del web. Apple
   demana el seu *badge* oficial per a la promoció; quan publiquis, val la pena
   baixar-lo de l'Apple Marketing Resources i posar-lo al seu lloc.
