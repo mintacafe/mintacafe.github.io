@@ -2,10 +2,11 @@
 
 Web estàtic per publicitar **Circell** (iPhone), **Brillantor** (Mac) i
 **Confitura** (iPhone, pròximament). Sense dependències, sense build, sense
-fonts externes: HTML, un CSS i un JS. El visual és programàtic, la mateixa
-filosofia que MintaKit, amb una excepció: Confitura s'ensenya amb dues captures
-reals del joc (`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit
-quan el navegador va en mode fosc). Surten del director de captures del joc
+fonts externes: HTML, un CSS i dos JS. El visual és programàtic, la mateixa
+filosofia que MintaKit. Confitura s'hi pot jugar: és **el pot del dia** (vegeu
+més avall). Sense JavaScript, el telèfon ensenya dues captures reals del joc
+(`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit quan el
+navegador va en mode fosc), que surten del director de captures del joc
 (`-ConfituraShots`, mida de 6,3 polzades, reduïdes a 600 px d'amplada).
 
 ```
@@ -15,7 +16,8 @@ Web/
 ├── assets/
 │   ├── style.css       paleta Solarpunk-Mint, mode clar i fosc
 │   ├── app.js          enllaços, idiomes, demo de Circell, demo de Brillantor
-│   └── confitura-*.jpg captures de Confitura, de dia i de nit
+│   ├── confitura.js    Confitura jugable: el pot del dia
+│   └── confitura-*.jpg captures de Confitura (el que es veu sense JavaScript)
 ├── CNAME               domini personalitzat de GitHub Pages
 └── .nojekyll           serveix els fitxers tal com són
 ```
@@ -104,6 +106,45 @@ botó s'encén tot sol.
 - Respecta `prefers-reduced-motion`.
 - El tauler de Circell del web és jugable de veritat: genera un arbre
   d'expansió aleatori sobre la graella, així sempre té solució.
+- El pot de Confitura també es pot jugar amb el teclat: les fletxes apunten
+  (amb majúscules, més lluny) i l'espai o la tecla de retorn deixen caure.
 - El control de Brillantor aplica una correcció de gamma real (filtre SVG
   `feFuncR/G/B type="gamma"`, exponent `1/boost`), exactament el que fa l'app
   a les pantalles.
+
+## Confitura: el pot del dia
+
+La demo segueix un principi: **retalla la quantitat, no
+la qualitat**. És el joc de veritat, però només hi ha un pot al dia, el
+mateix per a tothom. Es pot omplir tantes vegades com vulguis, i l'endemà
+n'hi ha un de nou. No hi ha comptadors, ni bloquejos, ni compte enrere. A
+l'app, cada pot és nou.
+
+- **La llavor** és la data local com a número (`20261008`). Tothom qui juga
+  el mateix dia rep la mateixa fruita en el mateix ordre.
+- **El motor** és una còpia de `Games/Confitura/Sources/Physics.swift` i
+  `Models.swift`, operació per operació, i dona els mateixos nombres bit a
+  bit. Si es toca la física de l'app (que de moment és intocable), cal tocar
+  també `assets/confitura.js` i tornar a passar la prova:
+
+  ```bash
+  cd Games/Confitura
+  swiftc -O -parse-as-library -o /tmp/confitura-parity Sources/Models.swift Sources/Physics.swift Sources/ShotScript.swift Tests/WebParity.swift
+  /tmp/confitura-parity > /tmp/parity-swift.txt
+  node Tests/web-parity.cjs > /tmp/parity-web.txt
+  cmp /tmp/parity-swift.txt /tmp/parity-web.txt && echo "bit a bit"
+  ```
+
+- **El dibuix** és el de `FruitArt.swift`, `JarScene.swift` i `Juice.swift`
+  portat al canvas. Les fruites es pinten un cop en *sprites*, com fa l'app.
+- **El telèfon** es dibuixa com un iPhone de 402 punts d'amplada i després
+  s'escala, i així el pot surt on surt a l'app.
+- **El millor d'avui** només es desa en aquest navegador (`localStorage`,
+  clau `confitura.today`), i si no es pot desar no passa res.
+- **El bucle** només corre mentre el pot és a la pantalla i la pestanya és
+  visible, i s'atura sol quan surt la targeta del final.
+- **Al mòbil**, lliscar amunt o avall per sobre del pot fa córrer la pàgina,
+  i lliscar de costat apunta.
+- **Quan Confitura surti**, n'hi ha prou de posar l'enllaç a `STORE_LINKS`.
+  La targeta del final hi enllaçarà sola («Confitura a l'App Store»).
+

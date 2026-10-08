@@ -193,7 +193,9 @@
     <div class="app__art">
       <div class="phone">
         <div class="phone__island" aria-hidden="true"></div>
-        <div class="phone__screen phone__screen--shot">
+        <!-- Without scripts, a real screenshot. With them, today's jar:
+             assets/confitura.js swaps in #jarTemplate and plays it. -->
+        <div class="phone__screen phone__screen--shot" id="jarScreen">
           <picture>
             <source srcset="assets/confitura-nit.jpg" media="(prefers-color-scheme: dark)">
             <img src="assets/confitura-dia.jpg" width="600" height="1304" loading="lazy"
@@ -202,7 +204,45 @@
           </picture>
         </div>
       </div>
-      <p class="art__caption" data-i18n="confitura.caption">From the game itself. In dark mode, the café works the night shift.</p>
+      <p class="art__caption" id="jarCaption" data-i18n="confitura.caption">From the game itself. In dark mode, the café works the night shift.</p>
+
+      <template id="jarTemplate">
+        <canvas class="jar__canvas" data-jar="canvas" tabindex="0" role="img"
+                aria-label="Confitura, today's jar" data-i18n-aria="confitura.demo.aria"></canvas>
+        <div class="jar__hud" data-jar="hud">
+          <button class="jar__round" type="button" data-jar="again"
+                  aria-label="Start today's jar again" data-i18n-aria="confitura.demo.again">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66L20 8"/><path d="M20 4v4h-4"/></svg>
+          </button>
+          <p class="jar__score"><strong data-jar="grams">0 g</strong><span data-jar="line"></span></p>
+          <span class="jar__round" aria-hidden="true"><canvas data-jar="next"></canvas></span>
+        </div>
+        <p class="jar__hint" data-jar="hint" aria-hidden="true"></p>
+        <div class="jar__over" data-jar="over">
+          <svg class="jar__sun" viewBox="0 0 110 110" aria-hidden="true">
+            <defs>
+              <radialGradient id="jarSunGlow">
+                <stop offset="0" stop-color="currentColor" stop-opacity=".55"/>
+                <stop offset=".5" stop-color="currentColor" stop-opacity=".18"/>
+                <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="jarSunBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+            </defs>
+            <circle cx="55" cy="55" r="55" fill="url(#jarSunGlow)"/>
+            <path fill="currentColor" fill-opacity=".3" filter="url(#jarSunBlur)" d="M54.4 48.4L55.0 0.0L55.6 48.4ZM57.8 49.0L82.5 7.4L58.8 49.6ZM60.4 51.2L102.6 27.5L61.0 52.2ZM61.6 54.4L110.0 55.0L61.6 55.6ZM61.0 57.8L102.6 82.5L60.4 58.8ZM58.8 60.4L82.5 102.6L57.8 61.0ZM55.6 61.6L55.0 110.0L54.4 61.6ZM52.2 61.0L27.5 102.6L51.2 60.4ZM49.6 58.8L7.4 82.5L49.0 57.8ZM48.4 55.6L0.0 55.0L48.4 54.4ZM49.0 52.2L7.4 27.5L49.6 51.2ZM51.2 49.6L27.5 7.4L52.2 49.0Z"/>
+          </svg>
+          <div class="jar__card" role="status">
+            <p class="jar__headline" data-i18n="confitura.demo.lid">The lid won't close.</p>
+            <p class="jar__made" data-jar="made"></p>
+            <p class="jar__record" data-jar="record" data-i18n="confitura.demo.record" hidden>Best of the day!</p>
+            <p class="jar__small" data-jar="jars" hidden></p>
+            <p class="jar__small" data-jar="best"></p>
+            <p class="jar__small" data-i18n="confitura.demo.tomorrow">Tomorrow there'll be a new jar.</p>
+            <button class="pill" type="button" data-jar="replay" data-i18n="confitura.demo.replay">Fill it again</button>
+            <p class="jar__full" data-jar="full"></p>
+          </div>
+        </div>
+      </template>
     </div>
 
     <div class="app__text">
@@ -289,5 +329,6 @@
 </footer>
 
 <script src="assets/app.js"></script>
+<script src="assets/confitura.js"></script>
 </body>
 </html>
