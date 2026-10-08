@@ -28,7 +28,7 @@ const I18N = {
 
     "hero.eyebrow": "iPhone & Mac",
     "hero.title": "Small apps, made with care.",
-    "hero.lede": "One payment, a round price. No ads, no subscriptions, no dark patterns. Each one is a pause, like a coffee.",
+    "hero.lede": "One payment, a round price. No ads, no subscriptions, no pay-to-win, no dark patterns. Each one is a pause, like a coffee.",
     "hero.cta1": "Circell for iPhone",
     "hero.cta2": "Brillantor for Mac",
 
@@ -130,7 +130,7 @@ const I18N = {
 
     "hero.eyebrow": "iPhone i Mac",
     "hero.title": "Apps petites, fetes amb cura.",
-    "hero.lede": "Un sol pagament, preu rodó. Sense anuncis, sense subscripcions, sense trampes. Cada una és una pausa, com un cafè.",
+    "hero.lede": "Un sol pagament, preu rodó. Sense anuncis, sense subscripcions, sense pagar per guanyar, sense trampes. Cada una és una pausa, com un cafè.",
     "hero.cta1": "Circell per a iPhone",
     "hero.cta2": "Brillantor per a Mac",
 
