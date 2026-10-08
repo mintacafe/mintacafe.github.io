@@ -39,6 +39,7 @@
   <nav class="nav">
     <a href="#circell">Circell</a>
     <a href="#brillantor">Brillantor</a>
+    <a href="#confitura">Confitura</a>
     <a href="#promise" data-i18n="nav.promise">The promise</a>
     <button class="lang" id="langToggle" type="button" aria-label="Canvia la llengua a català">
       <span class="lang__flip">CA</span>
@@ -187,6 +188,44 @@
     </div>
   </section>
 
+  <!-- ──────────────────────── Confitura ──────────────────────── -->
+  <section class="app" id="confitura">
+    <div class="app__art">
+      <div class="phone">
+        <div class="phone__island" aria-hidden="true"></div>
+        <div class="phone__screen phone__screen--shot">
+          <picture>
+            <source srcset="assets/confitura-nit.jpg" media="(prefers-color-scheme: dark)">
+            <img src="assets/confitura-dia.jpg" width="600" height="1304" loading="lazy"
+                 alt="A glass jar on a café counter, full of fruit with sleepy faces; a peach has just merged with a splash"
+                 data-i18n-alt="confitura.shot.alt">
+          </picture>
+        </div>
+      </div>
+      <p class="art__caption" data-i18n="confitura.caption">From the game itself. In dark mode, the café works the night shift.</p>
+    </div>
+
+    <div class="app__text">
+      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.soon">Coming soon</span></p>
+      <h2>Confitura</h2>
+      <p class="tagline" data-i18n="confitura.tagline">Drop, merge, make jam.</p>
+      <p data-i18n="confitura.body">Fruit falls into a glass jar. Two of the same that touch become the next one up, from blueberries to watermelons, and two watermelons make a finished jar of jam. When nothing more fits, the lid tries to close and the café tells you how many grams you made.</p>
+      <ul class="features">
+        <li data-i18n="confitura.f1">Ten jam fruits that roll, squash and splash, all drawn in code.</li>
+        <li data-i18n="confitura.f2">No timer. You let go when you are ready.</li>
+        <li data-i18n="confitura.f3">A best of the week, so there is always something within reach.</li>
+        <li data-i18n="confitura.f4">Day and night, the way your phone is set.</li>
+      </ul>
+      <div class="store" data-store="confitura">
+        <a class="btn btn--store is-soon" href="#" data-store-link>
+          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
+        </a>
+        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────────────────────── Promise ───────────────────────── -->
   <section class="promise" id="promise">
     <h2 data-i18n="promise.title">How we sell things</h2>
@@ -229,10 +268,6 @@
       <li>
         <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><rect x="10" y="10" width="18" height="18" rx="3" fill="var(--gold)"/><rect x="32" y="10" width="18" height="18" rx="3" fill="none" stroke="var(--mint)" stroke-width="3.5"/><rect x="10" y="32" width="18" height="18" rx="3" fill="none" stroke="var(--mint)" stroke-width="3.5"/><rect x="32" y="32" width="18" height="18" rx="3" fill="var(--mint)"/></svg>
         <h3>Vitrall</h3><p data-i18n="brew.vitrall">Light, cell by cell.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><rect x="20" y="6" width="20" height="6" rx="2" fill="var(--terracotta)"/><rect x="15" y="14" width="30" height="38" rx="7" fill="none" stroke="var(--mint)" stroke-width="3.5"/><circle cx="25" cy="41" r="7" fill="var(--gold)"/><circle cx="37" cy="44" r="5" fill="var(--terracotta)"/><circle cx="32" cy="29" r="5.5" fill="var(--mint)"/></svg>
-        <h3>Confitura</h3><p data-i18n="brew.confitura">Fruit falls, the jar fills.</p>
       </li>
     </ul>
   </section>

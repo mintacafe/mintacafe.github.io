@@ -1,8 +1,12 @@
 # Web de Minta Cafè
 
-Web estàtic per publicitar **Circell** (iPhone) i **Brillantor** (Mac). Sense
-dependències, sense build, sense fonts externes: HTML, un CSS i un JS. Tot el
-visual és programàtic, la mateixa filosofia que MintaKit.
+Web estàtic per publicitar **Circell** (iPhone), **Brillantor** (Mac) i
+**Confitura** (iPhone, pròximament). Sense dependències, sense build, sense
+fonts externes: HTML, un CSS i un JS. El visual és programàtic, la mateixa
+filosofia que MintaKit, amb una excepció: Confitura s'ensenya amb dues captures
+reals del joc (`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit
+quan el navegador va en mode fosc). Surten del director de captures del joc
+(`-ConfituraShots`, mida de 6,3 polzades, reduïdes a 600 px d'amplada).
 
 ```
 Web/
@@ -10,7 +14,8 @@ Web/
 ├── privacy.html        política de privadesa (l'App Store en demana una URL)
 ├── assets/
 │   ├── style.css       paleta Solarpunk-Mint, mode clar i fosc
-│   └── app.js          enllaços, idiomes, demo de Circell, demo de Brillantor
+│   ├── app.js          enllaços, idiomes, demo de Circell, demo de Brillantor
+│   └── confitura-*.jpg captures de Confitura, de dia i de nit
 ├── CNAME               domini personalitzat de GitHub Pages
 └── .nojekyll           serveix els fitxers tal com són
 ```

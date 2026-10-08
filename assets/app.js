@@ -12,7 +12,8 @@
    Nothing else needs changing.                                */
 const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",           // iPhone, live 2026-10-06
-  brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12"   // Mac, live 2026-08-10
+  brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",  // Mac, live 2026-08-10
+  confitura:  ""                                                              // iPhone, coming soon
 };
 
 /* ── 2. Copy, in both languages ───────────────────────────── */
@@ -66,6 +67,16 @@ const I18N = {
     "store.pre.ios": "Download on the",
     "store.pre.mac": "Download on the",
     "store.soon": "Link coming soon",
+    "label.soon": "Coming soon",
+    "store.comingSoon": "Coming soon",
+    "confitura.tagline": "Drop, merge, make jam.",
+    "confitura.body": "Fruit falls into a glass jar. Two of the same that touch become the next one up, from blueberries to watermelons, and two watermelons make a finished jar of jam. When nothing more fits, the lid tries to close and the café tells you how many grams you made.",
+    "confitura.f1": "Ten jam fruits that roll, squash and splash, all drawn in code.",
+    "confitura.f2": "No timer. You let go when you are ready.",
+    "confitura.f3": "A best of the week, so there is always something within reach.",
+    "confitura.f4": "Day and night, the way your phone is set.",
+    "confitura.caption": "From the game itself. In dark mode, the café works the night shift.",
+    "confitura.shot.alt": "A glass jar on a café counter, full of fruit with sleepy faces; a peach has just merged with a splash",
 
     "promise.title": "How we sell things",
     "promise.lede": "The same rules for every app we make. Written here so you can hold us to them.",
@@ -83,7 +94,6 @@ const I18N = {
     "brewing.lede": "Being made now, in the same cup.",
     "brew.trac": "One green line.",
     "brew.vitrall": "Light, cell by cell.",
-    "brew.confitura": "Fruit falls, the jar fills.",
 
     "foot.support": "Questions, bugs, ideas. Write to us and a person answers.",
     "foot.privacy": "Privacy",
@@ -159,6 +169,16 @@ const I18N = {
     "store.pre.ios": "Descarrega-la a l'",
     "store.pre.mac": "Descarrega-la al",
     "store.soon": "Enllaç a punt aviat",
+    "label.soon": "Pròximament",
+    "store.comingSoon": "Pròximament",
+    "confitura.tagline": "Deixa caure, fon, fes confitura.",
+    "confitura.body": "La fruita cau dins un pot de vidre. Dues d'iguals que es toquen es fonen en la següent, dels nabius fins a les síndries, i dues síndries fan un pot de confitura acabat. Quan ja no hi cap res més, la tapa intenta tancar i el cafè et diu quants grams n'has fet.",
+    "confitura.f1": "Deu fruites de confitura que rodolen, s'aixafen i esquitxen, tot dibuixat amb codi.",
+    "confitura.f2": "Sense rellotge. Deixes anar quan vols.",
+    "confitura.f3": "Un rècord de la setmana, perquè sempre hi hagi alguna cosa a l'abast.",
+    "confitura.f4": "De dia i de nit, com tinguis el telèfon.",
+    "confitura.caption": "Del joc mateix. En mode fosc, el cafè fa el torn de nit.",
+    "confitura.shot.alt": "Un pot de vidre al taulell d'un cafè, ple de fruites amb cara de son; un préssec s'acaba de fondre amb un esquitx",
 
     "promise.title": "Com venem les coses",
     "promise.lede": "Les mateixes regles per a totes les apps que fem. Escrites aquí perquè ens hi puguis fer complir.",
@@ -176,7 +196,6 @@ const I18N = {
     "brewing.lede": "S'estan fent ara, a la mateixa tassa.",
     "brew.trac": "Una sola línia verda.",
     "brew.vitrall": "Llum, cel·la a cel·la.",
-    "brew.confitura": "Cau la fruita, s'omple el pot.",
 
     "foot.support": "Dubtes, errors, idees. Escriu-nos i et contesta una persona.",
     "foot.privacy": "Privadesa",
@@ -246,6 +265,10 @@ function applyLang() {
   document.querySelectorAll("[data-i18n-aria]").forEach(el => {
     const val = dict[el.dataset.i18nAria];
     if (val != null) el.setAttribute("aria-label", val);
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+    const val = dict[el.dataset.i18nAlt];
+    if (val != null) el.setAttribute("alt", val);
   });
 
   const toggle = document.getElementById("langToggle");
