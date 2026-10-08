@@ -158,7 +158,8 @@ a:hover { color: var(--terracotta); }
 }
 @media (prefers-color-scheme: dark) { .btn--store { background: var(--mint); color: var(--leaf-deep); } }
 .btn--store:hover { color: inherit; }
-.btn__glyph { width: 26px; height: 26px; fill: currentColor; flex: none; }
+/* The glyph runs from y 1.5 to 26.2: the viewBox frames all of it. */
+.btn__glyph { width: 21px; height: 27px; fill: currentColor; flex: none; }
 .btn__stack { display: grid; line-height: 1.15; }
 .btn__stack small { font-size: .68rem; opacity: .8; }
 .btn__stack strong { font-size: 1.05rem; font-weight: 650; }
