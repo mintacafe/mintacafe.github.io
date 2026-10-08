@@ -156,8 +156,13 @@ a:hover { color: var(--terracotta); }
   background: var(--leaf-deep); color: var(--cream);
   padding: .6em 1.3em; text-align: left;
 }
-@media (prefers-color-scheme: dark) { .btn--store { background: var(--mint); color: var(--leaf-deep); } }
-.btn--store:hover { color: inherit; }
+/* The hover names its colours: left to inherit, the text took the page's ink,
+   the same green as the button, and vanished. */
+.btn--store:hover { background: var(--leaf); color: var(--cream); box-shadow: var(--shadow); }
+@media (prefers-color-scheme: dark) {
+  .btn--store { background: var(--mint); color: var(--leaf-deep); }
+  .btn--store:hover { background: var(--mint-deep); color: var(--leaf-deep); }
+}
 /* The glyph runs from y 1.5 to 26.2: the viewBox frames all of it. */
 .btn__glyph { width: 21px; height: 27px; fill: currentColor; flex: none; }
 .btn__stack { display: grid; line-height: 1.15; }
