@@ -435,8 +435,15 @@ button.jar__round:focus-visible { outline: 2px solid var(--jar-mint); outline-of
 }
 .popover__item { margin: 0; padding: .3rem .8rem; border-radius: 6px; }
 .popover__item--quiet { color: #6a7a71; }
-/* "Turn Off" is greyed out while the screen is untouched, as in the app. */
-.popover__item.is-off { color: #a8b4ad; }
+/* "Turn Off" puts the screen back to neutral, and is greyed out while the
+   screen is untouched, as in the app. */
+button.popover__item {
+  display: block; width: calc(100% - .6rem); margin: 0 .3rem; padding: .3rem .5rem;
+  font: inherit; color: inherit; text-align: left; background: none; border: 0; cursor: pointer;
+}
+button.popover__item:not(:disabled):hover { background: rgba(34, 48, 42, .08); }
+button.popover__item:focus-visible { outline: 2px solid var(--mint); outline-offset: -2px; }
+.popover__item.is-off { color: #a8b4ad; cursor: default; }
 
 .art__readout {
   margin: 0; font-size: .8rem; font-weight: 650;

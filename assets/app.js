@@ -511,6 +511,7 @@ function applyBoost() {
 
   const neutral = Math.abs(level) < 0.05;
   offRow.classList.toggle("is-off", neutral);
+  offRow.disabled = neutral;
   readout.textContent =
     neutral   ? t("brillantor.neutral")
   : level > 0 ? t("brillantor.lift").replace("{n}", Math.round(level * 150))
@@ -520,6 +521,11 @@ function applyBoost() {
 if (boost) {
   boost.addEventListener("input", applyBoost);
   document.addEventListener("langchange", applyBoost);
+  // Turn Off: this screen back to neutral, as the app does.
+  offRow.addEventListener("click", () => {
+    boost.value = 0;
+    applyBoost();
+  });
 }
 
 /* Quit row follows the language too. */
