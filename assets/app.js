@@ -102,8 +102,8 @@ const I18N = {
     "ploma.f2": "Markdown tables that line up by themselves, and boxes and arrows drawn in plain text.",
     "ploma.f3": "If a script or a coding assistant changes your file, you see each change and keep what you want.",
     "ploma.f4": "Light on your Mac: a 150 MB file opens in a fifth of a second.",
-    "ploma.art.alt": "A Ploma window with a short Markdown note: a heading, two list items, a small table with its columns lined up and two boxes joined by an arrow drawn in text. The first tab has a dot because it has unsaved changes",
-    "ploma.caption": "Ploma's own light and dark themes; it can switch with your Mac. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.",
+    "ploma.art.alt": "A Ploma window with a short Markdown note: headings, a short list, a small table with its columns lined up and three boxes joined by arrows drawn in text. The first tab has a dot because it has unsaved changes",
+    "ploma.caption": "Ploma follows your Mac by default: light by day, dark at night. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.",
 
     "promise.title": "How we sell things",
     "promise.lede": "The same rules for every app we make. Written here so you can hold us to them.",
@@ -236,8 +236,8 @@ const I18N = {
     "ploma.f2": "Taules de Markdown que s'alineen soles, i quadres i fletxes dibuixats amb text.",
     "ploma.f3": "Si un script o un assistent de programació et canvia el fitxer, veus cada canvi i et quedes el que vols.",
     "ploma.f4": "Lleugera: un fitxer de 150 MB s'obre en una cinquena part de segon.",
-    "ploma.art.alt": "Una finestra de Ploma amb una nota curta en Markdown: un títol, dos punts d'una llista, una taula petita amb les columnes alineades i dos quadres units per una fletxa dibuixada amb text. La primera pestanya porta una rodona perquè té canvis sense desar",
-    "ploma.caption": "Els temes clar i fosc de Ploma, que pot canviar amb el Mac. La rodona de la primera pestanya vol dir canvis sense desar: surt igualment, i la propera vegada encara hi seran.",
+    "ploma.art.alt": "Una finestra de Ploma amb una nota curta en Markdown: títols, una llista curta, una taula petita amb les columnes alineades i tres quadres units per fletxes dibuixades amb text. La primera pestanya porta una rodona perquè té canvis sense desar",
+    "ploma.caption": "Per defecte, Ploma segueix el Mac: clara de dia i fosca de nit. La rodona de la primera pestanya vol dir canvis sense desar: surt igualment, i la propera vegada encara hi seran.",
 
     "promise.title": "Com venem les coses",
     "promise.lede": "Les mateixes regles per a totes les apps que fem. Escrites aquí perquè ens hi puguis fer complir.",

@@ -11,9 +11,10 @@ Segell s'ensenya amb la seva finestra dibuixada (HTML i SVG), i el requadre de l
 signatura és el que dibuixa l'app (`Features/Signing/SignatureAppearance.swift`
 del repositori de Segell, amb els mateixos números per a un requadre de 240 × 84).
 Ploma s'ensenya amb la seva finestra dibuixada en SVG amb les mides de l'app
-(Menlo 22 en una graella de 13,245 × 26, el marge de números, el minimapa de 96, la
+(Menlo 16 en una graella de 9,633 × 19, el marge de números, el minimapa de 96, la
 barra de pestanyes de 32 i la d'estat de 24) i els colors dels temes Minta Light i
-Minta Dark de `Core/Theme/Theme.swift`. La nota hi és en anglès i en català: el CSS
+Minta Dark de `Core/Theme/Theme.swift`, que d'entrada segueixen el Mac (de dia el
+clar, de nit el fosc). La nota hi és en anglès i en català: el CSS
 amaga la que no toca segons el `lang` de la pàgina.
 Les seccions van per plataforma: primer les d'iPhone i després les de Mac.
 

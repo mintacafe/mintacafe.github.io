@@ -321,15 +321,16 @@
   <!-- ───────────────────────── Ploma ───────────────────────── -->
   <section class="app" id="ploma">
     <div class="app__art">
-      <!-- Ploma's window, drawn with the app's own measures: Menlo 22 on a grid of
-           13.245 × 26, a margin of four cells for the line numbers, the 96-point
+      <!-- Ploma's window, drawn with the app's own measures: Menlo 16 on a grid of
+           9.633 × 19, a margin of four cells for the line numbers, the 96-point
            minimap, the 32-point tab bar and the 24-point status bar. Minta Light by
-           day and Minta Dark at night; the note is in the page's language. -->
+           day and Minta Dark at night, as Ploma does by default; the note is in the
+           page's language. -->
       <div class="plm" role="img"
-           aria-label="A Ploma window with a short Markdown note: a heading, two list items, a small table with its columns lined up and two boxes joined by an arrow drawn in text. The first tab has a dot because it has unsaved changes"
+           aria-label="A Ploma window with a short Markdown note: headings, a short list, a small table with its columns lined up and three boxes joined by arrows drawn in text. The first tab has a dot because it has unsaved changes"
            data-i18n-aria="ploma.art.alt">
-        <svg class="plm__window" viewBox="0 0 640 448" aria-hidden="true">
-        <rect width="640" height="448" class="p-chrome"/>
+        <svg class="plm__window" viewBox="0 0 640 445" aria-hidden="true">
+        <rect width="640" height="445" class="p-chrome"/>
         <circle cx="20" cy="14" r="6" fill="#FF5F57"/>
         <circle cx="40" cy="14" r="6" fill="#FEBC2E"/>
         <circle cx="60" cy="14" r="6" fill="#28C840"/>
@@ -344,120 +345,156 @@
         <path d="M419.5 40.5l7 7M426.5 40.5l-7 7" class="p-dim-stroke" stroke-width="1.2" opacity=".7"/>
         <path d="M621.5 40.5l7 7M628.5 40.5l-7 7" class="p-dim-stroke" stroke-width="1.2" opacity=".7"/>
         <rect x="0" y="59" width="640" height="1" class="p-sep"/>
-        <rect x="0" y="60" width="640" height="364" class="p-bg"/>
-        <rect x="544" y="60" width="96" height="28" class="p-fg" opacity=".08"/>
-        <rect x="0" y="424" width="640" height="1" class="p-sep"/>
+        <rect x="0" y="60" width="640" height="361" class="p-bg"/>
+        <rect x="544" y="60" width="96" height="38" class="p-fg" opacity=".08"/>
+        <rect x="0" y="421" width="640" height="1" class="p-sep"/>
         <g class="only-en">
         <text x="320" y="18.5" text-anchor="middle" class="p-title t-title">monday.md</text>
         <text x="46" y="48.5" class="p-fg t-tab">monday.md</text>
         <text x="248" y="48.5" class="p-dim t-tab">todo.md</text>
         <text x="450" y="48.5" class="p-dim t-tab">Settings.json</text>
-        <text x="39.74" y="81" text-anchor="end" class="p-dim t-mono">1</text>
-        <text x="56.98" y="81" class="p-h1 b t-mono">#</text>
-        <text x="83.47" y="81" class="p-fg b t-mono" textLength="185.43" lengthAdjust="spacing">Monday meeting</text>
-        <text x="39.74" y="107" text-anchor="end" class="p-dim t-mono">2</text>
-        <text x="39.74" y="133" text-anchor="end" class="p-dim t-mono">3</text>
-        <text x="56.98" y="133" class="p-punct t-mono">-</text>
-        <text x="83.47" y="133" class="p-fg t-mono" textLength="304.64" lengthAdjust="spacing">Ship before the weekend</text>
-        <text x="39.74" y="159" text-anchor="end" class="p-dim t-mono">4</text>
-        <text x="56.98" y="159" class="p-punct t-mono">-</text>
-        <text x="83.47" y="159" class="p-fg t-mono" textLength="370.86" lengthAdjust="spacing">Keep the first version small</text>
-        <text x="39.74" y="185" text-anchor="end" class="p-dim t-mono">5</text>
-        <text x="39.74" y="211" text-anchor="end" class="p-dim t-mono">6</text>
-        <text x="56.98" y="211" class="p-punct t-mono">|</text>
-        <text x="149.7" y="211" class="p-punct t-mono">|</text>
-        <text x="321.88" y="211" class="p-punct t-mono">|</text>
-        <text x="480.82" y="211" class="p-punct t-mono">|</text>
-        <text x="83.47" y="211" class="p-fg b t-mono" textLength="39.74" lengthAdjust="spacing">Who</text>
-        <text x="176.19" y="211" class="p-fg b t-mono" textLength="52.98" lengthAdjust="spacing">What</text>
-        <text x="348.37" y="211" class="p-fg b t-mono" textLength="52.98" lengthAdjust="spacing">When</text>
-        <text x="39.74" y="237" text-anchor="end" class="p-dim t-mono">7</text>
-        <text x="56.98" y="237" class="p-punct t-mono" textLength="437.09" lengthAdjust="spacing">|------|------------|-----------|</text>
-        <text x="39.74" y="263" text-anchor="end" class="p-dim t-mono">8</text>
-        <text x="56.98" y="263" class="p-punct t-mono">|</text>
-        <text x="149.7" y="263" class="p-punct t-mono">|</text>
-        <text x="321.88" y="263" class="p-punct t-mono">|</text>
-        <text x="480.82" y="263" class="p-punct t-mono">|</text>
-        <text x="83.47" y="263" class="p-fg t-mono" textLength="52.98" lengthAdjust="spacing">Anna</text>
-        <text x="176.19" y="263" class="p-fg t-mono" textLength="66.23" lengthAdjust="spacing">Icons</text>
-        <text x="348.37" y="263" class="p-fg t-mono" textLength="119.21" lengthAdjust="spacing">Wednesday</text>
-        <text x="39.74" y="289" text-anchor="end" class="p-dim t-mono">9</text>
-        <text x="56.98" y="289" class="p-punct t-mono">|</text>
-        <text x="149.7" y="289" class="p-punct t-mono">|</text>
-        <text x="321.88" y="289" class="p-punct t-mono">|</text>
-        <text x="480.82" y="289" class="p-punct t-mono">|</text>
-        <text x="83.47" y="289" class="p-fg t-mono" textLength="52.98" lengthAdjust="spacing">Pere</text>
-        <text x="176.19" y="289" class="p-fg t-mono" textLength="132.45" lengthAdjust="spacing">Store text</text>
-        <text x="348.37" y="289" class="p-fg t-mono" textLength="79.47" lengthAdjust="spacing">Friday</text>
-        <text x="39.74" y="315" text-anchor="end" class="p-dim t-mono">10</text>
-        <text x="39.74" y="341" text-anchor="end" class="p-dim t-mono">11</text>
-        <text x="56.98" y="341" class="p-fg t-mono" textLength="264.9" lengthAdjust="spacing">┌──────┐    ┌──────┐</text>
-        <text x="39.74" y="367" text-anchor="end" class="p-dim t-mono">12</text>
-        <text x="56.98" y="367" class="p-fg t-mono" textLength="264.9" lengthAdjust="spacing">│ Idea │───▶│ Done │</text>
-        <text x="39.74" y="393" text-anchor="end" class="p-dim t-mono">13</text>
-        <text x="56.98" y="393" class="p-fg t-mono" textLength="264.9" lengthAdjust="spacing">└──────┘    └──────┘</text>
-        <rect x="454.33" y="138" width="2" height="26" class="p-caret"/>
-        <path class="p-fg" opacity=".45" d="M550 60h1v1h-1zM552 60h6v1h-6zM559 60h7v1h-7zM550 64h1v1h-1zM552 64h4v1h-4zM557 64h6v1h-6zM564 64h3v1h-3zM568 64h7v1h-7zM550 66h1v1h-1zM552 66h4v1h-4zM557 66h3v1h-3zM561 66h5v1h-5zM567 66h7v1h-7zM575 66h5v1h-5zM550 70h1v1h-1zM552 70h3v1h-3zM557 70h1v1h-1zM559 70h4v1h-4zM570 70h1v1h-1zM572 70h4v1h-4zM582 70h1v1h-1zM550 72h33v1h-33zM550 74h1v1h-1zM552 74h4v1h-4zM557 74h1v1h-1zM559 74h5v1h-5zM570 74h1v1h-1zM572 74h9v1h-9zM582 74h1v1h-1zM550 76h1v1h-1zM552 76h4v1h-4zM557 76h1v1h-1zM559 76h5v1h-5zM565 76h4v1h-4zM570 76h1v1h-1zM572 76h6v1h-6zM582 76h1v1h-1zM550 80h8v1h-8zM562 80h8v1h-8zM550 82h1v1h-1zM552 82h4v1h-4zM557 82h6v1h-6zM564 82h4v1h-4zM569 82h1v1h-1zM550 84h8v1h-8zM562 84h8v1h-8z"/>
-        <text x="12" y="440" class="p-dim t-status">Line 4, Column 31</text>
-        <text x="628" y="440" text-anchor="end" class="p-dim t-status">Markdown</text>
+        <text x="28.9" y="75" text-anchor="end" class="p-dim t-mono">1</text>
+        <text x="42.53" y="75" class="p-h1 b t-mono">#</text>
+        <text x="61.8" y="75" class="p-fg b t-mono" textLength="134.86" lengthAdjust="spacing">Monday meeting</text>
+        <text x="28.9" y="94" text-anchor="end" class="p-dim t-mono">2</text>
+        <text x="28.9" y="113" text-anchor="end" class="p-dim t-mono">3</text>
+        <text x="42.53" y="113" class="p-punct t-mono">-</text>
+        <text x="61.8" y="113" class="p-fg t-mono" textLength="221.55" lengthAdjust="spacing">Ship before the weekend</text>
+        <text x="28.9" y="132" text-anchor="end" class="p-dim t-mono">4</text>
+        <text x="42.53" y="132" class="p-punct t-mono">-</text>
+        <text x="61.8" y="132" class="p-fg t-mono" textLength="269.72" lengthAdjust="spacing">Keep the first version small</text>
+        <text x="28.9" y="151" text-anchor="end" class="p-dim t-mono">5</text>
+        <text x="42.53" y="151" class="p-punct t-mono">-</text>
+        <text x="61.8" y="151" class="p-fg t-mono" textLength="288.98" lengthAdjust="spacing">Write the store text with Pere</text>
+        <text x="28.9" y="170" text-anchor="end" class="p-dim t-mono">6</text>
+        <text x="28.9" y="189" text-anchor="end" class="p-dim t-mono">7</text>
+        <text x="42.53" y="189" class="p-punct t-mono">|</text>
+        <text x="109.96" y="189" class="p-punct t-mono">|</text>
+        <text x="244.82" y="189" class="p-punct t-mono">|</text>
+        <text x="360.41" y="189" class="p-punct t-mono">|</text>
+        <text x="61.8" y="189" class="p-fg b t-mono" textLength="28.9" lengthAdjust="spacing">Who</text>
+        <text x="129.23" y="189" class="p-fg b t-mono" textLength="38.53" lengthAdjust="spacing">What</text>
+        <text x="264.09" y="189" class="p-fg b t-mono" textLength="38.53" lengthAdjust="spacing">When</text>
+        <text x="28.9" y="208" text-anchor="end" class="p-dim t-mono">8</text>
+        <text x="42.53" y="208" class="p-punct t-mono" textLength="327.52" lengthAdjust="spacing">|------|-------------|-----------|</text>
+        <text x="28.9" y="227" text-anchor="end" class="p-dim t-mono">9</text>
+        <text x="42.53" y="227" class="p-punct t-mono">|</text>
+        <text x="109.96" y="227" class="p-punct t-mono">|</text>
+        <text x="244.82" y="227" class="p-punct t-mono">|</text>
+        <text x="360.41" y="227" class="p-punct t-mono">|</text>
+        <text x="61.8" y="227" class="p-fg t-mono" textLength="38.53" lengthAdjust="spacing">Anna</text>
+        <text x="129.23" y="227" class="p-fg t-mono" textLength="48.16" lengthAdjust="spacing">Icons</text>
+        <text x="264.09" y="227" class="p-fg t-mono" textLength="86.7" lengthAdjust="spacing">Wednesday</text>
+        <text x="28.9" y="246" text-anchor="end" class="p-dim t-mono">10</text>
+        <text x="42.53" y="246" class="p-punct t-mono">|</text>
+        <text x="109.96" y="246" class="p-punct t-mono">|</text>
+        <text x="244.82" y="246" class="p-punct t-mono">|</text>
+        <text x="360.41" y="246" class="p-punct t-mono">|</text>
+        <text x="61.8" y="246" class="p-fg t-mono" textLength="38.53" lengthAdjust="spacing">Pere</text>
+        <text x="129.23" y="246" class="p-fg t-mono" textLength="96.33" lengthAdjust="spacing">Store text</text>
+        <text x="264.09" y="246" class="p-fg t-mono" textLength="57.8" lengthAdjust="spacing">Friday</text>
+        <text x="28.9" y="265" text-anchor="end" class="p-dim t-mono">11</text>
+        <text x="42.53" y="265" class="p-punct t-mono">|</text>
+        <text x="109.96" y="265" class="p-punct t-mono">|</text>
+        <text x="244.82" y="265" class="p-punct t-mono">|</text>
+        <text x="360.41" y="265" class="p-punct t-mono">|</text>
+        <text x="61.8" y="265" class="p-fg t-mono" textLength="38.53" lengthAdjust="spacing">Marc</text>
+        <text x="129.23" y="265" class="p-fg t-mono" textLength="105.96" lengthAdjust="spacing">Screenshots</text>
+        <text x="264.09" y="265" class="p-fg t-mono" textLength="77.06" lengthAdjust="spacing">Thursday</text>
+        <text x="28.9" y="284" text-anchor="end" class="p-dim t-mono">12</text>
+        <text x="28.9" y="303" text-anchor="end" class="p-dim t-mono">13</text>
+        <text x="42.53" y="303" class="p-h2 b t-mono" textLength="19.27" lengthAdjust="spacing">##</text>
+        <text x="71.43" y="303" class="p-fg b t-mono" textLength="38.53" lengthAdjust="spacing">Flow</text>
+        <text x="28.9" y="322" text-anchor="end" class="p-dim t-mono">14</text>
+        <text x="28.9" y="341" text-anchor="end" class="p-dim t-mono">15</text>
+        <text x="42.53" y="341" class="p-fg t-mono" textLength="327.52" lengthAdjust="spacing">┌──────┐    ┌────────┐    ┌──────┐</text>
+        <text x="28.9" y="360" text-anchor="end" class="p-dim t-mono">16</text>
+        <text x="42.53" y="360" class="p-fg t-mono" textLength="327.52" lengthAdjust="spacing">│ Idea │───▶│ Review │───▶│ Done │</text>
+        <text x="28.9" y="379" text-anchor="end" class="p-dim t-mono">17</text>
+        <text x="42.53" y="379" class="p-fg t-mono" textLength="327.52" lengthAdjust="spacing">└──────┘    └────────┘    └──────┘</text>
+        <text x="28.9" y="398" text-anchor="end" class="p-dim t-mono">18</text>
+        <text x="28.9" y="417" text-anchor="end" class="p-dim t-mono">19</text>
+        <text x="42.53" y="417" class="p-fg t-mono" textLength="250.45" lengthAdjust="spacing">Next meeting: Monday at 10</text>
+        <rect x="350.78" y="136" width="2" height="19" class="p-caret"/>
+        <path class="p-fg" opacity=".45" d="M550 60h1v1h-1zM552 60h6v1h-6zM559 60h7v1h-7zM550 64h1v1h-1zM552 64h4v1h-4zM557 64h6v1h-6zM564 64h3v1h-3zM568 64h7v1h-7zM550 66h1v1h-1zM552 66h4v1h-4zM557 66h3v1h-3zM561 66h5v1h-5zM567 66h7v1h-7zM575 66h5v1h-5zM550 68h1v1h-1zM552 68h5v1h-5zM558 68h3v1h-3zM562 68h5v1h-5zM568 68h4v1h-4zM573 68h4v1h-4zM578 68h4v1h-4zM550 72h1v1h-1zM552 72h3v1h-3zM557 72h1v1h-1zM559 72h4v1h-4zM571 72h1v1h-1zM573 72h4v1h-4zM583 72h1v1h-1zM550 74h34v1h-34zM550 76h1v1h-1zM552 76h4v1h-4zM557 76h1v1h-1zM559 76h5v1h-5zM571 76h1v1h-1zM573 76h9v1h-9zM583 76h1v1h-1zM550 78h1v1h-1zM552 78h4v1h-4zM557 78h1v1h-1zM559 78h5v1h-5zM565 78h4v1h-4zM571 78h1v1h-1zM573 78h6v1h-6zM583 78h1v1h-1zM550 80h1v1h-1zM552 80h4v1h-4zM557 80h1v1h-1zM559 80h11v1h-11zM571 80h1v1h-1zM573 80h8v1h-8zM583 80h1v1h-1zM550 84h2v1h-2zM553 84h4v1h-4zM550 88h8v1h-8zM562 88h10v1h-10zM576 88h8v1h-8zM550 90h1v1h-1zM552 90h4v1h-4zM557 90h6v1h-6zM564 90h6v1h-6zM571 90h6v1h-6zM578 90h4v1h-4zM583 90h1v1h-1zM550 92h8v1h-8zM562 92h10v1h-10zM576 92h8v1h-8zM550 96h4v1h-4zM555 96h8v1h-8zM564 96h6v1h-6zM571 96h2v1h-2zM574 96h2v1h-2z"/>
+        <text x="12" y="437" class="p-dim t-status">Line 5, Column 33</text>
+        <text x="628" y="437" text-anchor="end" class="p-dim t-status">Markdown</text>
         </g>
         <g class="only-ca">
         <text x="320" y="18.5" text-anchor="middle" class="p-title t-title">dilluns.md</text>
         <text x="46" y="48.5" class="p-fg t-tab">dilluns.md</text>
         <text x="248" y="48.5" class="p-dim t-tab">pendents.md</text>
         <text x="450" y="48.5" class="p-dim t-tab">Settings.json</text>
-        <text x="39.74" y="81" text-anchor="end" class="p-dim t-mono">1</text>
-        <text x="56.98" y="81" class="p-h1 b t-mono">#</text>
-        <text x="83.47" y="81" class="p-fg b t-mono" textLength="225.17" lengthAdjust="spacing">Reunió de dilluns</text>
-        <text x="39.74" y="107" text-anchor="end" class="p-dim t-mono">2</text>
-        <text x="39.74" y="133" text-anchor="end" class="p-dim t-mono">3</text>
-        <text x="56.98" y="133" class="p-punct t-mono">-</text>
-        <text x="83.47" y="133" class="p-fg t-mono" textLength="410.6" lengthAdjust="spacing">Sortir abans del cap de setmana</text>
-        <text x="39.74" y="159" text-anchor="end" class="p-dim t-mono">4</text>
-        <text x="56.98" y="159" class="p-punct t-mono">-</text>
-        <text x="83.47" y="159" class="p-fg t-mono" textLength="450.33" lengthAdjust="spacing">Que la primera versió sigui petita</text>
-        <text x="39.74" y="185" text-anchor="end" class="p-dim t-mono">5</text>
-        <text x="39.74" y="211" text-anchor="end" class="p-dim t-mono">6</text>
-        <text x="56.98" y="211" class="p-punct t-mono">|</text>
-        <text x="149.7" y="211" class="p-punct t-mono">|</text>
-        <text x="268.9" y="211" class="p-punct t-mono">|</text>
-        <text x="427.84" y="211" class="p-punct t-mono">|</text>
-        <text x="83.47" y="211" class="p-fg b t-mono" textLength="39.74" lengthAdjust="spacing">Qui</text>
-        <text x="176.19" y="211" class="p-fg b t-mono" textLength="39.74" lengthAdjust="spacing">Què</text>
-        <text x="295.39" y="211" class="p-fg b t-mono" textLength="52.98" lengthAdjust="spacing">Quan</text>
-        <text x="39.74" y="237" text-anchor="end" class="p-dim t-mono">7</text>
-        <text x="56.98" y="237" class="p-punct t-mono" textLength="384.11" lengthAdjust="spacing">|------|--------|-----------|</text>
-        <text x="39.74" y="263" text-anchor="end" class="p-dim t-mono">8</text>
-        <text x="56.98" y="263" class="p-punct t-mono">|</text>
-        <text x="149.7" y="263" class="p-punct t-mono">|</text>
-        <text x="268.9" y="263" class="p-punct t-mono">|</text>
-        <text x="427.84" y="263" class="p-punct t-mono">|</text>
-        <text x="83.47" y="263" class="p-fg t-mono" textLength="52.98" lengthAdjust="spacing">Anna</text>
-        <text x="176.19" y="263" class="p-fg t-mono" textLength="79.47" lengthAdjust="spacing">Icones</text>
-        <text x="295.39" y="263" class="p-fg t-mono" textLength="105.96" lengthAdjust="spacing">dimecres</text>
-        <text x="39.74" y="289" text-anchor="end" class="p-dim t-mono">9</text>
-        <text x="56.98" y="289" class="p-punct t-mono">|</text>
-        <text x="149.7" y="289" class="p-punct t-mono">|</text>
-        <text x="268.9" y="289" class="p-punct t-mono">|</text>
-        <text x="427.84" y="289" class="p-punct t-mono">|</text>
-        <text x="83.47" y="289" class="p-fg t-mono" textLength="52.98" lengthAdjust="spacing">Pere</text>
-        <text x="176.19" y="289" class="p-fg t-mono" textLength="79.47" lengthAdjust="spacing">Textos</text>
-        <text x="295.39" y="289" class="p-fg t-mono" textLength="119.21" lengthAdjust="spacing">divendres</text>
-        <text x="39.74" y="315" text-anchor="end" class="p-dim t-mono">10</text>
-        <text x="39.74" y="341" text-anchor="end" class="p-dim t-mono">11</text>
-        <text x="56.98" y="341" class="p-fg t-mono" textLength="251.66" lengthAdjust="spacing">┌──────┐    ┌─────┐</text>
-        <text x="39.74" y="367" text-anchor="end" class="p-dim t-mono">12</text>
-        <text x="56.98" y="367" class="p-fg t-mono" textLength="251.66" lengthAdjust="spacing">│ Idea │───▶│ Fet │</text>
-        <text x="39.74" y="393" text-anchor="end" class="p-dim t-mono">13</text>
-        <text x="56.98" y="393" class="p-fg t-mono" textLength="251.66" lengthAdjust="spacing">└──────┘    └─────┘</text>
-        <rect x="533.8" y="138" width="2" height="26" class="p-caret"/>
-        <path class="p-fg" opacity=".45" d="M550 60h1v1h-1zM552 60h6v1h-6zM559 60h2v1h-2zM562 60h7v1h-7zM550 64h1v1h-1zM552 64h6v1h-6zM559 64h5v1h-5zM565 64h3v1h-3zM569 64h3v1h-3zM573 64h2v1h-2zM576 64h7v1h-7zM550 66h1v1h-1zM552 66h3v1h-3zM556 66h2v1h-2zM559 66h7v1h-7zM567 66h6v1h-6zM574 66h5v1h-5zM580 66h6v1h-6zM550 70h1v1h-1zM552 70h3v1h-3zM557 70h1v1h-1zM559 70h3v1h-3zM566 70h1v1h-1zM568 70h4v1h-4zM578 70h1v1h-1zM550 72h29v1h-29zM550 74h1v1h-1zM552 74h4v1h-4zM557 74h1v1h-1zM559 74h6v1h-6zM566 74h1v1h-1zM568 74h8v1h-8zM578 74h1v1h-1zM550 76h1v1h-1zM552 76h4v1h-4zM557 76h1v1h-1zM559 76h6v1h-6zM566 76h1v1h-1zM568 76h9v1h-9zM578 76h1v1h-1zM550 80h8v1h-8zM562 80h7v1h-7zM550 82h1v1h-1zM552 82h4v1h-4zM557 82h6v1h-6zM564 82h3v1h-3zM568 82h1v1h-1zM550 84h8v1h-8zM562 84h7v1h-7z"/>
-        <text x="12" y="440" class="p-dim t-status">Línia 4, columna 37</text>
-        <text x="628" y="440" text-anchor="end" class="p-dim t-status">Markdown</text>
+        <text x="28.9" y="75" text-anchor="end" class="p-dim t-mono">1</text>
+        <text x="42.53" y="75" class="p-h1 b t-mono">#</text>
+        <text x="61.8" y="75" class="p-fg b t-mono" textLength="163.76" lengthAdjust="spacing">Reunió de dilluns</text>
+        <text x="28.9" y="94" text-anchor="end" class="p-dim t-mono">2</text>
+        <text x="28.9" y="113" text-anchor="end" class="p-dim t-mono">3</text>
+        <text x="42.53" y="113" class="p-punct t-mono">-</text>
+        <text x="61.8" y="113" class="p-fg t-mono" textLength="298.62" lengthAdjust="spacing">Sortir abans del cap de setmana</text>
+        <text x="28.9" y="132" text-anchor="end" class="p-dim t-mono">4</text>
+        <text x="42.53" y="132" class="p-punct t-mono">-</text>
+        <text x="61.8" y="132" class="p-fg t-mono" textLength="327.52" lengthAdjust="spacing">Que la primera versió sigui petita</text>
+        <text x="28.9" y="151" text-anchor="end" class="p-dim t-mono">5</text>
+        <text x="42.53" y="151" class="p-punct t-mono">-</text>
+        <text x="61.8" y="151" class="p-fg t-mono" textLength="423.84" lengthAdjust="spacing">Escriure els textos de la botiga amb en Pere</text>
+        <text x="28.9" y="170" text-anchor="end" class="p-dim t-mono">6</text>
+        <text x="28.9" y="189" text-anchor="end" class="p-dim t-mono">7</text>
+        <text x="42.53" y="189" class="p-punct t-mono">|</text>
+        <text x="109.96" y="189" class="p-punct t-mono">|</text>
+        <text x="215.92" y="189" class="p-punct t-mono">|</text>
+        <text x="331.52" y="189" class="p-punct t-mono">|</text>
+        <text x="61.8" y="189" class="p-fg b t-mono" textLength="28.9" lengthAdjust="spacing">Qui</text>
+        <text x="129.23" y="189" class="p-fg b t-mono" textLength="28.9" lengthAdjust="spacing">Què</text>
+        <text x="235.19" y="189" class="p-fg b t-mono" textLength="38.53" lengthAdjust="spacing">Quan</text>
+        <text x="28.9" y="208" text-anchor="end" class="p-dim t-mono">8</text>
+        <text x="42.53" y="208" class="p-punct t-mono" textLength="298.62" lengthAdjust="spacing">|------|----------|-----------|</text>
+        <text x="28.9" y="227" text-anchor="end" class="p-dim t-mono">9</text>
+        <text x="42.53" y="227" class="p-punct t-mono">|</text>
+        <text x="109.96" y="227" class="p-punct t-mono">|</text>
+        <text x="215.92" y="227" class="p-punct t-mono">|</text>
+        <text x="331.52" y="227" class="p-punct t-mono">|</text>
+        <text x="61.8" y="227" class="p-fg t-mono" textLength="38.53" lengthAdjust="spacing">Anna</text>
+        <text x="129.23" y="227" class="p-fg t-mono" textLength="57.8" lengthAdjust="spacing">Icones</text>
+        <text x="235.19" y="227" class="p-fg t-mono" textLength="77.06" lengthAdjust="spacing">dimecres</text>
+        <text x="28.9" y="246" text-anchor="end" class="p-dim t-mono">10</text>
+        <text x="42.53" y="246" class="p-punct t-mono">|</text>
+        <text x="109.96" y="246" class="p-punct t-mono">|</text>
+        <text x="215.92" y="246" class="p-punct t-mono">|</text>
+        <text x="331.52" y="246" class="p-punct t-mono">|</text>
+        <text x="61.8" y="246" class="p-fg t-mono" textLength="38.53" lengthAdjust="spacing">Pere</text>
+        <text x="129.23" y="246" class="p-fg t-mono" textLength="57.8" lengthAdjust="spacing">Textos</text>
+        <text x="235.19" y="246" class="p-fg t-mono" textLength="86.7" lengthAdjust="spacing">divendres</text>
+        <text x="28.9" y="265" text-anchor="end" class="p-dim t-mono">11</text>
+        <text x="42.53" y="265" class="p-punct t-mono">|</text>
+        <text x="109.96" y="265" class="p-punct t-mono">|</text>
+        <text x="215.92" y="265" class="p-punct t-mono">|</text>
+        <text x="331.52" y="265" class="p-punct t-mono">|</text>
+        <text x="61.8" y="265" class="p-fg t-mono" textLength="38.53" lengthAdjust="spacing">Marc</text>
+        <text x="129.23" y="265" class="p-fg t-mono" textLength="77.06" lengthAdjust="spacing">Captures</text>
+        <text x="235.19" y="265" class="p-fg t-mono" textLength="57.8" lengthAdjust="spacing">dijous</text>
+        <text x="28.9" y="284" text-anchor="end" class="p-dim t-mono">12</text>
+        <text x="28.9" y="303" text-anchor="end" class="p-dim t-mono">13</text>
+        <text x="42.53" y="303" class="p-h2 b t-mono" textLength="19.27" lengthAdjust="spacing">##</text>
+        <text x="71.43" y="303" class="p-fg b t-mono" textLength="57.8" lengthAdjust="spacing">Com va</text>
+        <text x="28.9" y="322" text-anchor="end" class="p-dim t-mono">14</text>
+        <text x="28.9" y="341" text-anchor="end" class="p-dim t-mono">15</text>
+        <text x="42.53" y="341" class="p-fg t-mono" textLength="327.52" lengthAdjust="spacing">┌──────┐    ┌─────────┐    ┌─────┐</text>
+        <text x="28.9" y="360" text-anchor="end" class="p-dim t-mono">16</text>
+        <text x="42.53" y="360" class="p-fg t-mono" textLength="327.52" lengthAdjust="spacing">│ Idea │───▶│ Revisió │───▶│ Fet │</text>
+        <text x="28.9" y="379" text-anchor="end" class="p-dim t-mono">17</text>
+        <text x="42.53" y="379" class="p-fg t-mono" textLength="327.52" lengthAdjust="spacing">└──────┘    └─────────┘    └─────┘</text>
+        <text x="28.9" y="398" text-anchor="end" class="p-dim t-mono">18</text>
+        <text x="28.9" y="417" text-anchor="end" class="p-dim t-mono">19</text>
+        <text x="42.53" y="417" class="p-fg t-mono" textLength="308.25" lengthAdjust="spacing">Propera reunió: dilluns a les 10</text>
+        <rect x="485.64" y="136" width="2" height="19" class="p-caret"/>
+        <path class="p-fg" opacity=".45" d="M550 60h1v1h-1zM552 60h6v1h-6zM559 60h2v1h-2zM562 60h7v1h-7zM550 64h1v1h-1zM552 64h6v1h-6zM559 64h5v1h-5zM565 64h3v1h-3zM569 64h3v1h-3zM573 64h2v1h-2zM576 64h7v1h-7zM550 66h1v1h-1zM552 66h3v1h-3zM556 66h2v1h-2zM559 66h7v1h-7zM567 66h6v1h-6zM574 66h5v1h-5zM580 66h6v1h-6zM550 68h1v1h-1zM552 68h8v1h-8zM561 68h3v1h-3zM565 68h6v1h-6zM572 68h2v1h-2zM575 68h2v1h-2zM578 68h6v1h-6zM585 68h3v1h-3zM589 68h2v1h-2zM592 68h4v1h-4zM550 72h1v1h-1zM552 72h3v1h-3zM557 72h1v1h-1zM559 72h3v1h-3zM568 72h1v1h-1zM570 72h4v1h-4zM580 72h1v1h-1zM550 74h31v1h-31zM550 76h1v1h-1zM552 76h4v1h-4zM557 76h1v1h-1zM559 76h6v1h-6zM568 76h1v1h-1zM570 76h8v1h-8zM580 76h1v1h-1zM550 78h1v1h-1zM552 78h4v1h-4zM557 78h1v1h-1zM559 78h6v1h-6zM568 78h1v1h-1zM570 78h9v1h-9zM580 78h1v1h-1zM550 80h1v1h-1zM552 80h4v1h-4zM557 80h1v1h-1zM559 80h8v1h-8zM568 80h1v1h-1zM570 80h6v1h-6zM580 80h1v1h-1zM550 84h2v1h-2zM553 84h3v1h-3zM557 84h2v1h-2zM550 88h8v1h-8zM562 88h11v1h-11zM577 88h7v1h-7zM550 90h1v1h-1zM552 90h4v1h-4zM557 90h6v1h-6zM564 90h7v1h-7zM572 90h6v1h-6zM579 90h3v1h-3zM583 90h1v1h-1zM550 92h8v1h-8zM562 92h11v1h-11zM577 92h7v1h-7zM550 96h7v1h-7zM558 96h7v1h-7zM566 96h7v1h-7zM574 96h1v1h-1zM576 96h3v1h-3zM580 96h2v1h-2z"/>
+        <text x="12" y="437" class="p-dim t-status">Línia 5, columna 47</text>
+        <text x="628" y="437" text-anchor="end" class="p-dim t-status">Markdown</text>
         </g>
         </svg>
       </div>
-      <p class="art__caption" data-i18n="ploma.caption">Ploma's own light and dark themes; it can switch with your Mac. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.</p>
+      <p class="art__caption" data-i18n="ploma.caption">Ploma follows your Mac by default: light by day, dark at night. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.</p>
     </div>
 
     <div class="app__text">
