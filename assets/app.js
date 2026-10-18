@@ -15,6 +15,7 @@ const STORE_LINKS = {
   brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",  // Mac, live 2026-08-10
   confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160", // iPhone, live 2026-10-18
   segell:     "",                                                              // Mac, coming soon
+  ploma:      "",                                                              // Mac, coming soon
 };
 
 /* ── 2. Copy, in both languages ───────────────────────────── */
@@ -38,6 +39,7 @@ const I18N = {
     "label.puzzle": "Puzzle",
     "label.utility": "Menu bar utility",
     "label.signer": "PDF signer",
+    "label.editor": "Text editor",
 
     "circell.tagline": "Turn, join, bloom.",
     "circell.body": "A puzzle of rotation and connection. Tap the tiles to turn the vine strands 90° until no end is left open and the whole board is one living vine. When the vine closes, a wave of golden light runs through it and it blooms.",
@@ -81,11 +83,11 @@ const I18N = {
     "confitura.shot.alt": "A glass jar on a café counter, full of fruit with sleepy faces; a peach has just merged with a splash",
 
     "segell.tagline": "Open, sign, done.",
-    "segell.body": "A small PDF viewer for your Mac that signs documents with your digital certificate: the one in your keychain, like idCAT, or a .p12 file. It makes a standard PAdES signature, the kind other PDF readers accept, and it never breaks a signature a document already carries. Segell has no permission to use the network, so your documents and your keys stay with you.",
-    "segell.f1": "Draw the box where the signature goes, or sign without a visible mark.",
-    "segell.f2": "Sign and lock, so the document cannot be changed afterwards.",
-    "segell.f3": "A strip at the top tells you who signed a document and whether it has changed since.",
-    "segell.f4": "No network, nothing running in the background, nothing to install.",
+    "segell.body": "Someone sends you a contract or a form, and it has to come back signed with your digital certificate. Until now that meant a big PDF suite that goes online and starts with your Mac. Segell is a small viewer that does just this: open the PDF, choose Sign…, pick your certificate (the one in your keychain, like idCAT, or a .p12 file) and you get a signed copy that other PDF readers accept. It has no permission to use the network, so your documents and your keys stay with you.",
+    "segell.f1": "Put the signature where it belongs: drag a box over the line, or sign without a visible mark.",
+    "segell.f2": "Signing something someone else already signed? Their signature stays valid.",
+    "segell.f3": "Open a signed PDF and a strip tells you who signed it and whether it has changed since.",
+    "segell.f4": "Opens at once. Nothing in the background, nothing to install.",
     "segell.art.alt": "A Segell window with a signed document: a green strip at the top says who signed it and that it has not changed, and the blue signature box on the page carries the name, the date and the Minta Cafè leaf",
     "segell.art.file": "agreement-signed.pdf",
     "segell.art.banner": "Signed by Marta Puig on 18 Oct 2026 at 10:42. The document hasn’t changed since.",
@@ -93,6 +95,15 @@ const I18N = {
     "segell.box.signed": "Digitally signed",
     "segell.box.reason": "Approved",
     "segell.caption": "The signature box as Segell draws it. In dark mode the window goes dark, but the page stays paper.",
+
+    "ploma.tagline": "Opens like a drawer.",
+    "ploma.body": "For the moment you need to write something down: a list, meeting notes, a few lines of Markdown, a config file. Ploma is open before you have finished the thought, every key you press is on screen on the very next frame, and if you quit without saving, everything is there next time. It is a plain-text editor for notes, not a whole development environment, and it has no permission to use the network.",
+    "ploma.f1": "Multiple cursors and a command palette, to change many lines at once.",
+    "ploma.f2": "Markdown tables that line up by themselves, and boxes and arrows drawn in plain text.",
+    "ploma.f3": "If a script or a coding assistant changes your file, you see each change and keep what you want.",
+    "ploma.f4": "Light on your Mac: a 150 MB file opens in a fifth of a second.",
+    "ploma.art.alt": "A Ploma window with a short Markdown note: a heading, two list items, a small table with its columns lined up and two boxes joined by an arrow drawn in text. The first tab has a dot because it has unsaved changes",
+    "ploma.caption": "Ploma's own light and dark themes; it can switch with your Mac. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.",
 
     "promise.title": "How we sell things",
     "promise.lede": "The same rules for every app we make. Written here so you can hold us to them.",
@@ -130,6 +141,7 @@ const I18N = {
     "privacy.app.confitura": "Remembers your best ever, the best of the week, and day or night.",
     "privacy.app.brillantor": "Remembers nothing between launches.",
     "privacy.app.segell": "Remembers which certificate you signed with last and whether you wanted the signature to show on the page. Your documents, certificates and keys never leave your Mac: the private key stays in the keychain, and a .p12 file is read in memory and never stored. Segell does not even have permission to use the network.",
+    "privacy.app.ploma": "Remembers your preferences, the tabs, files and folders you had open, your recent files and folders, and any text you had not saved yet, so nothing is lost when you quit. All of it stays in Ploma's own folder on your Mac, and Ploma has no permission to use the network.",
     "privacy.p2b": "None of it ever leaves your device. On iPhone it goes when you delete the app. On a Mac, macOS may keep it in your Library folder after you delete the app; it is still only on your Mac.",
     "privacy.h3": "Third parties",
     "privacy.p3": "There are none. We use no SDKs from anyone else. If you buy an app, Apple handles the payment and tells us nothing about you beyond anonymous sales totals.",
@@ -161,6 +173,7 @@ const I18N = {
     "label.puzzle": "Trencaclosques",
     "label.utility": "Utilitat de la barra de menú",
     "label.signer": "Signar PDFs",
+    "label.editor": "Editor de text",
 
     "circell.tagline": "Gira, uneix, floreix.",
     "circell.body": "Un trencaclosques de rotació i connexió. Toca les caselles per girar els brins de vinya 90° fins que cap punta quedi oberta i tot el tauler sigui una sola parra viva. Quan la vinya es tanca, una onada de llum daurada la recorre i floreix.",
@@ -204,11 +217,11 @@ const I18N = {
     "confitura.shot.alt": "Un pot de vidre al taulell d'un cafè, ple de fruites amb cara de son; un préssec s'acaba de fondre amb un esquitx",
 
     "segell.tagline": "Obre, signa i prou.",
-    "segell.body": "Un visor de PDF petit per al Mac que signa documents amb el teu certificat digital: el del clauer, com l'idCAT, o un fitxer .p12. Fa una signatura PAdES estàndard, de les que donen per bones els altres lectors de PDF, i no trenca mai una signatura que el document ja portava. Segell no té permís per fer servir la xarxa: els teus documents i les teves claus es queden amb tu.",
-    "segell.f1": "Marca el requadre on va la signatura, o signa sense que es vegi.",
-    "segell.f2": "Signa i bloqueja, perquè ningú no pugui canviar el document després.",
-    "segell.f3": "Una franja a dalt et diu qui ha signat un document i si ha canviat des d'aleshores.",
-    "segell.f4": "Sense xarxa, res engegat de fons, res per instal·lar.",
+    "segell.body": "T'envien un contracte o un formulari i l'has de tornar signat amb el teu certificat digital. Fins ara calia un paquet de PDF enorme que es connecta a internet i s'engega amb el Mac. Segell és un visor petit que fa just això: obre el PDF, tria Signa…, escull el certificat (el del clauer, com l'idCAT, o un fitxer .p12) i tens una còpia signada que els altres lectors de PDF donen per bona. No té permís per fer servir la xarxa: els teus documents i les teves claus es queden amb tu.",
+    "segell.f1": "La signatura on toca: arrossega un requadre sobre la línia, o signa sense que es vegi.",
+    "segell.f2": "Signes un document que algú ja ha signat? La seva signatura continua valent.",
+    "segell.f3": "Obre un PDF signat i una franja et diu qui l'ha signat i si ha canviat des d'aleshores.",
+    "segell.f4": "S'obre a l'instant. Res engegat de fons, res per instal·lar.",
     "segell.art.alt": "Una finestra de Segell amb un document signat: una franja verda a dalt diu qui l'ha signat i que no ha canviat, i el requadre blau de la signatura porta el nom, la data i la fulla de Minta Cafè",
     "segell.art.file": "contracte-signat.pdf",
     "segell.art.banner": "Signat per Marta Puig el 18 oct. 2026, 10:42. El document no ha canviat des de llavors.",
@@ -216,6 +229,15 @@ const I18N = {
     "segell.box.signed": "Signat digitalment",
     "segell.box.reason": "Conforme",
     "segell.caption": "El requadre de la signatura, tal com el dibuixa Segell. En mode fosc la finestra es fa fosca, però la pàgina continua sent paper.",
+
+    "ploma.tagline": "S'obre com un calaix.",
+    "ploma.body": "Per al moment en què has d'apuntar alguna cosa: una llista, les notes d'una reunió, quatre línies de Markdown, un fitxer de configuració. Ploma ja és oberta abans que acabis de pensar-ho, cada tecla surt a la pantalla al fotograma següent, i si surts sense desar, ho retrobes tot la propera vegada. És un editor de text pla per apuntar, no un entorn de programació sencer, i no té permís per fer servir la xarxa.",
+    "ploma.f1": "Multicursor i paleta d'ordres, per canviar moltes línies d'un cop.",
+    "ploma.f2": "Taules de Markdown que s'alineen soles, i quadres i fletxes dibuixats amb text.",
+    "ploma.f3": "Si un script o un assistent de programació et canvia el fitxer, veus cada canvi i et quedes el que vols.",
+    "ploma.f4": "Lleugera: un fitxer de 150 MB s'obre en una cinquena part de segon.",
+    "ploma.art.alt": "Una finestra de Ploma amb una nota curta en Markdown: un títol, dos punts d'una llista, una taula petita amb les columnes alineades i dos quadres units per una fletxa dibuixada amb text. La primera pestanya porta una rodona perquè té canvis sense desar",
+    "ploma.caption": "Els temes clar i fosc de Ploma, que pot canviar amb el Mac. La rodona de la primera pestanya vol dir canvis sense desar: surt igualment, i la propera vegada encara hi seran.",
 
     "promise.title": "Com venem les coses",
     "promise.lede": "Les mateixes regles per a totes les apps que fem. Escrites aquí perquè ens hi puguis fer complir.",
@@ -252,6 +274,7 @@ const I18N = {
     "privacy.app.confitura": "Recorda el teu rècord absolut, el de la setmana i el dia o la nit.",
     "privacy.app.brillantor": "No recorda res entre execucions.",
     "privacy.app.segell": "Recorda amb quin certificat vas signar l'última vegada i si volies que la signatura es veiés a la pàgina. Els teus documents, certificats i claus no surten mai del Mac: la clau privada es queda al clauer, i un fitxer .p12 es llegeix en memòria i no es guarda enlloc. Segell no té ni tan sols permís per fer servir la xarxa.",
+    "privacy.app.ploma": "Recorda les teves preferències, les pestanyes, fitxers i carpetes que tenies oberts, els fitxers i carpetes recents, i el text que encara no havies desat, perquè no es perdi res en sortir. Tot es queda a la carpeta pròpia de Ploma al teu Mac, i Ploma no té permís per fer servir la xarxa.",
     "privacy.p2b": "Res d'això no surt mai del dispositiu. A l'iPhone s'esborra quan esborres l'app. Al Mac, el macOS el pot conservar a la teva carpeta Biblioteca després d'esborrar l'app; continua sent només al teu Mac.",
     "privacy.h3": "Tercers",
     "privacy.p3": "No n'hi ha. No fem servir cap SDK de ningú altre. Si compres una app, Apple gestiona el pagament i no ens diu res de tu més enllà de totals de vendes anònims.",

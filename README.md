@@ -1,7 +1,7 @@
 # Web de Minta Cafè
 
 Web estàtic per publicitar **Circell** i **Confitura** (iPhone), i
-**Brillantor** i **Segell** (Mac). Sense dependències, sense build, sense
+**Brillantor**, **Segell** i **Ploma** (Mac). Sense dependències, sense build, sense
 fonts externes: HTML, un CSS i un JS. El visual és programàtic, la mateixa
 filosofia que MintaKit, amb una excepció: Confitura s'ensenya amb dues captures
 reals del joc (`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit
@@ -10,6 +10,11 @@ quan el navegador va en mode fosc). Surten del director de captures del joc
 Segell s'ensenya amb la seva finestra dibuixada (HTML i SVG), i el requadre de la
 signatura és el que dibuixa l'app (`Features/Signing/SignatureAppearance.swift`
 del repositori de Segell, amb els mateixos números per a un requadre de 240 × 84).
+Ploma s'ensenya amb la seva finestra dibuixada en SVG amb les mides de l'app
+(Menlo 22 en una graella de 13,245 × 26, el marge de números, el minimapa de 96, la
+barra de pestanyes de 32 i la d'estat de 24) i els colors dels temes Minta Light i
+Minta Dark de `Core/Theme/Theme.swift`. La nota hi és en anglès i en català: el CSS
+amaga la que no toca segons el `lang` de la pàgina.
 Les seccions van per plataforma: primer les d'iPhone i després les de Mac.
 
 ```
@@ -69,12 +74,13 @@ const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",
   brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",
   confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160",
-  segell:     ""
+  segell:     "",
+  ploma:      ""
 };
 ```
 
 Circell (iPhone) va sortir el 6/10/2026, Brillantor (Mac) el 10/8/2026 i
-Confitura (iPhone) el 18/10/2026. Segell (Mac) encara no és a la botiga.
+Confitura (iPhone) el 18/10/2026. Segell i Ploma (Mac) encara no són a la botiga.
 Per a una app nova, afegeix-hi la clau. Amb la cadena buida, el botó queda
 esmorteït i surt l'etiqueta «Enllaç a punt aviat». Quan hi poses una URL, el
 botó s'encén tot sol.

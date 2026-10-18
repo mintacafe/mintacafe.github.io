@@ -119,10 +119,10 @@ a:hover { color: var(--terracotta); }
 .nav a:hover { color: var(--terracotta); }
 @media (max-width: 560px) { .nav a { font-size: .88rem; } }
 /* When the row gets tight, the promise link is the first to go. */
-@media (max-width: 600px) { .nav a[href="#promise"] { display: none; } }
-/* Four app names and the language don't fit beside the brand on a phone: the
+@media (max-width: 720px) { .nav a[href="#promise"] { display: none; } }
+/* Five app names and the language don't fit beside the brand on a phone: the
    names get a row of their own, under the brand and the CA/EN button. */
-@media (max-width: 480px) {
+@media (max-width: 540px) {
   html { scroll-padding-top: 112px; }
   .head { flex-wrap: wrap; row-gap: .4rem; padding-bottom: .6rem; }
   .nav { order: 3; flex-basis: 100%; margin-left: 0; justify-content: space-between; }
@@ -444,6 +444,61 @@ button.popover__item:focus-visible { outline: 2px solid var(--mint); outline-off
 }
 .seg__view { display: block; width: 100%; height: auto; }
 .seg__under { fill: var(--seg-under); }
+
+/* ── Ploma window ─────────────────────────────────────────── */
+/* The colours of Core/Theme/Theme.swift: Minta Light by day, Minta Dark at
+   night. Chrome and separator are worked out the way the app does it (the
+   text background with 5 % / 16 % of the text in light, 28 % / 50 % of black
+   in dark). */
+
+.plm {
+  --plm-bg:      #FBF7EC;
+  --plm-fg:      #2E4A3E;
+  --plm-chrome:  #F1EEE3;
+  --plm-sep:     #DADBD0;
+  --plm-dim:     #7A8A7F;
+  --plm-caret:   #B0582A;
+  --plm-heading: #8F6712;
+  --plm-punct:   #4A6A58;
+  --plm-title:   rgba(0, 0, 0, .85);
+  width: min(480px, 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 40px 70px -34px rgba(46, 74, 62, .7), 0 0 0 1px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark) {
+  .plm {
+    --plm-bg:      #17211D;
+    --plm-fg:      #E4EDE6;
+    --plm-chrome:  #111815;
+    --plm-sep:     #0C1110;
+    --plm-dim:     #6F877A;
+    --plm-caret:   #EBCB7A;
+    --plm-heading: #EBCB7A;
+    --plm-punct:   #A8C8B6;
+    --plm-title:   rgba(255, 255, 255, .85);
+    box-shadow: 0 40px 70px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08);
+  }
+}
+.plm__window { display: block; width: 100%; height: auto; }
+.plm .p-bg     { fill: var(--plm-bg); }
+.plm .p-fg     { fill: var(--plm-fg); }
+.plm .p-chrome { fill: var(--plm-chrome); }
+.plm .p-sep    { fill: var(--plm-sep); }
+.plm .p-dim    { fill: var(--plm-dim); }
+.plm .p-caret  { fill: var(--plm-caret); }
+.plm .p-h1     { fill: var(--plm-heading); }
+.plm .p-punct  { fill: var(--plm-punct); }
+.plm .p-title  { fill: var(--plm-title); }
+.plm .p-dim-stroke { stroke: var(--plm-dim); fill: none; }
+.plm .b { font-weight: 700; }
+.plm .t-mono   { font-family: Menlo, Monaco, Consolas, "DejaVu Sans Mono", monospace; font-size: 22px; }
+.plm .t-tab    { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; font-size: 12.5px; }
+.plm .t-title  { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; font-size: 13px; font-weight: 650; }
+.plm .t-status { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; font-size: 12px; }
+/* The note is written in the page's language. */
+html:not([lang="ca"]) .plm .only-ca,
+html[lang="ca"] .plm .only-en { display: none; }
 
 /* ── Promise ──────────────────────────────────────────────── */
 
