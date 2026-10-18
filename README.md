@@ -1,12 +1,16 @@
 # Web de Minta Cafè
 
-Web estàtic per publicitar **Circell** (iPhone), **Brillantor** (Mac) i
-**Confitura** (iPhone). Sense dependències, sense build, sense
+Web estàtic per publicitar **Circell** i **Confitura** (iPhone), i
+**Brillantor** i **Segell** (Mac). Sense dependències, sense build, sense
 fonts externes: HTML, un CSS i un JS. El visual és programàtic, la mateixa
 filosofia que MintaKit, amb una excepció: Confitura s'ensenya amb dues captures
 reals del joc (`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit
 quan el navegador va en mode fosc). Surten del director de captures del joc
 (`-ConfituraShots`, mida de 6,3 polzades, reduïdes a 600 px d'amplada).
+Segell s'ensenya amb la seva finestra dibuixada (HTML i SVG), i el requadre de la
+signatura és el que dibuixa l'app (`Features/Signing/SignatureAppearance.swift`
+del repositori de Segell, amb els mateixos números per a un requadre de 240 × 84).
+Les seccions van per plataforma: primer les d'iPhone i després les de Mac.
 
 ```
 Web/
@@ -64,15 +68,33 @@ Són a dalt de tot de `assets/app.js`, i és l'únic lloc on cal tocar:
 const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",
   brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",
-  confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160"
+  confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160",
+  segell:     ""
 };
 ```
 
 Circell (iPhone) va sortir el 6/10/2026, Brillantor (Mac) el 10/8/2026 i
-Confitura (iPhone) el 18/10/2026.
+Confitura (iPhone) el 18/10/2026. Segell (Mac) encara no és a la botiga.
 Per a una app nova, afegeix-hi la clau. Amb la cadena buida, el botó queda
 esmorteït i surt l'etiqueta «Enllaç a punt aviat». Quan hi poses una URL, el
 botó s'encén tot sol.
+
+## La política de privadesa
+
+`privacy.html` no ha de créixer amb cada app. Les seccions generals («què
+recollim», «tercers», «aquest web»…) **no anomenen cap app**: parlen de «les
+nostres apps». El que és de cada app és una fila de la llista de «What stays on
+your device» (`<dl class="appdata">`), amb la plataforma al costat del nom.
+
+Afegir una app hi és:
+
+1. una fila nova a `privacy.html`, amb `id` igual a la clau de l'app (així
+   `privacy.html#segell` porta a la seva fila);
+2. el text de la fila, `privacy.app.<clau>`, als dos idiomes de `assets/app.js`;
+3. l'enllaç al menú de dalt, com a la portada.
+
+Si una app recull o envia alguna cosa, això ja no és una fila: cal tornar a
+escriure les seccions generals, perquè deixarien de ser veritat.
 
 ## Desplegar a GitHub Pages
 
@@ -86,7 +108,7 @@ botó s'encén tot sol.
 
 ## Coses que hi ha per decidir
 
-- **Preus.** Totes dues apps costen 3 € (3 $), però no surt escrit enlloc del
+- **Preus.** Totes les apps costen 3 € (3 $), però no surt escrit enlloc del
   web, i així no s'ha de mantenir per a cada país. El compromís («un sol
   pagament, preu rodó») sí que hi és.
 - **Botons de l'App Store.** Són fets a mà amb la tipografia del web. Apple

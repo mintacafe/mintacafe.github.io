@@ -114,12 +114,19 @@ a:hover { color: var(--terracotta); }
 @media (prefers-color-scheme: dark) { .brand__mark { color: var(--mint); } }
 .brand__name { font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em; white-space: nowrap; }
 
-.nav { display: flex; align-items: center; gap: clamp(.6rem, 2vw, 1.5rem); }
+.nav { display: flex; align-items: center; gap: clamp(.6rem, 2vw, 1.5rem); margin-left: auto; }
 .nav a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: .95rem; white-space: nowrap; }
 .nav a:hover { color: var(--terracotta); }
 @media (max-width: 560px) { .nav a { font-size: .88rem; } }
-/* On a narrow phone only the two app names survive. */
-@media (max-width: 440px) { .nav a[href="#promise"] { display: none; } }
+/* When the row gets tight, the promise link is the first to go. */
+@media (max-width: 600px) { .nav a[href="#promise"] { display: none; } }
+/* Four app names and the language don't fit beside the brand on a phone: the
+   names get a row of their own, under the brand and the CA/EN button. */
+@media (max-width: 480px) {
+  html { scroll-padding-top: 112px; }
+  .head { flex-wrap: wrap; row-gap: .4rem; padding-bottom: .6rem; }
+  .nav { order: 3; flex-basis: 100%; margin-left: 0; justify-content: space-between; }
+}
 
 .lang {
   font: inherit; font-size: .8rem; font-weight: 700; letter-spacing: .06em;
@@ -295,8 +302,10 @@ a:hover { color: var(--terracotta); }
 
 /* ── Mac mockup ───────────────────────────────────────────── */
 
+/* Never wider than its column: between 860 and 1000 px the two columns are
+   narrower than 480 px, and a wider mockup ran into the text beside it. */
 .mac {
-  width: min(480px, 92vw);
+  width: min(480px, 100%);
   border-radius: 16px;
   overflow: hidden;
   position: relative;
@@ -370,6 +379,71 @@ button.popover__item:focus-visible { outline: 2px solid var(--mint); outline-off
   width: 17px; height: 17px; border: none; border-radius: 50%;
   background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.35);
 }
+
+/* ── Segell window ────────────────────────────────────────── */
+/* Its own light and dark, like the app's window. The page inside is paper in
+   both, because Segell never inverts a page. */
+
+.seg {
+  --seg-window: #ECECEC;
+  --seg-under:  #D3D4D1;
+  --seg-text:   #1F1F1F;
+  --seg-soft:   #6E6E73;
+  --seg-green:  #34C759;
+  --seg-button: #FFFFFF;
+  width: min(480px, 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--seg-window);
+  color: var(--seg-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  box-shadow: 0 40px 70px -34px rgba(46, 74, 62, .7), 0 0 0 1px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark) {
+  .seg {
+    --seg-window: #2C2C2E;
+    --seg-under:  #1C1C1E;
+    --seg-text:   #ECECEC;
+    --seg-soft:   #A1A1A6;
+    --seg-green:  #30D158;
+    --seg-button: #5A5A5E;
+    box-shadow: 0 40px 70px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08);
+  }
+}
+.seg__bar { display: flex; align-items: center; gap: .75rem; height: 38px; padding: 0 .8rem; }
+.seg__lights { display: flex; gap: 7px; flex: none; }
+.seg__lights i { width: 11px; height: 11px; border-radius: 50%; background: #FF5F57; }
+.seg__lights i:nth-child(2) { background: #FEBC2E; }
+.seg__lights i:nth-child(3) { background: #28C840; }
+.seg__title {
+  font-size: .78rem; font-weight: 650; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.seg__tools { display: flex; gap: .6rem; flex: none; }
+.seg__tools--end { margin-left: auto; }
+.seg__tools svg {
+  width: 15px; height: 15px; fill: none; stroke: var(--seg-soft);
+  stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+}
+/* The strip, as Banner.swift paints it: the tone's colour at 12 % over the
+   window, a small sealed tick, the text and a small button. */
+.seg__banner {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px;
+  background: color-mix(in srgb, var(--seg-green) 12%, var(--seg-window));
+  border-bottom: 1px solid color-mix(in srgb, var(--seg-text) 16%, transparent);
+  font-size: .72rem; line-height: 1.35;
+}
+.seg__seal { width: 16px; height: 16px; flex: none; fill: var(--seg-green); }
+.seg__check { fill: none; stroke: #fff; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.seg__text { flex: 1; min-width: 0; }
+.seg__button {
+  flex: none; font-size: .68rem; padding: 1px 9px; border-radius: 5px;
+  background: var(--seg-button);
+  box-shadow: 0 0 0 .5px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.08);
+}
+.seg__view { display: block; width: 100%; height: auto; }
+.seg__under { fill: var(--seg-under); }
 
 /* ── Promise ──────────────────────────────────────────────── */
 
@@ -448,3 +522,23 @@ button.popover__item:focus-visible { outline: 2px solid var(--mint); outline-off
 .prose ul { padding-left: 1.2rem; color: var(--ink-2); }
 .prose li { margin-bottom: .4em; }
 .prose .updated { font-size: .85rem; color: var(--ink-2); opacity: .8; }
+
+/* What each app keeps on the device: one row per app, so a new app adds a
+   row and the policy around it stays the same. */
+.appdata { margin: 0 0 1.4em; padding: 0; }
+.appdata > div {
+  display: grid; grid-template-columns: 9.5rem 1fr; gap: .2rem 1.2rem;
+  padding: .9rem 0; border-top: 1px dashed var(--line);
+}
+.appdata > div:last-child { border-bottom: 1px dashed var(--line); }
+.appdata dt { font-weight: 700; color: var(--ink); }
+.appdata dd { margin: 0; color: var(--ink-2); }
+.appdata__os {
+  display: block; margin-top: .1em;
+  font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terracotta);
+}
+@media (max-width: 560px) {
+  .appdata > div { grid-template-columns: 1fr; }
+  .appdata__os { display: inline; margin: 0 0 0 .5em; }
+}

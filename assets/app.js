@@ -14,6 +14,7 @@ const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",           // iPhone, live 2026-10-06
   brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",  // Mac, live 2026-08-10
   confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160", // iPhone, live 2026-10-18
+  segell:     "",                                                              // Mac, coming soon
 };
 
 /* ── 2. Copy, in both languages ───────────────────────────── */
@@ -36,6 +37,7 @@ const I18N = {
     "platform.mac": "Mac",
     "label.puzzle": "Puzzle",
     "label.utility": "Menu bar utility",
+    "label.signer": "PDF signer",
 
     "circell.tagline": "Turn, join, bloom.",
     "circell.body": "A puzzle of rotation and connection. Tap the tiles to turn the vine strands 90° until no end is left open and the whole board is one living vine. When the vine closes, a wave of golden light runs through it and it blooms.",
@@ -78,6 +80,20 @@ const I18N = {
     "confitura.caption": "From the game itself. In dark mode, the café works the night shift.",
     "confitura.shot.alt": "A glass jar on a café counter, full of fruit with sleepy faces; a peach has just merged with a splash",
 
+    "segell.tagline": "Open, sign, done.",
+    "segell.body": "A small PDF viewer for your Mac that signs documents with your digital certificate: the one in your keychain, like idCAT, or a .p12 file. It makes a standard PAdES signature, the kind other PDF readers accept, and it never breaks a signature a document already carries. Segell has no permission to use the network, so your documents and your keys stay with you.",
+    "segell.f1": "Draw the box where the signature goes, or sign without a visible mark.",
+    "segell.f2": "Sign and lock, so the document cannot be changed afterwards.",
+    "segell.f3": "A strip at the top tells you who signed a document and whether it has changed since.",
+    "segell.f4": "No network, nothing running in the background, nothing to install.",
+    "segell.art.alt": "A Segell window with a signed document: a green strip at the top says who signed it and that it has not changed, and the blue signature box on the page carries the name, the date and the Minta Cafè leaf",
+    "segell.art.file": "agreement-signed.pdf",
+    "segell.art.banner": "Signed by Marta Puig on 18 Oct 2026 at 10:42. The document hasn’t changed since.",
+    "segell.art.details": "Details…",
+    "segell.box.signed": "Digitally signed",
+    "segell.box.reason": "Approved",
+    "segell.caption": "The signature box as Segell draws it. In dark mode the window goes dark, but the page stays paper.",
+
     "promise.title": "How we sell things",
     "promise.lede": "The same rules for every app we make. Written here so you can hold us to them.",
     "promise.c1.t": "One payment",
@@ -106,9 +122,15 @@ const I18N = {
     "privacy.lede": "The short version: our apps collect nothing at all.",
     "privacy.updated": "Last updated: October 2026",
     "privacy.h1": "What we collect",
-    "privacy.p1": "Nothing. Circell, Confitura and Brillantor have no analytics, no crash reporting, no advertising identifiers and no accounts. None of them opens a network connection.",
+    "privacy.p1": "Nothing. Our apps have no analytics, no crash reporting, no advertising identifiers and no accounts, and none of them opens a network connection.",
     "privacy.h2": "What stays on your device",
-    "privacy.p2": "Circell remembers which level you reached, your sound and music switches, and whether you pinned day or night. Confitura remembers your best ever, the best of the week, and day or night. Brillantor remembers nothing between launches. This data never leaves your device and is deleted with the app.",
+    "privacy.p2": "Some of our apps remember a few things on your device, so they can pick up where you left off. This is all of it, app by app:",
+    /* One string per app, in the same order as the rows of privacy.html. */
+    "privacy.app.circell": "Remembers which level you reached, your sound and music switches, and whether you pinned day or night.",
+    "privacy.app.confitura": "Remembers your best ever, the best of the week, and day or night.",
+    "privacy.app.brillantor": "Remembers nothing between launches.",
+    "privacy.app.segell": "Remembers which certificate you signed with last and whether you wanted the signature to show on the page. Your documents, certificates and keys never leave your Mac: the private key stays in the keychain, and a .p12 file is read in memory and never stored. Segell does not even have permission to use the network.",
+    "privacy.p2b": "None of it ever leaves your device. On iPhone it goes when you delete the app. On a Mac, macOS may keep it in your Library folder after you delete the app; it is still only on your Mac.",
     "privacy.h3": "Third parties",
     "privacy.p3": "There are none. We use no SDKs from anyone else. If you buy an app, Apple handles the payment and tells us nothing about you beyond anonymous sales totals.",
     "privacy.h4": "This website",
@@ -138,6 +160,7 @@ const I18N = {
     "platform.mac": "Mac",
     "label.puzzle": "Trencaclosques",
     "label.utility": "Utilitat de la barra de menú",
+    "label.signer": "Signar PDFs",
 
     "circell.tagline": "Gira, uneix, floreix.",
     "circell.body": "Un trencaclosques de rotació i connexió. Toca les caselles per girar els brins de vinya 90° fins que cap punta quedi oberta i tot el tauler sigui una sola parra viva. Quan la vinya es tanca, una onada de llum daurada la recorre i floreix.",
@@ -180,6 +203,20 @@ const I18N = {
     "confitura.caption": "Del joc mateix. En mode fosc, el cafè fa el torn de nit.",
     "confitura.shot.alt": "Un pot de vidre al taulell d'un cafè, ple de fruites amb cara de son; un préssec s'acaba de fondre amb un esquitx",
 
+    "segell.tagline": "Obre, signa i prou.",
+    "segell.body": "Un visor de PDF petit per al Mac que signa documents amb el teu certificat digital: el del clauer, com l'idCAT, o un fitxer .p12. Fa una signatura PAdES estàndard, de les que donen per bones els altres lectors de PDF, i no trenca mai una signatura que el document ja portava. Segell no té permís per fer servir la xarxa: els teus documents i les teves claus es queden amb tu.",
+    "segell.f1": "Marca el requadre on va la signatura, o signa sense que es vegi.",
+    "segell.f2": "Signa i bloqueja, perquè ningú no pugui canviar el document després.",
+    "segell.f3": "Una franja a dalt et diu qui ha signat un document i si ha canviat des d'aleshores.",
+    "segell.f4": "Sense xarxa, res engegat de fons, res per instal·lar.",
+    "segell.art.alt": "Una finestra de Segell amb un document signat: una franja verda a dalt diu qui l'ha signat i que no ha canviat, i el requadre blau de la signatura porta el nom, la data i la fulla de Minta Cafè",
+    "segell.art.file": "contracte-signat.pdf",
+    "segell.art.banner": "Signat per Marta Puig el 18 oct. 2026, 10:42. El document no ha canviat des de llavors.",
+    "segell.art.details": "Detalls…",
+    "segell.box.signed": "Signat digitalment",
+    "segell.box.reason": "Conforme",
+    "segell.caption": "El requadre de la signatura, tal com el dibuixa Segell. En mode fosc la finestra es fa fosca, però la pàgina continua sent paper.",
+
     "promise.title": "Com venem les coses",
     "promise.lede": "Les mateixes regles per a totes les apps que fem. Escrites aquí perquè ens hi puguis fer complir.",
     "promise.c1.t": "Un sol pagament",
@@ -208,9 +245,14 @@ const I18N = {
     "privacy.lede": "La versió curta: les nostres apps no recullen absolutament res.",
     "privacy.updated": "Darrera actualització: octubre del 2026",
     "privacy.h1": "Què recollim",
-    "privacy.p1": "Res. Circell, Confitura i Brillantor no tenen analítiques, ni informes d'errors, ni identificadors publicitaris, ni comptes. Cap d'elles obre una connexió de xarxa.",
+    "privacy.p1": "Res. Les nostres apps no tenen analítiques, ni informes d'errors, ni identificadors publicitaris, ni comptes, i cap d'elles obre una connexió de xarxa.",
     "privacy.h2": "Què es queda al teu dispositiu",
-    "privacy.p2": "Circell recorda a quin nivell has arribat, els teus interruptors de so i música i si has fixat el dia o la nit. Confitura recorda el teu rècord absolut, el de la setmana i el dia o la nit. Brillantor no recorda res entre execucions. Aquestes dades no surten mai del dispositiu i s'esborren amb l'app.",
+    "privacy.p2": "Algunes de les nostres apps recorden poques coses al teu dispositiu, per continuar on ho vas deixar. Això és tot, app per app:",
+    "privacy.app.circell": "Recorda a quin nivell has arribat, els teus interruptors de so i música i si has fixat el dia o la nit.",
+    "privacy.app.confitura": "Recorda el teu rècord absolut, el de la setmana i el dia o la nit.",
+    "privacy.app.brillantor": "No recorda res entre execucions.",
+    "privacy.app.segell": "Recorda amb quin certificat vas signar l'última vegada i si volies que la signatura es veiés a la pàgina. Els teus documents, certificats i claus no surten mai del Mac: la clau privada es queda al clauer, i un fitxer .p12 es llegeix en memòria i no es guarda enlloc. Segell no té ni tan sols permís per fer servir la xarxa.",
+    "privacy.p2b": "Res d'això no surt mai del dispositiu. A l'iPhone s'esborra quan esborres l'app. Al Mac, el macOS el pot conservar a la teva carpeta Biblioteca després d'esborrar l'app; continua sent només al teu Mac.",
     "privacy.h3": "Tercers",
     "privacy.p3": "No n'hi ha. No fem servir cap SDK de ningú altre. Si compres una app, Apple gestiona el pagament i no ens diu res de tu més enllà de totals de vendes anònims.",
     "privacy.h4": "Aquest web",

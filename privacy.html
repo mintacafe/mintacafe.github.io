@@ -32,10 +32,11 @@
     <a href="index.html#circell">Circell</a>
     <a href="index.html#confitura">Confitura</a>
     <a href="index.html#brillantor">Brillantor</a>
-    <button class="lang" id="langToggle" type="button" aria-label="Canvia la llengua a català">
-      <span class="lang__flip">CA</span>
-    </button>
+    <a href="index.html#segell">Segell</a>
   </nav>
+  <button class="lang" id="langToggle" type="button" aria-label="Canvia la llengua a català">
+    <span class="lang__flip">CA</span>
+  </button>
 </header>
 
 <main class="prose">
@@ -44,10 +45,31 @@
   <p class="updated" data-i18n="privacy.updated">Last updated: October 2026</p>
 
   <h2 data-i18n="privacy.h1">What we collect</h2>
-  <p data-i18n="privacy.p1">Nothing. Circell, Confitura and Brillantor have no analytics, no crash reporting, no advertising identifiers and no accounts. None of them opens a network connection.</p>
+  <p data-i18n="privacy.p1">Nothing. Our apps have no analytics, no crash reporting, no advertising identifiers and no accounts, and none of them opens a network connection.</p>
 
   <h2 data-i18n="privacy.h2">What stays on your device</h2>
-  <p data-i18n="privacy.p2">Circell remembers which level you reached, your sound and music switches, and whether you pinned day or night. Confitura remembers your best ever, the best of the week, and day or night. Brillantor remembers nothing between launches. This data never leaves your device and is deleted with the app.</p>
+  <p data-i18n="privacy.p2">Some of our apps remember a few things on your device, so they can pick up where you left off. This is all of it, app by app:</p>
+  <!-- One row per app, and the sections above and below never name an app:
+       adding one is a row here and a privacy.app.<id> string per language. -->
+  <dl class="appdata">
+    <div id="circell">
+      <dt>Circell <span class="appdata__os" data-i18n="platform.ios">iPhone</span></dt>
+      <dd data-i18n="privacy.app.circell">Remembers which level you reached, your sound and music switches, and whether you pinned day or night.</dd>
+    </div>
+    <div id="confitura">
+      <dt>Confitura <span class="appdata__os" data-i18n="platform.ios">iPhone</span></dt>
+      <dd data-i18n="privacy.app.confitura">Remembers your best ever, the best of the week, and day or night.</dd>
+    </div>
+    <div id="brillantor">
+      <dt>Brillantor <span class="appdata__os" data-i18n="platform.mac">Mac</span></dt>
+      <dd data-i18n="privacy.app.brillantor">Remembers nothing between launches.</dd>
+    </div>
+    <div id="segell">
+      <dt>Segell <span class="appdata__os" data-i18n="platform.mac">Mac</span></dt>
+      <dd data-i18n="privacy.app.segell">Remembers which certificate you signed with last and whether you wanted the signature to show on the page. Your documents, certificates and keys never leave your Mac: the private key stays in the keychain, and a .p12 file is read in memory and never stored. Segell does not even have permission to use the network.</dd>
+    </div>
+  </dl>
+  <p data-i18n="privacy.p2b">None of it ever leaves your device. On iPhone it goes when you delete the app. On a Mac, macOS may keep it in your Library folder after you delete the app; it is still only on your Mac.</p>
 
   <h2 data-i18n="privacy.h3">Third parties</h2>
   <p data-i18n="privacy.p3">There are none. We use no SDKs from anyone else. If you buy an app, Apple handles the payment and tells us nothing about you beyond anonymous sales totals.</p>
