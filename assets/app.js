@@ -13,7 +13,7 @@
 const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",           // iPhone, live 2026-10-06
   brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",  // Mac, live 2026-08-10
-  confitura:  ""                                                              // iPhone, coming soon
+  confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160", // iPhone, live 2026-10-18
 };
 
 /* ── 2. Copy, in both languages ───────────────────────────── */

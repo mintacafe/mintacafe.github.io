@@ -1,7 +1,7 @@
 # Web de Minta Cafè
 
 Web estàtic per publicitar **Circell** (iPhone), **Brillantor** (Mac) i
-**Confitura** (iPhone, pròximament). Sense dependències, sense build, sense
+**Confitura** (iPhone). Sense dependències, sense build, sense
 fonts externes: HTML, un CSS i un JS. El visual és programàtic, la mateixa
 filosofia que MintaKit, amb una excepció: Confitura s'ensenya amb dues captures
 reals del joc (`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit
@@ -63,11 +63,13 @@ Són a dalt de tot de `assets/app.js`, i és l'únic lloc on cal tocar:
 ```js
 const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",
-  brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12"
+  brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",
+  confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160"
 };
 ```
 
-Circell (iPhone) va sortir el 6/10/2026 i Brillantor (Mac) el 10/8/2026.
+Circell (iPhone) va sortir el 6/10/2026, Brillantor (Mac) el 10/8/2026 i
+Confitura (iPhone) el 18/10/2026.
 Per a una app nova, afegeix-hi la clau. Amb la cadena buida, el botó queda
 esmorteït i surt l'etiqueta «Enllaç a punt aviat». Quan hi poses una URL, el
 botó s'encén tot sol.
