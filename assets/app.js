@@ -14,8 +14,8 @@ const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",           // iPhone, live 2026-10-06
   brillantor: "https://apps.apple.com/us/app/brillantor/id6797081377?mt=12",  // Mac, live 2026-08-10
   confitura:  "https://apps.apple.com/us/app/confitura-fruit-jam/id6823305160", // iPhone, live 2026-10-18
-  segell:     "",                                                              // Mac, coming soon
-  ploma:      "",                                                              // Mac, coming soon
+  segell:     "https://apps.apple.com/us/app/segell/id6824278913?mt=12",       // Mac, live 2026-10-26
+  ploma:      "https://apps.apple.com/us/app/ploma-plain-text-editor/id6824293343?mt=12", // Mac, live 2026-10-26
 };
 
 /* ── 2. Copy, in both languages ───────────────────────────── */
