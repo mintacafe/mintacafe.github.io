@@ -45,6 +45,7 @@
     <a href="#brillantor">Brillantor</a>
     <a href="#segell">Segell</a>
     <a href="#ploma">Ploma</a>
+    <a href="#vistes">Vistes</a>
     <a href="#promise" data-i18n="nav.promise">The promise</a>
   </nav>
   <button class="lang" id="langToggle" type="button" aria-label="Canvia la llengua a català">
@@ -655,6 +656,44 @@
     </div>
   </section>
 
+  <!-- ──────────────────────── Vistes ──────────────────────── -->
+  <section class="app" id="vistes">
+    <div class="app__art">
+      <div class="tv">
+        <div class="tv__screen">
+          <picture>
+            <source srcset="assets/vistes-nit.jpg" media="(prefers-color-scheme: dark)">
+            <img src="assets/vistes-dia.jpg" width="1120" height="630" loading="lazy"
+                 alt="A pixel-art room: a girl with headphones at her desk, a cat asleep on the sill, and the sun going down over the city and the sea"
+                 data-i18n-alt="vistes.shot.alt">
+          </picture>
+        </div>
+        <div class="tv__stand" aria-hidden="true"></div>
+      </div>
+      <p class="art__caption" data-i18n="vistes.caption">From the app itself. In dark mode, it's night and raining.</p>
+    </div>
+
+    <div class="app__text">
+      <p class="eyebrow"><span data-i18n="platform.tv">Apple TV &amp; iPad</span> · <span data-i18n="label.ambient">Ambient</span></p>
+      <h2>Vistes</h2>
+      <p class="tagline" data-i18n="vistes.tagline">Something lovely to leave on.</p>
+      <p data-i18n="vistes.body">A girl with headphones studies by the window of a high flat, her cat asleep on the sill, the city and the sea outside. The sky keeps changing, the rain comes and goes, and the lofi is made live on your own device, so it never goes round a loop.</p>
+      <ul class="features">
+        <li data-i18n="vistes.f1">Buy it once and it's yours, on the TV and on the iPad.</li>
+        <li data-i18n="vistes.f2">No ads in the middle, and nothing asks you to wait.</li>
+        <li data-i18n="vistes.f3">Choose the hour, the weather and the mix of sounds, or leave it be.</li>
+        <li data-i18n="vistes.f4">Runs on every Apple TV, from the HD up.</li>
+      </ul>
+      <div class="store" data-store="vistes">
+        <a class="btn btn--store is-soon" href="#" data-store-link>
+          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
+        </a>
+        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────────────────────── Promise ───────────────────────── -->
   <section class="promise" id="promise">
     <h2 data-i18n="promise.title">How we sell things</h2>
@@ -693,10 +732,6 @@
       <li>
         <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><path d="M10 46c10-4 12-16 20-20s16 2 20-12" fill="none" stroke="var(--mint)" stroke-width="4.5" stroke-linecap="round"/><circle cx="10" cy="46" r="4" fill="var(--gold)"/></svg>
         <h3>Traç</h3><p data-i18n="brew.trac">One green line.</p>
-      </li>
-      <li>
-        <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><rect x="10" y="10" width="18" height="18" rx="3" fill="var(--gold)"/><rect x="32" y="10" width="18" height="18" rx="3" fill="none" stroke="var(--mint)" stroke-width="3.5"/><rect x="10" y="32" width="18" height="18" rx="3" fill="none" stroke="var(--mint)" stroke-width="3.5"/><rect x="32" y="32" width="18" height="18" rx="3" fill="var(--mint)"/></svg>
-        <h3>Vitrall</h3><p data-i18n="brew.vitrall">Light, cell by cell.</p>
       </li>
     </ul>
   </section>

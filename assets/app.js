@@ -19,6 +19,7 @@ const STORE_LINKS = {
   finestreta: "",                                                              // iPhone, coming soon
   segell:     "https://apps.apple.com/us/app/segell/id6824278913?mt=12",       // Mac, live 2026-10-26
   ploma:      "https://apps.apple.com/us/app/ploma-plain-text-editor/id6824293343?mt=12", // Mac, live 2026-10-26
+  vistes:     "",                                                              // Apple TV and iPad, coming soon
 };
 
 /* ── 2. Copy, in both languages ───────────────────────────── */
@@ -39,6 +40,7 @@ const I18N = {
 
     "platform.ios": "iPhone",
     "platform.mac": "Mac",
+    "platform.tv": "Apple TV & iPad",
     "label.puzzle": "Puzzle",
     "label.utility": "Menu bar utility",
     "label.signer": "PDF signer",
@@ -76,6 +78,7 @@ const I18N = {
     "store.soon": "Link coming soon",
     "label.cooking": "Cooking",
     "label.strategy": "Turn-based strategy",
+    "label.ambient": "Ambient",
     "label.soon": "Coming soon",
     "store.comingSoon": "Coming soon",
     "confitura.tagline": "Drop, merge, make jam.",
@@ -102,6 +105,14 @@ const I18N = {
     "planxa.f4": "Day and night, the way your phone is set.",
     "planxa.caption": "From the game itself. In dark mode, it's the late shift.",
     "planxa.shot.alt": "A diner counter by day: customers on stools, tickets, and burgers on a griddle",
+    "vistes.tagline": "Something lovely to leave on.",
+    "vistes.body": "A girl with headphones studies by the window of a high flat, her cat asleep on the sill, the city and the sea outside. The sky keeps changing, the rain comes and goes, and the lofi is made live on your own device, so it never goes round a loop.",
+    "vistes.f1": "Buy it once and it's yours, on the TV and on the iPad.",
+    "vistes.f2": "No ads in the middle, and nothing asks you to wait.",
+    "vistes.f3": "Choose the hour, the weather and the mix of sounds, or leave it be.",
+    "vistes.f4": "Runs on every Apple TV, from the HD up.",
+    "vistes.caption": "From the app itself. In dark mode, it's night and raining.",
+    "vistes.shot.alt": "A pixel-art room: a girl with headphones at her desk, a cat asleep on the sill, and the sun going down over the city and the sea",
     "finestreta.tagline": "Pizza for the whole street.",
     "finestreta.body": "You run a pizza window on a street at dusk. Slap the dough, spread the tomato with your finger, scatter the toppings, fire it and hand it to whoever's waiting.",
     "finestreta.f1": "The menu grows by one dish a night.",
@@ -149,7 +160,6 @@ const I18N = {
     "brewing.title": "Brewing",
     "brewing.lede": "Being made now, in the same cup.",
     "brew.trac": "One green line.",
-    "brew.vitrall": "Light, cell by cell.",
 
     "foot.support": "Questions, bugs, ideas. Write to us and a person answers.",
     "foot.privacy": "Privacy",
@@ -172,6 +182,7 @@ const I18N = {
     "privacy.app.vitrall": "Remembers which level you reached, your last custom window, your sound and music switches, and day or night.",
     "privacy.app.planxa": "Remembers the night you reached and one left half done, the best takings of each night, what you already know how to do, your last custom night, your sound and music switches, and day or night.",
     "privacy.app.finestreta": "Remembers the night you reached, the money so far, your menu, what you already know how to do, your last custom night, your sound and music switches, and day or night.",
+    "privacy.app.vistes": "Remembers your settings on your device: the time of day, the weather, what's on in the room, the sound mix and the picture options. Vistes collects nothing and never opens a network connection.",
     "privacy.app.segell": "Remembers which certificate you signed with last and whether you wanted the signature to show on the page. Your documents, certificates and keys never leave your Mac: the private key stays in the keychain, and a .p12 file is read in memory and never stored. Segell does not even have permission to use the network.",
     "privacy.app.ploma": "Remembers your preferences, the tabs, files and folders you had open, your recent files and folders, and any text you had not saved yet, so nothing is lost when you quit. All of it stays in Ploma's own folder on your Mac, and Ploma has no permission to use the network.",
     "privacy.p2b": "None of it ever leaves your device. On iPhone it goes when you delete the app. On a Mac, macOS may keep it in your Library folder after you delete the app; it is still only on your Mac.",
@@ -202,6 +213,7 @@ const I18N = {
 
     "platform.ios": "iPhone",
     "platform.mac": "Mac",
+    "platform.tv": "Apple TV i iPad",
     "label.puzzle": "Trencaclosques",
     "label.utility": "Utilitat de la barra de menú",
     "label.signer": "Signar PDFs",
@@ -239,6 +251,7 @@ const I18N = {
     "store.soon": "Enllaç a punt aviat",
     "label.cooking": "Cuina",
     "label.strategy": "Estratègia per torns",
+    "label.ambient": "Ambient",
     "label.soon": "Pròximament",
     "store.comingSoon": "Pròximament",
     "confitura.tagline": "Deixa caure, fon, fes confitura.",
@@ -265,6 +278,14 @@ const I18N = {
     "planxa.f4": "De dia i de nit, com tinguis el telèfon.",
     "planxa.caption": "Del joc mateix. En mode fosc, és el torn de nit.",
     "planxa.shot.alt": "El taulell d'una cafeteria de dia: gent als tamborets, tiquets i hamburgueses a la planxa",
+    "vistes.tagline": "Una cosa bonica per deixar encesa.",
+    "vistes.body": "Una noia amb cascos estudia al costat de la finestra d'un pis alt, amb el gat dormint a l'ampit i la ciutat i el mar a fora. El cel no para de canviar, la pluja va i ve, i la lofi es fa en directe al teu aparell, de manera que no dóna mai voltes a cap bucle.",
+    "vistes.f1": "La compres un cop i és teva, a la tele i a l'iPad.",
+    "vistes.f2": "Sense anuncis pel mig, i res no et fa esperar.",
+    "vistes.f3": "Tria l'hora, el temps i la barreja de sons, o deixa-ho estar.",
+    "vistes.f4": "Va a totes les Apple TV, des de la HD.",
+    "vistes.caption": "De l'app mateixa. En mode fosc, és de nit i plou.",
+    "vistes.shot.alt": "Una habitació en píxels: una noia amb cascos a l'escriptori, un gat dormint a l'ampit, i el sol que es pon sobre la ciutat i el mar",
     "finestreta.tagline": "Pizzes per a tot el carrer.",
     "finestreta.body": "Portes una finestra de pizzeria en un carrer al capvespre. Pica la massa, escampa el tomàquet amb el dit, deixa anar els ingredients, enforna i serveix.",
     "finestreta.f1": "La carta creix un plat cada nit.",
@@ -312,7 +333,6 @@ const I18N = {
     "brewing.title": "Al foc",
     "brewing.lede": "S'estan fent ara, a la mateixa tassa.",
     "brew.trac": "Una sola línia verda.",
-    "brew.vitrall": "Llum, cel·la a cel·la.",
 
     "foot.support": "Dubtes, errors, idees. Escriu-nos i et contesta una persona.",
     "foot.privacy": "Privadesa",
@@ -334,6 +354,7 @@ const I18N = {
     "privacy.app.vitrall": "Recorda a quin nivell has arribat, l'última finestra a mida, els interruptors de so i de música, i si vols dia o nit.",
     "privacy.app.planxa": "Recorda la nit on has arribat i la que tenies a mitges, els millors diners de cada nit, què ja saps fer, l'última nit a mida, els interruptors de so i de música, i si vols dia o nit.",
     "privacy.app.finestreta": "Recorda la nit on has arribat, els diners, la carta, què ja saps fer, l'última nit a mida, els interruptors de so i de música, i si vols dia o nit.",
+    "privacy.app.vistes": "Recorda els teus ajustos a l'aparell: l'hora, el temps, què hi ha encès a l'habitació, la barreja de so i les opcions d'imatge. Vistes no recull res i no obre mai cap connexió de xarxa.",
     "privacy.app.segell": "Recorda amb quin certificat vas signar l'última vegada i si volies que la signatura es veiés a la pàgina. Els teus documents, certificats i claus no surten mai del Mac: la clau privada es queda al clauer, i un fitxer .p12 es llegeix en memòria i no es guarda enlloc. Segell no té ni tan sols permís per fer servir la xarxa.",
     "privacy.app.ploma": "Recorda les teves preferències, les pestanyes, fitxers i carpetes que tenies oberts, els fitxers i carpetes recents, i el text que encara no havies desat, perquè no es perdi res en sortir. Tot es queda a la carpeta pròpia de Ploma al teu Mac, i Ploma no té permís per fer servir la xarxa.",
     "privacy.p2b": "Res d'això no surt mai del dispositiu. A l'iPhone s'esborra quan esborres l'app. Al Mac, el macOS el pot conservar a la teva carpeta Biblioteca després d'esborrar l'app; continua sent només al teu Mac.",

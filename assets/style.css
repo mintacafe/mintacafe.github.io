@@ -244,6 +244,15 @@ a:hover { color: var(--terracotta); }
   gap: .5rem; padding: 3.4rem 1.1rem 1.6rem;
   color: var(--leaf-deep);
 }
+/* A TV showing a real screenshot: Vistes is landscape. */
+.tv { width: min(520px, 100%); }
+.tv__screen {
+  aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: #101613;
+  border: 8px solid #1d2622;
+  box-shadow: 0 40px 70px -34px rgba(46, 74, 62, .7), 0 0 0 1px rgba(0,0,0,.12);
+}
+.tv__screen img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tv__stand { width: 30%; height: 9px; margin: 0 auto; border-radius: 0 0 8px 8px; background: linear-gradient(#2b3a33, #1d2622); }
 /* A phone showing a real screenshot instead of a live demo. */
 .phone__screen--shot { padding: 0; display: block; background: var(--cream); }
 .phone__screen--shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }

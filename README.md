@@ -1,13 +1,13 @@
 # Web de Minta Cafè
 
 Web estàtic per publicitar **Circell**, **Confitura**, **Vitrall**, **Planxa** i **Finestreta** (iPhone), i
-**Brillantor**, **Segell** i **Ploma** (Mac). Sense dependències, sense build, sense
+**Brillantor**, **Segell** i **Ploma** (Mac), i **Vistes** (Apple TV i iPad). Sense dependències, sense build, sense
 fonts externes: HTML, un CSS i un JS. El visual és programàtic, la mateixa
 filosofia que MintaKit, amb una excepció: Confitura s'ensenya amb dues captures
 reals del joc (`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit
 quan el navegador va en mode fosc). Surten del director de captures del joc
 (`-ConfituraShots`, mida de 6,3 polzades, reduïdes a 600 px d'amplada).
-Vitrall, Planxa i Finestreta, igual, amb dues captures del seu director.
+Vitrall, Planxa i Finestreta, igual, amb dues captures del seu director, i Vistes amb dues de les de l'Apple TV, en un marc de tele.
 Segell s'ensenya amb la seva finestra dibuixada (HTML i SVG), i el requadre de la
 signatura és el que dibuixa l'app (`Features/Signing/SignatureAppearance.swift`
 del repositori de Segell, amb els mateixos números per a un requadre de 240 × 84).
@@ -17,7 +17,7 @@ barra de pestanyes de 32 i la d'estat de 24) i els colors dels temes Minta Light
 Minta Dark de `Core/Theme/Theme.swift`, que d'entrada segueixen el Mac (de dia el
 clar, de nit el fosc). La nota hi és en anglès i en català: el CSS
 amaga la que no toca segons el `lang` de la pàgina.
-Les seccions van per plataforma: primer les d'iPhone i després les de Mac.
+Les seccions van per plataforma: primer les d'iPhone, després les de Mac i al final Vistes.
 
 ```
 Web/
