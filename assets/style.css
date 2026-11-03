@@ -120,12 +120,19 @@ a:hover { color: var(--terracotta); }
 @media (max-width: 560px) { .nav a { font-size: .88rem; } }
 /* When the row gets tight, the promise link is the first to go. */
 @media (max-width: 720px) { .nav a[href="#promise"] { display: none; } }
-/* Five app names and the language don't fit beside the brand on a phone: the
-   names get a row of their own, under the brand and the CA/EN button. */
+/* The app names and the language don't fit beside the brand on a phone: the
+   names get a row of their own, under the brand and the CA/EN button. Nine names
+   don't fit in that row either, so it slides, and fades at the edge to say so. */
 @media (max-width: 540px) {
   html { scroll-padding-top: 112px; }
   .head { flex-wrap: wrap; row-gap: .4rem; padding-bottom: .6rem; }
-  .nav { order: 3; flex-basis: 100%; margin-left: 0; justify-content: space-between; }
+  .nav {
+    order: 3; flex-basis: 100%; min-width: 0; margin-left: 0; padding-right: 1.5rem;
+    overflow-x: auto; scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
+            mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
+  }
+  .nav::-webkit-scrollbar { display: none; }
 }
 
 .lang {
