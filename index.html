@@ -39,6 +39,9 @@
   <nav class="nav">
     <a href="#circell">Circell</a>
     <a href="#confitura">Confitura</a>
+    <a href="#vitrall">Vitrall</a>
+    <a href="#planxa">Planxa</a>
+    <a href="#finestreta">Finestreta</a>
     <a href="#brillantor">Brillantor</a>
     <a href="#segell">Segell</a>
     <a href="#ploma">Ploma</a>
@@ -136,8 +139,122 @@
     </div>
   </section>
 
+  <!-- ──────────────────────── Vitrall ──────────────────────── -->
+  <section class="app" id="vitrall">
+    <div class="app__art">
+      <div class="phone">
+        <div class="phone__island" aria-hidden="true"></div>
+        <div class="phone__screen phone__screen--shot">
+          <picture>
+            <source srcset="assets/vitrall-nit.jpg" media="(prefers-color-scheme: dark)">
+            <img src="assets/vitrall-dia.jpg" width="600" height="1304" loading="lazy"
+                 alt="A logic puzzle on a stone wall: numbers beside a grid of panes, some lit in orange"
+                 data-i18n-alt="vitrall.shot.alt">
+          </picture>
+        </div>
+      </div>
+      <p class="art__caption" data-i18n="vitrall.caption">From the game itself. In dark mode, the window glows.</p>
+    </div>
+
+    <div class="app__text">
+      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.puzzle">Puzzle</span></p>
+      <h2>Vitrall</h2>
+      <p class="tagline" data-i18n="vitrall.tagline">Light, cell by cell.</p>
+      <p data-i18n="vitrall.body">The numbers beside each line say which panes to light. Work it out without guessing, and when the last pane comes on the grid turns into a stained-glass window.</p>
+      <ul class="features">
+        <li data-i18n="vitrall.f1">Every window can be solved by logic alone.</li>
+        <li data-i18n="vitrall.f2">No timer, no lives, no score.</li>
+        <li data-i18n="vitrall.f3">Make one to measure: its size and how hard, up to where you've reached.</li>
+        <li data-i18n="vitrall.f4">Day and night, the way your phone is set.</li>
+      </ul>
+      <div class="store" data-store="vitrall">
+        <a class="btn btn--store is-soon" href="#" data-store-link>
+          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
+        </a>
+        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── Planxa ──────────────────────── -->
+  <section class="app app--flip" id="planxa">
+    <div class="app__art">
+      <div class="phone">
+        <div class="phone__island" aria-hidden="true"></div>
+        <div class="phone__screen phone__screen--shot">
+          <picture>
+            <source srcset="assets/planxa-nit.jpg" media="(prefers-color-scheme: dark)">
+            <img src="assets/planxa-dia.jpg" width="600" height="1304" loading="lazy"
+                 alt="A diner counter by day: customers on stools, tickets, and burgers on a griddle"
+                 data-i18n-alt="planxa.shot.alt">
+          </picture>
+        </div>
+      </div>
+      <p class="art__caption" data-i18n="planxa.caption">From the game itself. In dark mode, it's the late shift.</p>
+    </div>
+
+    <div class="app__text">
+      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.puzzle">Puzzle</span></p>
+      <h2>Planxa</h2>
+      <p class="tagline" data-i18n="planxa.tagline">A griddle that waits for you.</p>
+      <p data-i18n="planxa.body">A late-night diner where time only moves when you do. Flip the burgers, plan the rush, serve everyone the way they asked. Think for as long as you like, or put it down and come back tomorrow.</p>
+      <ul class="features">
+        <li data-i18n="planxa.f1">One stroke of your thumb along a row is a single beat.</li>
+        <li data-i18n="planxa.f2">You can't lose, and there's always a way of serving everybody.</li>
+        <li data-i18n="planxa.f3">Make a night to measure: the ingredients and how hard.</li>
+        <li data-i18n="planxa.f4">Day and night, the way your phone is set.</li>
+      </ul>
+      <div class="store" data-store="planxa">
+        <a class="btn btn--store is-soon" href="#" data-store-link>
+          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
+        </a>
+        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── Finestreta ──────────────────────── -->
+  <section class="app" id="finestreta">
+    <div class="app__art">
+      <div class="phone">
+        <div class="phone__island" aria-hidden="true"></div>
+        <div class="phone__screen phone__screen--shot">
+          <picture>
+            <source srcset="assets/finestreta-nit.jpg" media="(prefers-color-scheme: dark)">
+            <img src="assets/finestreta-dia.jpg" width="600" height="1304" loading="lazy"
+                 alt="A pizza window on a street: neighbours with their tickets, an oven, and pizzas on a green marble counter"
+                 data-i18n-alt="finestreta.shot.alt">
+          </picture>
+        </div>
+      </div>
+      <p class="art__caption" data-i18n="finestreta.caption">From the game itself. In dark mode, the street lights come on.</p>
+    </div>
+
+    <div class="app__text">
+      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.cooking">Cooking</span></p>
+      <h2>Finestreta</h2>
+      <p class="tagline" data-i18n="finestreta.tagline">Pizza for the whole street.</p>
+      <p data-i18n="finestreta.body">You run a pizza window on a street at dusk. Slap the dough, spread the tomato with your finger, scatter the toppings, fire it and hand it to whoever's waiting.</p>
+      <ul class="features">
+        <li data-i18n="finestreta.f1">The menu grows by one dish a night.</li>
+        <li data-i18n="finestreta.f2">Nothing punishes you: a lopsided pizza still gets eaten.</li>
+        <li data-i18n="finestreta.f3">Make a night to measure: from a quiet street to a packed one.</li>
+        <li data-i18n="finestreta.f4">Day and night, the way your phone is set.</li>
+      </ul>
+      <div class="store" data-store="finestreta">
+        <a class="btn btn--store is-soon" href="#" data-store-link>
+          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
+        </a>
+        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ──────────────────────── Brillantor ──────────────────────── -->
-  <section class="app" id="brillantor">
+  <section class="app app--flip" id="brillantor">
     <div class="app__art">
       <div class="mac">
         <div class="mac__bar" aria-hidden="true">
@@ -229,7 +346,7 @@
   </section>
 
   <!-- ───────────────────────── Segell ────────────────────────── -->
-  <section class="app app--flip" id="segell">
+  <section class="app" id="segell">
     <div class="app__art">
       <!-- Segell's window: it follows light or dark like the app; the page is
            paper either way, because Segell never inverts a page. -->
@@ -319,7 +436,7 @@
   </section>
 
   <!-- ───────────────────────── Ploma ───────────────────────── -->
-  <section class="app" id="ploma">
+  <section class="app app--flip" id="ploma">
     <div class="app__art">
       <!-- Ploma's window, drawn with the app's own measures: Menlo 16 on a grid of
            9.633 × 19, a margin of four cells for the line numbers, the 96-point

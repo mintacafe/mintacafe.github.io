@@ -1,12 +1,13 @@
 # Web de Minta Cafè
 
-Web estàtic per publicitar **Circell** i **Confitura** (iPhone), i
+Web estàtic per publicitar **Circell**, **Confitura**, **Vitrall**, **Planxa** i **Finestreta** (iPhone), i
 **Brillantor**, **Segell** i **Ploma** (Mac). Sense dependències, sense build, sense
 fonts externes: HTML, un CSS i un JS. El visual és programàtic, la mateixa
 filosofia que MintaKit, amb una excepció: Confitura s'ensenya amb dues captures
 reals del joc (`assets/confitura-dia.jpg` i `assets/confitura-nit.jpg`, la de nit
 quan el navegador va en mode fosc). Surten del director de captures del joc
 (`-ConfituraShots`, mida de 6,3 polzades, reduïdes a 600 px d'amplada).
+Vitrall, Planxa i Finestreta, igual, amb dues captures del seu director.
 Segell s'ensenya amb la seva finestra dibuixada (HTML i SVG), i el requadre de la
 signatura és el que dibuixa l'app (`Features/Signing/SignatureAppearance.swift`
 del repositori de Segell, amb els mateixos números per a un requadre de 240 × 84).
