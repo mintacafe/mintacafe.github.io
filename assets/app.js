@@ -211,7 +211,7 @@ const I18N = {
     "circell.f1": "Una escala suau de nivells que s'obre a mesura que avances.",
     "circell.f2": "Tot dibuixat amb codi: net, sense soroll.",
     "circell.f3": "So sintetitzat al moment, i mai no talla la teva música.",
-    "circell.f4": "Anglès i català, completament localitzat.",
+    "circell.f4": "Anglès i català, completament traduït.",
     "circell.demo.hint": "Toca les caselles per tancar la vinya.",
     "circell.demo.won": "Vinya viva!",
     "circell.demo.new": "Tauler nou",
