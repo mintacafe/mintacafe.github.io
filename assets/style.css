@@ -120,19 +120,29 @@ a:hover { color: var(--terracotta); }
 @media (max-width: 560px) { .nav a { font-size: .88rem; } }
 /* When the row gets tight, the promise link is the first to go. */
 @media (max-width: 720px) { .nav a[href="#promise"] { display: none; } }
-/* The app names and the language don't fit beside the brand on a phone: the
-   names get a row of their own, under the brand and the CA/EN button. Nine names
-   don't fit in that row either, so it slides, and fades at the edge to say so. */
-@media (max-width: 540px) {
-  html { scroll-padding-top: 112px; }
+/* The app names don't fit beside the brand and the language any more: from here
+   down they get a row of their own, under them, and on a phone as many rows as it
+   takes, so that every name can be seen. */
+@media (max-width: 1040px) {
+  html { scroll-padding-top: 108px; }
   .head { flex-wrap: wrap; row-gap: .4rem; padding-bottom: .6rem; }
-  .nav {
-    order: 3; flex-basis: 100%; min-width: 0; margin-left: 0; padding-right: 1.5rem;
-    overflow-x: auto; scrollbar-width: none;
-    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
-            mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
-  }
-  .nav::-webkit-scrollbar { display: none; }
+  .nav { order: 3; flex-basis: 100%; min-width: 0; margin-left: 0; flex-wrap: wrap; row-gap: .1rem; }
+  .nav a { padding-block: .2rem; }
+}
+/* On a phone that would be a lot to keep on screen, so the brand scrolls away and
+   only the names stay: -49px is the brand's row, padding and gap included. */
+@media (max-width: 540px) {
+  html { scroll-padding-top: 88px; }
+  .head { top: -49px; background: color-mix(in srgb, var(--bg) 95%, transparent); }
+  .nav { column-gap: .85rem; }
+}
+@media (max-width: 340px) {
+  html { scroll-padding-top: 118px; }
+}
+/* A phone on its side or a very small one: a header this tall would leave no room. */
+@media (max-height: 640px) {
+  html { scroll-padding-top: 1rem; }
+  .head { position: static; }
 }
 
 .lang {

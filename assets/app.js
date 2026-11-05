@@ -96,7 +96,7 @@ const I18N = {
     "vitrall.f3": "Make one to measure: its size and how hard, up to where you've reached.",
     "vitrall.f4": "Day and night, the way your phone is set.",
     "vitrall.caption": "From the game itself. In dark mode, the window glows.",
-    "vitrall.shot.alt": "A logic puzzle on a stone wall: numbers beside a grid of panes, some lit in orange",
+    "vitrall.shot.alt": "A logic puzzle on a stone wall: numbers beside a grid of panes, some of them lit",
     "planxa.tagline": "A griddle that waits for you.",
     "planxa.body": "Turn-based strategy, with burgers. A late-night diner where time only moves when you do: plan the rush and serve everyone the way they asked. It's a puzzle, not a race, so think for as long as you like, or put it down and come back tomorrow.",
     "planxa.f1": "One stroke of your thumb along a row is a single turn.",
@@ -159,7 +159,8 @@ const I18N = {
 
     "brewing.title": "Brewing",
     "brewing.lede": "Being made now, in the same cup.",
-    "brew.trac": "One green line.",
+    "brew.tiny": "A small space station, and its first tourists.",
+    "brew.llancadores": "People, ships, and the way to the Moon.",
 
     "foot.support": "Questions, bugs, ideas. Write to us and a person answers.",
     "foot.privacy": "Privacy",
@@ -269,7 +270,7 @@ const I18N = {
     "vitrall.f3": "Fes-te'n una a mida: la mida i la dificultat, fins on hagis arribat.",
     "vitrall.f4": "De dia i de nit, com tinguis el telèfon.",
     "vitrall.caption": "Del joc mateix. En mode fosc, la finestra brilla.",
-    "vitrall.shot.alt": "Un trencaclosques de lògica en una paret de pedra: números al costat d'una quadrícula de vidres, alguns encesos de color taronja",
+    "vitrall.shot.alt": "Un trencaclosques de lògica en una paret de pedra: números al costat d'una quadrícula de vidres, alguns d'encesos",
     "planxa.tagline": "Una planxa que t'espera.",
     "planxa.body": "Estratègia per torns, amb hamburgueses. Una cafeteria de nit on el temps només passa si tu actues: planifica l'hora punta i serveix cadascú tal com ho vol. És un trencaclosques, no una cursa, així que pensa tant com vulguis, o deixa-ho i torna-hi demà.",
     "planxa.f1": "Una passada de dit al llarg d'una fila és un sol torn.",
@@ -332,7 +333,8 @@ const I18N = {
 
     "brewing.title": "Al foc",
     "brewing.lede": "S'estan fent ara, a la mateixa tassa.",
-    "brew.trac": "Una sola línia verda.",
+    "brew.tiny": "Una estació espacial petita, i els seus primers turistes.",
+    "brew.llancadores": "Gent, naus, i el camí fins a la Lluna.",
 
     "foot.support": "Dubtes, errors, idees. Escriu-nos i et contesta una persona.",
     "foot.privacy": "Privadesa",
