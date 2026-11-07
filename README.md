@@ -10,11 +10,15 @@ web**: tot el que es pot provar aquí és el de debò, tret de quantitat.
 D'amunt a avall:
 
 0. **L'aparador** (`.aparador`), just sota el títol: les pantalles de debò de les nou apps, una al
-   costat de l'altra, com en un aparador. No es mou sol (un carrusel que passa sol amaga la resta i
-   gairebé ningú no passa del primer): es passa amb el dit, el trackpad o les dues fletxes (només amb
-   ratolí), i la següent treu el cap per convidar a seguir. Un clic porta a l'app. Les imatges són a
-   `assets/aparador/`, de les captures de la botiga (`Screenshots/AppStore-*`), reduïdes a WebP; les
-   finestres de Mac, retallades amb les seves cantonades.
+   costat de l'altra, com en un aparador, que es desplacen a poc a poc cap a l'esquerra i tornen a
+   començar (20 punts per segon, `SPEED` a `app.js`). S'aturen sota el ratolí o si un enllaç seu té
+   el focus; un dit, el trackpad o les fletxes (només amb ratolí) les prenen, i tornen a moure's
+   3,5 s després de deixar-les; el botonet de sota les atura del tot. Amb «menys moviment» no es
+   mou mai. Mentre llisca es mou la cinta (`transform`); quan la prens, aquell desplaçament passa a
+   ser el de la pista, perquè no salti res. Les imatges són a `assets/aparador/`, de les captures de
+   la botiga (`Screenshots/AppStore-*`), reduïdes a WebP; les finestres de Mac, retallades amb les
+   seves cantonades. (David, 7/11: un carrusel dels d'abans que passa d'un en un, no; que es
+   desplaci a poc a poc, sí.)
 1. **La carta** (`.carta`). Totes les apps d'un cop d'ull, com la carta d'un cafè, en tres grups:
    jocs per a iPhone, eines per al Mac, per a la tele. Cada plat és la icona de l'app, el nom, la
    frase i, si és el cas, «aviat» i «juga-hi aquí» / «prova-la aquí». Un clic porta a la seva sala.
@@ -24,11 +28,12 @@ D'amunt a avall:
 3. **Els capítols** (`.chapter`): «Jocs per a iPhone», «Eines per al Mac», «Per a la tele i l'iPad». El
    que val per a tots els jocs (mode nit, català i anglès, res que et reclami) es diu un cop aquí i no a
    cada joc.
-4. **Les sales** (`section.app`). Cada app té la seva paret, del color de l'app, de dia i de nit
-   (`--room-<app>`) i el color amb què parla, per a la frase, les xifres i les vinyetes (`--say-<app>`).
-   Tots dos són a dalt de `style.css`. Dins: icona, nom, què és, la frase, l'art i el text (un
-   paràgraf, tres punts i el botó de la botiga). En pantalla ampla l'art va a un costat i el text a
-   l'altre, alternant; al mòbil, nom, frase, art i text.
+4. **Els panells** (`section.app`). Cada app és en un panell translúcid, el mateix per a totes
+   (`--panel`), perquè els capítols quedin clarament a part. El color de cada app és el de la seva
+   frase, les xifres i les vinyetes (`--say-<app>`, de dia i de nit, a dalt de `style.css`). Dins:
+   icona, nom, què és, la frase, l'art i el text (un paràgraf, tres punts i el botó de la botiga).
+   En pantalla ampla l'art va a un costat i el text a l'altre, alternant; al mòbil, nom, frase, art
+   i text. (Abans cada app tenia una franja del seu color; David, 7/11: «millor sense».)
 5. **El compromís**, **Al foc** i el peu.
 
 L'art de cada app:
@@ -108,12 +113,13 @@ Web/
    porten la seva forma i un marge transparent de 100 px: retalla'l (de 100 a 924) abans de reduir-la.
    A l'HTML, `icon--ios` (el navegador l'arrodoneix) o `icon--mac` (ja és rodona).
 2. **Un plat a la carta** i **una icona al moll**, a `index.html` i al moll de `privacy.html`.
-3. **Una sala**: `<section class="app" id="<app>">`, copiant-ne una de la mateixa plataforma
-   (`app--flip` si toca l'art a l'esquerra), i els seus dos colors, `--room-<app>` i `--say-<app>`,
-   de dia i de nit, a dalt de `style.css`, més la línia `#<app> { --room: …; --say: …; }`.
-4. **Els textos** als dos idiomes de `app.js`: `<app>.kind`, `.tagline`, `.body`, `.f1`–`.f3`,
+3. **Un panell**: `<section class="app" id="<app>">`, copiant-ne un de la mateixa plataforma
+   (`app--flip` si toca l'art a l'esquerra), i el seu color, `--say-<app>`, de dia i de nit, a dalt
+   de `style.css`, més la línia `#<app> { --say: …; }`.
+4. **Una pantalla a l'aparador**: una imatge a `assets/aparador/` i el seu `<li class="vitrina">`.
+5. **Els textos** als dos idiomes de `app.js`: `<app>.kind`, `.tagline`, `.body`, `.f1`–`.f3`,
    `.caption`, i l'`alt` de les captures. Pensant en qui la voldria, no com una llista de funcions.
-5. **L'enllaç de la botiga** a `STORE_LINKS` (buit mentre no hi sigui) i **la fila de privadesa**.
+6. **L'enllaç de la botiga** a `STORE_LINKS` (buit mentre no hi sigui) i **la fila de privadesa**.
 
 ## Veure'l en local
 
@@ -197,9 +203,9 @@ Es publica fent push a `main` del repositori de la web (`env -u GH_TOKEN -u GITH
 
 - Bilingüe anglès/català amb el botó CA/EN; recorda la tria i, la primera
   vegada, tria segons l'idioma del navegador.
-- Mode fosc automàtic (`prefers-color-scheme`), amb les sales en colors de nit.
+- Mode fosc automàtic (`prefers-color-scheme`).
 - Respecta `prefers-reduced-motion`: res es mou sol.
-- Sense animacions d'entrada: el que es mou és el que fas tu, o les fruites.
+- Sense animacions d'entrada: el que es mou sol és l'aparador, a poc a poc, i les fruites.
 - El tauler de Circell del web és jugable de veritat: genera un arbre
   d'expansió aleatori sobre la graella, així sempre té solució.
 - El control de Brillantor aplica una correcció de gamma real (filtre SVG

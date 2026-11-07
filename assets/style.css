@@ -24,16 +24,21 @@
   --line:    color-mix(in srgb, var(--leaf) 18%, transparent);
   --shadow:  0 18px 40px -24px rgba(46, 74, 62, .45);
 
-  /* Each app's room: the wall it hangs on, and the colour it speaks in. */
-  --room-circell:    #E4EFE3;  --say-circell:    #3B7454;
-  --room-confitura:  #F7E6DA;  --say-confitura:  #AE3647;
-  --room-vitrall:    #E9E4DA;  --say-vitrall:    #2457A6;
-  --room-planxa:     #F2E6D3;  --say-planxa:     #B03D2B;
-  --room-finestreta: #E2E9F0;  --say-finestreta: #2D5E86;
-  --room-ploma:      #EDEBE3;  --say-ploma:      #A6511F;
-  --room-segell:     #E4EAF3;  --say-segell:     #23409C;
-  --room-brillantor: #E9E5F0;  --say-brillantor: #8A690C;
-  --room-vistes:     #F4E3DB;  --say-vistes:     #A95234;
+  /* The colour each app speaks in: its tagline, its numbers, its bullets. */
+  --say-circell:    #3B7454;
+  --say-confitura:  #AE3647;
+  --say-vitrall:    #2457A6;
+  --say-planxa:     #B03D2B;
+  --say-finestreta: #2D5E86;
+  --say-ploma:      #A6511F;
+  --say-segell:     #23409C;
+  --say-brillantor: #8A690C;
+  --say-vistes:     #A95234;
+  /* Every app sits on the same translucent panel, so the chapters stand apart. */
+  --panel:      rgba(251, 247, 236, .58);
+  --panel-line: rgba(62, 107, 82, .11);
+  /* The menu's hover tint. */
+  --dish-hover: color-mix(in srgb, var(--mint) 16%, transparent);
 
   --wrap: 1120px;
   --gutter: clamp(1.1rem, 5vw, 2.4rem);
@@ -52,15 +57,17 @@
     --shadow: 0 18px 40px -22px rgba(0, 0, 0, .6);
     --terracotta: #E2A272;
 
-    --room-circell:    #1A2E25;  --say-circell:    #8ED2AF;
-    --room-confitura:  #2D221E;  --say-confitura:  #F3A1A9;
-    --room-vitrall:    #1A1F2E;  --say-vitrall:    #93B9F2;
-    --room-planxa:     #29231C;  --say-planxa:     #F2A08D;
-    --room-finestreta: #19232E;  --say-finestreta: #9CC5E6;
-    --room-ploma:      #171F1B;  --say-ploma:      #EBCB7A;
-    --room-segell:     #1B202D;  --say-segell:     #A9BBF5;
-    --room-brillantor: #1C1C2B;  --say-brillantor: #EBCB7A;
-    --room-vistes:     #2A1E25;  --say-vistes:     #F1A783;
+    --say-circell:    #8ED2AF;
+    --say-confitura:  #F3A1A9;
+    --say-vitrall:    #93B9F2;
+    --say-planxa:     #F2A08D;
+    --say-finestreta: #9CC5E6;
+    --say-ploma:      #EBCB7A;
+    --say-segell:     #A9BBF5;
+    --say-brillantor: #EBCB7A;
+    --say-vistes:     #F1A783;
+    --panel:      rgba(255, 255, 255, .035);
+    --panel-line: rgba(127, 203, 168, .12);
   }
 }
 
@@ -251,17 +258,14 @@ a:hover { color: var(--terracotta); }
   --edge: max(var(--gutter), calc((100vw - var(--wrap)) / 2));
   position: relative;
   width: 100vw; margin: clamp(2rem, 5vh, 3rem) 0 0 calc(50% - 50vw);
+  padding-bottom: 2.6rem;
 }
 @media (max-width: 700px) { .aparador { --phone-h: 300px; --wide-h: 190px; } }
 @media (max-width: 380px) { .aparador { --phone-h: 270px; --wide-h: 170px; } }
 
 .aparador__track {
   --fade-l: 56px; --fade-r: 56px;
-  list-style: none; margin: 0;
-  padding: .8rem var(--edge) 1rem;
-  display: flex; align-items: flex-end; gap: clamp(1.1rem, 2.6vw, 2.1rem);
   overflow-x: auto; overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity; scroll-padding-inline: var(--edge);
   scrollbar-width: none;
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent 100%);
           mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l), #000 calc(100% - var(--fade-r)), transparent 100%);
@@ -269,8 +273,15 @@ a:hover { color: var(--terracotta); }
 .aparador__track::-webkit-scrollbar { display: none; }
 .aparador.is-start .aparador__track { --fade-l: 0px; }
 .aparador.is-end .aparador__track { --fade-r: 0px; }
+/* The belt carries the screens; while it drifts it slides, and when you take
+   over it stands still and the track scrolls instead (app.js). */
+.aparador__belt {
+  list-style: none; margin: 0; width: max-content;
+  padding: .8rem var(--edge) 1rem;
+  display: flex; align-items: flex-end; gap: clamp(1.1rem, 2.6vw, 2.1rem);
+}
 
-.vitrina { flex: none; scroll-snap-align: start; }
+.vitrina { flex: none; }
 .vitrina a { display: grid; justify-items: center; gap: .65rem; color: var(--ink); text-decoration: none; }
 .vitrina__glass { display: block; transition: transform .25s ease; }
 .vitrina a:hover .vitrina__glass { transform: translateY(-4px); }
@@ -304,7 +315,7 @@ a:hover { color: var(--terracotta); }
 
 /* Two arrows for a mouse; a finger or a trackpad doesn't need them. */
 .aparador__nav {
-  position: absolute; top: calc(50% - 38px); z-index: 2;
+  position: absolute; top: calc(50% - 58px); z-index: 2;
   width: 46px; height: 46px; border-radius: 50%;
   display: grid; place-items: center; cursor: pointer;
   background: var(--paper); color: var(--ink);
@@ -317,6 +328,21 @@ a:hover { color: var(--terracotta); }
 .aparador.is-start .aparador__nav--prev,
 .aparador.is-end .aparador__nav--next { opacity: 0; pointer-events: none; }
 @media (hover: none), (pointer: coarse) { .aparador__nav { display: none; } }
+/* Stop it for good, or let it go on: small, under the last screen. */
+.aparador__pause {
+  position: absolute; right: var(--edge); bottom: 0; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: none; place-items: center; cursor: pointer;
+  background: transparent; color: var(--ink-2);
+  border: 1px solid var(--line);
+}
+.aparador.is-drifting .aparador__pause, .aparador.is-stopped .aparador__pause { display: grid; }
+.aparador__pause:hover { color: var(--ink); border-color: var(--ink-2); }
+.aparador__pause svg { width: 16px; height: 16px; fill: currentColor; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.aparador__pause .i-pause { fill: none; }
+.aparador__pause .i-play { display: none; }
+.aparador.is-stopped .aparador__pause .i-pause { display: none; }
+.aparador.is-stopped .aparador__pause .i-play { display: inline; }
 
 @media (prefers-reduced-motion: reduce) {
   .vitrina__glass { transition: none; }
@@ -327,7 +353,7 @@ a:hover { color: var(--terracotta); }
 .carta {
   position: relative;
   max-width: 1000px;
-  margin: clamp(1.6rem, 4vh, 2.6rem) auto 0;
+  margin: clamp(.6rem, 2vh, 1.4rem) auto 0;
   padding: clamp(1.3rem, 3.2vw, 2.4rem) clamp(1.1rem, 3.6vw, 2.8rem) clamp(.6rem, 2vw, 1.2rem);
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: clamp(1.6rem, 4.5vw, 3.6rem);
@@ -359,7 +385,7 @@ a:hover { color: var(--terracotta); }
   color: var(--ink); text-decoration: none;
   transition: background-color .2s ease;
 }
-.dish:hover { background: var(--dish); color: var(--ink); }
+.dish:hover { background: var(--dish-hover); color: var(--ink); }
 .dish__icon { width: 56px; height: 56px; }
 .dish__text { display: grid; line-height: 1.28; }
 .dish__name { font-weight: 720; font-size: 1.14rem; }
@@ -392,11 +418,14 @@ a:hover { color: var(--terracotta); }
    the order is name, tagline, art, the rest. */
 
 .app {
-  --room: var(--bg);
   --say: var(--leaf);
-  background: var(--room);
-  padding-block: clamp(3.4rem, 9vh, 6rem);
-  padding-inline: max(var(--gutter), calc((100% - var(--wrap)) / 2));
+  width: min(100% - 2 * clamp(.7rem, 2.6vw, 2rem), var(--wrap) + 7rem);
+  margin: 0 auto clamp(.9rem, 2.2vw, 1.5rem);
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  border-radius: clamp(24px, 3vw, 36px);
+  padding-block: clamp(3rem, 8vh, 5rem);
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: 1fr auto auto auto 1fr;
@@ -412,19 +441,15 @@ a:hover { color: var(--terracotta); }
   }
 }
 
-#circell    { --room: var(--room-circell);    --say: var(--say-circell); }
-#confitura  { --room: var(--room-confitura);  --say: var(--say-confitura); }
-#vitrall    { --room: var(--room-vitrall);    --say: var(--say-vitrall); }
-#planxa     { --room: var(--room-planxa);     --say: var(--say-planxa); }
-#finestreta { --room: var(--room-finestreta); --say: var(--say-finestreta); }
-#ploma      { --room: var(--room-ploma);      --say: var(--say-ploma); }
-#segell     { --room: var(--room-segell);     --say: var(--say-segell); }
-#brillantor { --room: var(--room-brillantor); --say: var(--say-brillantor); }
-#vistes     { --room: var(--room-vistes);     --say: var(--say-vistes); }
-
-/* To compare (temporary, ?franges=no): the rooms without their walls. */
-.sense-franges .app { background: transparent; }
-.sense-franges .app + .app { border-top: 1px solid var(--line); }
+#circell    { --say: var(--say-circell); }
+#confitura  { --say: var(--say-confitura); }
+#vitrall    { --say: var(--say-vitrall); }
+#planxa     { --say: var(--say-planxa); }
+#finestreta { --say: var(--say-finestreta); }
+#ploma      { --say: var(--say-ploma); }
+#segell     { --say: var(--say-segell); }
+#brillantor { --say: var(--say-brillantor); }
+#vistes     { --say: var(--say-vistes); }
 
 .app__head { grid-area: head; display: flex; align-items: center; gap: 1.1rem; }
 .app__head h2 { margin: 0; }
@@ -438,7 +463,7 @@ a:hover { color: var(--terracotta); }
 }
 .app__art { grid-area: art; display: grid; justify-items: center; align-content: center; gap: 1rem; }
 @media (max-width: 860px) {
-  .app { padding-block: clamp(2.6rem, 7vh, 3.6rem); }
+  .app { padding-block: clamp(2.2rem, 6vh, 3.2rem); }
   .app__art { margin-bottom: 2rem; }
   /* A screenshot needs less room than a board you play with your thumb. */
   .phone:has(.phone__screen--shot) { width: min(290px, 72vw); }

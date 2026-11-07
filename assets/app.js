@@ -46,6 +46,8 @@ const I18N = {
     "aparador.label": "The apps, screen by screen",
     "aparador.prev": "Previous",
     "aparador.next": "Next",
+    "aparador.pause": "Stop the shop window",
+    "aparador.play": "Let the shop window move",
     "carta.label": "All our apps",
     "dock.label": "Apps",
     "platform.ios": "iPhone",
@@ -233,6 +235,8 @@ const I18N = {
     "aparador.label": "Les apps, pantalla a pantalla",
     "aparador.prev": "Anteriors",
     "aparador.next": "Següents",
+    "aparador.pause": "Atura l'aparador",
+    "aparador.play": "Deixa que l'aparador es mogui",
     "carta.label": "Totes les nostres apps",
     "dock.label": "Apps",
     "platform.ios": "iPhone",
@@ -700,29 +704,126 @@ if (plomaOpen && plomaWindow) {
 }
 
 /* ── The shop window ──────────────────────────────────────── */
-/* It never moves by itself. The arrows (only with a mouse) pass it by most of a
-   screen; at either end the arrow and the fade on that side go. */
+/* It drifts slowly to the left, round and round (a second set of the same
+   screens follows the first). It stands still while the mouse is over it or a
+   link in it has the focus; a finger, the trackpad or the arrows take it over,
+   and it drifts again a few seconds after you let go. The button stops it for
+   good. With "less motion" it never moves: then it's a strip you pass yourself.
 
-const shelf = document.getElementById("aparadorTrack");
-if (shelf) {
-  const box = shelf.parentElement;
+   While it drifts the belt slides (a transform, smooth at any speed); when you
+   take over, that offset becomes the track's scroll, so nothing jumps. */
+
+const strip = document.getElementById("aparador");
+const track = document.getElementById("aparadorTrack");
+const belt = track && track.querySelector(".aparador__belt");
+
+if (strip && track && belt) {
+  const SPEED = 20;     // points a second
+  const REST = 3500;    // ms after you let go before it drifts again
+  const lessMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  let offset = 0, loop = 0, drifting = false, stopped = false;
+  let hovering = false, focused = false, visible = false;
+  /* It waits a moment before setting off, so the first look is a still one. */
+  let touchedAt = performance.now() - REST + 1500, ownScrollAt = -Infinity, last = 0, frame = 0;
+
   const ends = () => {
-    box.classList.toggle("is-start", shelf.scrollLeft < 8);
-    box.classList.toggle("is-end", shelf.scrollLeft + shelf.clientWidth > shelf.scrollWidth - 8);
+    const pos = drifting ? offset : track.scrollLeft;
+    strip.classList.toggle("is-start", pos < 8);
+    strip.classList.toggle("is-end", !drifting && track.scrollLeft + track.clientWidth > track.scrollWidth - 8);
   };
-  shelf.addEventListener("scroll", ends, { passive: true });
-  addEventListener("resize", ends);
-  ends();
-  box.querySelectorAll(".aparador__nav").forEach(button => button.addEventListener("click", () => {
-    const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    shelf.scrollBy({ left: +button.dataset.dir * shelf.clientWidth * 0.7, behavior: calm ? "auto" : "smooth" });
-  }));
-}
 
-/* To compare, while David decides (temporary): ?franges=no takes the rooms'
-   walls away. */
-if (new URLSearchParams(location.search).get("franges") === "no") {
-  document.documentElement.classList.add("sense-franges");
+  /* The second set, for the round trip: hidden from screen readers and Tab. */
+  const double = () => {
+    if (belt.dataset.doubled) return;
+    [...belt.children].forEach(item => {
+      const copy = item.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      copy.querySelectorAll("a").forEach(a => { a.tabIndex = -1; });
+      belt.appendChild(copy);
+    });
+    belt.dataset.doubled = "1";
+  };
+  const measure = () => {
+    const half = belt.children.length / 2;
+    loop = belt.children[half].offsetLeft - belt.children[0].offsetLeft;
+    if (loop > 0) offset %= loop;
+  };
+
+  const scrollTo = x => { ownScrollAt = performance.now(); track.scrollLeft = x; };
+  const takeOver = () => {
+    if (!drifting) return;
+    drifting = false;
+    belt.style.transform = "";
+    scrollTo(offset);
+    strip.classList.remove("is-drifting");
+  };
+  const letGo = () => {
+    offset = loop > 0 ? track.scrollLeft % loop : track.scrollLeft;
+    scrollTo(0);
+    belt.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    drifting = true;
+    strip.classList.add("is-drifting");
+  };
+  const touched = () => { touchedAt = performance.now(); takeOver(); };
+
+  const tick = now => {
+    frame = 0;
+    const dt = Math.min(0.1, (now - last) / 1000);
+    last = now;
+    const may = !stopped && !lessMotion.matches && !hovering && !focused && now - touchedAt > REST;
+    if (may) {
+      if (!drifting) letGo();
+      offset += SPEED * dt;
+      if (loop > 0 && offset >= loop) offset -= loop;
+      belt.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      ends();
+    }
+    if (visible && !document.hidden && !stopped && !lessMotion.matches) frame = requestAnimationFrame(tick);
+  };
+  const run = () => {
+    if (!frame && visible && !document.hidden && !stopped && !lessMotion.matches) {
+      last = performance.now();
+      frame = requestAnimationFrame(tick);
+    }
+  };
+
+  if (!lessMotion.matches) { double(); measure(); }
+  addEventListener("resize", () => { measure(); ends(); });
+
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; run(); }).observe(strip);
+  document.addEventListener("visibilitychange", run);
+  lessMotion.addEventListener?.("change", () => { if (lessMotion.matches) takeOver(); else { double(); measure(); run(); } });
+
+  strip.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") hovering = true; });
+  strip.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") { hovering = false; touchedAt = performance.now() - REST + 900; run(); } });
+  strip.addEventListener("focusin", () => { focused = true; touched(); });
+  strip.addEventListener("focusout", () => { focused = false; });
+  track.addEventListener("pointerdown", touched);
+  track.addEventListener("touchstart", touched, { passive: true });
+  track.addEventListener("wheel", e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) touched(); }, { passive: true });
+  track.addEventListener("scroll", () => {
+    if (performance.now() - ownScrollAt > 120) touchedAt = performance.now();
+    ends();
+  }, { passive: true });
+
+  strip.querySelectorAll(".aparador__nav").forEach(button => button.addEventListener("click", () => {
+    touched();
+    track.scrollBy({ left: +button.dataset.dir * track.clientWidth * 0.7, behavior: lessMotion.matches ? "auto" : "smooth" });
+  }));
+
+  const pause = document.getElementById("aparadorPause");
+  pause?.addEventListener("click", () => {
+    stopped = !stopped;
+    pause.setAttribute("aria-pressed", String(stopped));
+    pause.setAttribute("aria-label", t(stopped ? "aparador.play" : "aparador.pause"));
+    strip.classList.toggle("is-stopped", stopped);
+    if (stopped) takeOver(); else { touchedAt = -Infinity; run(); }
+  });
+  document.addEventListener("langchange", () => {
+    pause?.setAttribute("aria-label", t(stopped ? "aparador.play" : "aparador.pause"));
+  });
+
+  ends();
 }
 
 /* ── 6. The dock ──────────────────────────────────────────── */
