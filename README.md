@@ -21,7 +21,7 @@ D'amunt a avall:
    desplaci a poc a poc, sí.)
 1. **La carta** (`.carta`). Totes les apps d'un cop d'ull, com la carta d'un cafè, en tres grups:
    jocs per a iPhone, eines per al Mac, per a la tele. Cada plat és la icona de l'app, el nom, la
-   frase i, si és el cas, «aviat» i «juga-hi aquí» / «prova-la aquí». Un clic porta a la seva sala.
+   frase i, si és el cas, «aviat» i «juga-hi aquí» / «prova-la aquí». Un clic porta al seu panell.
 2. **El moll** (`.dock`, a la capçalera). Les nou icones, per saltar a qualsevol app des de qualsevol
    lloc. Surt quan la carta ja no es veu (`has-dock`, a `app.js`) i l'app que tens a la pantalla porta
    un anell de menta. A `privacy.html` hi és sempre, i hi porta (`index.html#app`).
