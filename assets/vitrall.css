@@ -1,0 +1,331 @@
+/* ===========================================================
+   Vitrall · the five windows on the web (assets/vitrall.js)
+   Everything is laid out in points of a 402-point-wide phone and
+   scaled to fit the phone on the page, like the game on an iPhone.
+   Colours from the game's Ink (Sources/Art/Palette.swift).
+   =========================================================== */
+
+.vit {
+  --vit-text: #2A2E36;
+  --vit-soft: #43474C;
+  --vit-done: rgba(42, 46, 54, .34);
+  --vit-active: #000;
+  --vit-wrong: #B92B20;
+  --vit-carve: rgba(255, 255, 255, .62);
+  --vit-carve-y: .8px;
+  --vit-surface: rgba(241, 236, 225, .86);
+  --vit-rim: rgba(139, 133, 119, .8);
+  --vit-accent: #2F3339;
+  --vit-on-accent: #F4EFE3;
+  --vit-lead: #2F3339;
+  --vit-lead-edge: rgba(123, 129, 139, .6);
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #C2BAA9;
+  color: var(--vit-text);
+  font-family: Optima, "Optima Nova", "URW Classico", Candara, "Segoe UI", "Noto Sans", system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vit.is-night {
+  --vit-text: #ECE6D6;
+  --vit-soft: #B4BCCC;
+  --vit-done: rgba(236, 230, 214, .34);
+  --vit-active: #FFF3CF;
+  --vit-wrong: #FF8F7D;
+  --vit-carve: rgba(0, 0, 0, .55);
+  --vit-carve-y: -.7px;
+  --vit-surface: rgba(27, 34, 53, .92);
+  --vit-rim: #48516A;
+  --vit-accent: #EAC467;
+  --vit-on-accent: #141A2B;
+  --vit-lead: #05070E;
+  --vit-lead-edge: rgba(74, 84, 110, .8);
+  background: #10162A;
+}
+
+.vit__stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  isolation: isolate;
+}
+
+.vit canvas { position: absolute; display: block; }
+
+/* The light on the wall and the glow at night, drawn sharp and blurred here. */
+.vit__light { filter: blur(var(--vit-blur-light, 14px)); }
+.vit__glow  { filter: blur(var(--vit-blur-glow, 4px)); }
+
+/* The next window comes in with a soft cut, not a jump. */
+.vit__light, .vit__glass, .vit__glow, .vit__casing, .vit__clues { transition: opacity .15s ease-in-out; }
+.vit .is-hidden { opacity: 0; }
+
+/* ── The numbers, cut into the stone ── */
+
+.vit__clues { position: absolute; left: 0; top: 0; pointer-events: none; }
+.vit__line {
+  position: absolute;
+  display: flex;
+  color: var(--vit-text);
+  transition: color .25s ease-out;
+}
+.vit__line--row { flex-direction: row; justify-content: flex-end; align-items: center; gap: 3.5px; }
+.vit__line--col { flex-direction: column; justify-content: flex-end; align-items: center; }
+.vit__digit {
+  display: block;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 var(--vit-carve-y) 0 var(--vit-carve);
+}
+.vit__line.is-active { color: var(--vit-active); }
+.vit__line.is-done { color: var(--vit-done); }
+.vit__line.is-done .vit__digit { text-shadow: none; }
+.vit__line.is-wrong { color: var(--vit-wrong); animation: vit-wrong .25s ease-in-out 3 alternate; }
+@keyframes vit-wrong {
+  from { color: var(--vit-text); }
+  to   { color: var(--vit-wrong); }
+}
+
+/* ── The panes: only here the page doesn't scroll ── */
+
+.vit__board {
+  position: absolute;
+  touch-action: none;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+}
+.vit__board:focus-visible { outline: 2.5px solid var(--vit-accent); outline-offset: 11px; border-radius: 8px; }
+
+/* ── The header: clear, the window's name and the five panes, Check ── */
+
+.vit__head { position: absolute; display: flex; align-items: center; justify-content: space-between; }
+
+.vit button {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.vit button:disabled { cursor: default; }
+.vit button:focus-visible { outline: 2px solid var(--vit-accent); outline-offset: 2px; }
+
+.vit__round {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  display: grid;
+  place-items: center;
+  transition: opacity .3s ease-in-out;
+}
+.vit__round svg {
+  width: 38px;
+  height: 38px;
+  padding: 10.5px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--vit-surface);
+  box-shadow: inset 0 0 0 1px var(--vit-rim);
+  fill: none;
+  stroke: var(--vit-text);
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.vit__round.is-idle { opacity: .4; }
+
+.vit__check {
+  height: 38px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 19px;
+  background: var(--vit-surface);
+  box-shadow: inset 0 0 0 1px var(--vit-rim);
+  font-size: 16px !important;
+  color: var(--vit-text) !important;
+  white-space: nowrap;
+  transition: opacity .3s ease-in-out;
+}
+
+.vit__stage:not(.is-playing) .vit__round,
+.vit__stage:not(.is-playing) .vit__check { opacity: .45; }
+
+.vit__middle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.vit__title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.15;
+  white-space: nowrap;
+  color: var(--vit-text);
+  text-shadow: 0 var(--vit-carve-y) 0 var(--vit-carve);
+}
+
+/* Five small windows: clear glass until you light one, then its finished window. */
+.vit__panes { display: flex; }
+.vit__pane {
+  width: 23px;
+  height: 21px;
+  padding: 0;
+  border: 0;
+  background: none;
+  display: grid;
+  place-items: center;
+}
+.vit .vit__mini {
+  position: static;
+  width: 13px;
+  height: 13px;
+  border-radius: 1.5px;
+  box-shadow: 0 0 0 1.3px var(--vit-lead), 0 0 0 2px var(--vit-lead-edge);
+  transition: box-shadow .25s ease, transform .2s ease;
+}
+/* Small to look at, but a finger gets more: the hit area reaches up and down. */
+.vit__pane { position: relative; }
+.vit__pane::after { content: ""; position: absolute; inset: -11px -1px; }
+.vit__pane:hover .vit__mini { transform: translateY(-1px); }
+.vit__pane.is-current .vit__mini {
+  box-shadow: 0 0 0 1.3px var(--vit-lead), 0 0 0 3.4px var(--vit-accent);
+}
+/* At night clear glass is as dark as the wall: a lit edge so the five still read. */
+.vit.is-night .vit__mini { box-shadow: 0 0 0 1.3px var(--vit-lead), 0 0 0 2.2px #5C6784; }
+.vit.is-night .vit__pane.is-current .vit__mini { box-shadow: 0 0 0 1.3px var(--vit-lead), 0 0 0 3.4px var(--vit-accent); }
+
+/* ── The bottom: Paint and Note while you work; when it's solved, the way on ── */
+
+.vit__foot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.vit__modes {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  margin-bottom: 6px;
+  border: 1px solid var(--vit-rim);
+  border-radius: 999px;
+  background: var(--vit-surface);
+  transition: opacity .3s ease-in-out;
+}
+.vit__stage:not(.is-playing) .vit__modes { opacity: .45; }
+.vit__stage.is-finished .vit__modes { opacity: 0; visibility: hidden; transition: opacity .3s ease-in-out, visibility 0s .3s; }
+
+.vit__mode {
+  width: 80px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 16px !important;
+  color: var(--vit-text) !important;
+  transition: background-color .3s ease, color .3s ease;
+}
+.vit__mode.is-selected { background: var(--vit-accent); color: var(--vit-on-accent) !important; }
+.vit__icon { width: 17px; height: 17px; display: grid; place-items: center; flex: none; }
+.vit__mode--fill .vit__icon {
+  border-radius: 3.5px;
+  background: var(--vit-paint, #0E97A4);
+  box-shadow: inset 0 0 0 1.4px var(--vit-lead);
+}
+.vit__mode--dot .vit__icon::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.vit__done {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity .35s ease-in-out, transform .35s ease-in-out, visibility 0s .35s;
+}
+.vit__stage.is-finished .vit__done {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .35s ease-in-out, transform .35s ease-in-out;
+}
+.vit__glows {
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+  color: var(--vit-text);
+  text-shadow: 0 var(--vit-carve-y) 0 var(--vit-carve);
+}
+.vit__next {
+  padding: 14px 32px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--vit-accent);
+  color: var(--vit-on-accent) !important;
+  font-size: 18px !important;
+  line-height: 1.2;
+  transition: transform .2s cubic-bezier(.34, 1.4, .5, 1), opacity .2s;
+}
+.vit__next:active { transform: scale(.96); opacity: .9; }
+.vit__last {
+  margin: 0;
+  min-height: 28px;
+  font-size: 15px;
+  text-align: center;
+  color: var(--vit-soft);
+}
+.vit__next[hidden], .vit__last[hidden] { display: none; }
+
+.vit__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vit__light, .vit__glass, .vit__glow, .vit__casing, .vit__clues,
+  .vit__done, .vit__modes, .vit__mode, .vit__line, .vit .vit__mini { transition: none; }
+  .vit__line.is-wrong { animation: none; }
+}
