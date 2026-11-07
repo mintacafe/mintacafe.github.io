@@ -409,6 +409,8 @@ a:hover { color: var(--terracotta); }
 /* ── Live demos inside a phone ───────────────────────────── */
 
 .phone__screen--live { padding: 0; display: block; position: relative; overflow: hidden; }
+/* Without JavaScript, the game's own screenshot instead. */
+.vit-fallback { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
 
 /* ── Phone + Circell board ────────────────────────────────── */
 

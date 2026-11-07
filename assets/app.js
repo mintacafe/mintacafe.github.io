@@ -79,7 +79,7 @@ const I18N = {
     "confitura.f2": "No timer. You let go when you are ready.",
     "confitura.f3": "A best of the week, so there is always something within reach.",
     "confitura.caption": "From the game itself. Keep an eye on the fruit: they're not quite asleep.",
-    "confitura.shot.alt": "A glass jar on a café counter, full of fruit with sleepy faces",
+    "confitura.shot.alt": "A glass jar on a café counter, full of fruit with sleepy faces; now and then one of them opens its eyes",
 
     "vitrall.kind": "A logic puzzle for iPhone",
     "vitrall.tagline": "Light, cell by cell.",
@@ -263,7 +263,7 @@ const I18N = {
     "confitura.f2": "Sense rellotge. Deixes anar quan vols.",
     "confitura.f3": "Un rècord de la setmana, perquè sempre hi hagi alguna cosa a l'abast.",
     "confitura.caption": "Del joc mateix. No els treguis l'ull: no dormen del tot.",
-    "confitura.shot.alt": "Un pot de vidre al taulell d'un cafè, ple de fruites amb cara de son",
+    "confitura.shot.alt": "Un pot de vidre al taulell d'un cafè, ple de fruites amb cara de son; de tant en tant, una obre els ulls",
 
     "vitrall.kind": "Un trencaclosques de lògica per a iPhone",
     "vitrall.tagline": "Llum, cel·la a cel·la.",
