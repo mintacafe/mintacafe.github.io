@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Minta Cafè · small, honest apps for iPhone and Mac</title>
-<meta name="description" content="Minta Cafè makes small, honest apps. One payment, round price, no ads, no subscriptions, no tracking. Circell and Confitura for iPhone; Brillantor, Segell and Ploma for Mac.">
+<meta name="description" content="Minta Cafè makes small, honest apps. One payment, round price, no ads, no subscriptions, no tracking. Games for iPhone, tools for the Mac and something lovely to leave on the TV.">
 <meta property="og:title" content="Minta Cafè">
 <meta property="og:description" content="Small, honest apps. One payment, round price, no ads, no subscriptions.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mintacafe.com/">
 <meta name="theme-color" content="#F3EEE0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#22362D" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#16231D" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F3EEE0'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%237FCBA8' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='7' r='2' fill='%23E8C468'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/vitrall.css">
 </head>
 <body>
 
@@ -21,12 +22,14 @@
   <div class="backdrop__glow"></div>
   <svg class="backdrop__leaf backdrop__leaf--a" viewBox="0 0 100 240"><path d="M50 0C18 60 0 120 0 170c0 40 22 70 50 70s50-30 50-70C100 120 82 60 50 0Z"/></svg>
   <svg class="backdrop__leaf backdrop__leaf--b" viewBox="0 0 100 240"><path d="M50 0C18 60 0 120 0 170c0 40 22 70 50 70s50-30 50-70C100 120 82 60 50 0Z"/></svg>
-  <svg class="backdrop__leaf backdrop__leaf--c" viewBox="0 0 100 240"><path d="M50 0C18 60 0 120 0 170c0 40 22 70 50 70s50-30 50-70C100 120 82 60 50 0Z"/></svg>
 </div>
 
 <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
-<header class="head">
+<!-- The header carries a dock of the nine icons, so any app is one click away
+     from anywhere on the page. At the top the menu below does that job, so the
+     dock only shows once the menu has scrolled away (app.js, "has-dock"). -->
+<header class="head" id="head">
   <a class="brand" href="#top" aria-label="Minta Cafè">
     <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
       <circle cx="20" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="2.6"/>
@@ -36,17 +39,18 @@
     </svg>
     <span class="brand__name">Minta Cafè</span>
   </a>
-  <nav class="nav">
-    <a href="#circell">Circell</a>
-    <a href="#confitura">Confitura</a>
-    <a href="#vitrall">Vitrall</a>
-    <a href="#planxa">Planxa</a>
-    <a href="#finestreta">Finestreta</a>
-    <a href="#brillantor">Brillantor</a>
-    <a href="#segell">Segell</a>
-    <a href="#ploma">Ploma</a>
-    <a href="#vistes">Vistes</a>
-    <a href="#promise" data-i18n="nav.promise">The promise</a>
+  <nav class="dock" id="dock" aria-label="Apps">
+    <a href="#circell" title="Circell"><img class="icon icon--ios" src="assets/icons/circell.webp" alt="Circell" width="30" height="30"></a>
+    <a href="#confitura" title="Confitura"><img class="icon icon--ios" src="assets/icons/confitura.webp" alt="Confitura" width="30" height="30"></a>
+    <a href="#vitrall" title="Vitrall"><img class="icon icon--ios" src="assets/icons/vitrall.webp" alt="Vitrall" width="30" height="30"></a>
+    <a href="#planxa" title="Planxa"><img class="icon icon--ios" src="assets/icons/planxa.webp" alt="Planxa" width="30" height="30"></a>
+    <a href="#finestreta" title="Finestreta"><img class="icon icon--ios" src="assets/icons/finestreta.webp" alt="Finestreta" width="30" height="30"></a>
+    <span class="dock__gap" aria-hidden="true"></span>
+    <a href="#ploma" title="Ploma"><img class="icon icon--mac" src="assets/icons/ploma.webp" alt="Ploma" width="30" height="30"></a>
+    <a href="#segell" title="Segell"><img class="icon icon--mac" src="assets/icons/segell.webp" alt="Segell" width="30" height="30"></a>
+    <a href="#brillantor" title="Brillantor"><img class="icon icon--mac" src="assets/icons/brillantor.webp" alt="Brillantor" width="30" height="30"></a>
+    <span class="dock__gap" aria-hidden="true"></span>
+    <a href="#vistes" title="Vistes"><img class="icon icon--ios" src="assets/icons/vistes.webp" alt="Vistes" width="30" height="30"></a>
   </nav>
   <button class="lang" id="langToggle" type="button" aria-label="Canvia la llengua a català">
     <span class="lang__flip">CA</span>
@@ -55,18 +59,90 @@
 
 <main id="main">
 
+  <!-- ───────────────────────── The menu ───────────────────────── -->
   <section class="hero" id="top">
-    <p class="eyebrow" data-i18n="hero.eyebrow">iPhone &amp; Mac</p>
     <h1 data-i18n="hero.title">Small apps, made with care.</h1>
     <p class="lede" data-i18n="hero.lede">One payment, a round price. No ads, no subscriptions, no pay-to-win, no dark patterns. Each one is a pause, like a coffee.</p>
-    <div class="hero__cta">
-      <a class="btn btn--primary" href="#circell"><span data-i18n="hero.cta1">Circell for iPhone</span></a>
-      <a class="btn btn--ghost" href="#brillantor"><span data-i18n="hero.cta2">Brillantor for Mac</span></a>
-    </div>
+
+    <!-- The café's menu: every app at a glance, grouped by what it's for. -->
+    <nav class="carta" id="carta" aria-label="All our apps" data-i18n-aria="carta.label">
+      <div class="carta__col">
+        <section class="carta__group" aria-labelledby="cg-games">
+          <h2 class="carta__title" id="cg-games" data-i18n="group.games">Games for iPhone</h2>
+          <ul class="carta__list">
+            <li><a class="dish" href="#circell" style="--dish: var(--room-circell)">
+              <img class="icon icon--ios dish__icon" src="assets/icons/circell.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Circell</span><span class="dish__line" data-i18n="circell.tagline">Turn, join, bloom.</span></span>
+              <span class="dish__tag" data-i18n="tag.play">Play it here</span>
+            </a></li>
+            <li><a class="dish" href="#confitura" style="--dish: var(--room-confitura)">
+              <img class="icon icon--ios dish__icon" src="assets/icons/confitura.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Confitura</span><span class="dish__line" data-i18n="confitura.tagline">Drop, merge, make jam.</span></span>
+            </a></li>
+            <li><a class="dish" href="#vitrall" style="--dish: var(--room-vitrall)">
+              <img class="icon icon--ios dish__icon" src="assets/icons/vitrall.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Vitrall <small class="dish__soon" data-i18n="tag.soon">soon</small></span><span class="dish__line" data-i18n="vitrall.tagline">Light, cell by cell.</span></span>
+              <span class="dish__tag" data-i18n="tag.play">Play it here</span>
+            </a></li>
+            <li><a class="dish" href="#planxa" style="--dish: var(--room-planxa)">
+              <img class="icon icon--ios dish__icon" src="assets/icons/planxa.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Planxa <small class="dish__soon" data-i18n="tag.soon">soon</small></span><span class="dish__line" data-i18n="planxa.tagline">A griddle that waits for you.</span></span>
+            </a></li>
+            <li><a class="dish" href="#finestreta" style="--dish: var(--room-finestreta)">
+              <img class="icon icon--ios dish__icon" src="assets/icons/finestreta.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Finestreta <small class="dish__soon" data-i18n="tag.soon">soon</small></span><span class="dish__line" data-i18n="finestreta.tagline">Pizza for the whole street.</span></span>
+            </a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="carta__col">
+        <section class="carta__group" aria-labelledby="cg-mac">
+          <h2 class="carta__title" id="cg-mac" data-i18n="group.mac">Tools for the Mac</h2>
+          <ul class="carta__list">
+            <li><a class="dish" href="#ploma" style="--dish: var(--room-ploma)">
+              <img class="icon icon--mac dish__icon" src="assets/icons/ploma.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Ploma</span><span class="dish__line" data-i18n="ploma.tagline">Opens in a blink.</span></span>
+            </a></li>
+            <li><a class="dish" href="#segell" style="--dish: var(--room-segell)">
+              <img class="icon icon--mac dish__icon" src="assets/icons/segell.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Segell</span><span class="dish__line" data-i18n="segell.tagline">Open, sign, done.</span></span>
+            </a></li>
+            <li><a class="dish" href="#brillantor" style="--dish: var(--room-brillantor)">
+              <img class="icon icon--mac dish__icon" src="assets/icons/brillantor.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Brillantor</span><span class="dish__line" data-i18n="brillantor.tagline">Lighter shadows, darker nights.</span></span>
+              <span class="dish__tag" data-i18n="tag.try">Try it here</span>
+            </a></li>
+          </ul>
+        </section>
+        <section class="carta__group" aria-labelledby="cg-tv">
+          <h2 class="carta__title" id="cg-tv" data-i18n="group.tv">For the TV and iPad</h2>
+          <ul class="carta__list">
+            <li><a class="dish" href="#vistes" style="--dish: var(--room-vistes)">
+              <img class="icon icon--ios dish__icon" src="assets/icons/vistes.webp" alt="" width="56" height="56">
+              <span class="dish__text"><span class="dish__name">Vistes <small class="dish__soon" data-i18n="tag.soon">soon</small></span><span class="dish__line" data-i18n="vistes.tagline">Something lovely to leave on.</span></span>
+            </a></li>
+          </ul>
+        </section>
+      </div>
+    </nav>
   </section>
+
+  <!-- ═════════════════════════ Games ═════════════════════════ -->
+  <header class="chapter" id="games">
+    <h2 data-i18n="group.games">Games for iPhone</h2>
+    <p data-i18n="group.games.lede">To play at your own pace. Nothing nags you: no notifications, no streaks. Day or night, the way your phone is set, in English and Catalan.</p>
+  </header>
 
   <!-- ───────────────────────── Circell ───────────────────────── -->
   <section class="app" id="circell">
+    <div class="app__head">
+      <img class="icon icon--ios app__icon" src="assets/icons/circell.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Circell</h2>
+        <p class="app__kind" data-i18n="circell.kind">A puzzle for iPhone</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="circell.tagline">Turn, join, bloom.</p>
     <div class="app__art">
       <div class="phone">
         <div class="phone__island" aria-hidden="true"></div>
@@ -80,106 +156,110 @@
       </div>
       <p class="art__caption" data-i18n="circell.demo.caption">A real board. Play it right here.</p>
     </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.puzzle">Puzzle</span></p>
-      <h2>Circell</h2>
-      <p class="tagline" data-i18n="circell.tagline">Turn, join, bloom.</p>
+    <div class="app__body">
       <p data-i18n="circell.body">A puzzle of rotation and connection. Tap the tiles to turn the vine strands 90° until no end is left open and the whole board is one living vine. When the vine closes, a wave of golden light runs through it and it blooms.</p>
       <ul class="features">
         <li data-i18n="circell.f1">A gentle ladder of levels that opens up as you go.</li>
         <li data-i18n="circell.f2">Everything drawn in code: no clutter, no noise.</li>
         <li data-i18n="circell.f3">Sound synthesised on the fly, and it never interrupts your music.</li>
-        <li data-i18n="circell.f4">English and Catalan, fully localised.</li>
       </ul>
       <div class="store" data-store="circell">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
+        <a class="btn btn--store" href="#" data-store-link>
           <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
           <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
         </a>
-        <span class="soon" data-store-soon data-i18n="store.soon">Link coming soon</span>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
       </div>
     </div>
   </section>
 
   <!-- ──────────────────────── Confitura ──────────────────────── -->
   <section class="app app--flip" id="confitura">
+    <div class="app__head">
+      <img class="icon icon--ios app__icon" src="assets/icons/confitura.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Confitura</h2>
+        <p class="app__kind" data-i18n="confitura.kind">A puzzle for iPhone</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="confitura.tagline">Drop, merge, make jam.</p>
     <div class="app__art">
       <div class="phone">
         <div class="phone__island" aria-hidden="true"></div>
-        <div class="phone__screen phone__screen--shot">
+        <div class="phone__screen phone__screen--shot" data-confitura-faces>
           <picture>
             <source srcset="assets/confitura-nit.jpg" media="(prefers-color-scheme: dark)">
             <img src="assets/confitura-dia.jpg" width="600" height="1304" loading="lazy"
-                 alt="A glass jar on a café counter, full of fruit with sleepy faces; a peach has just merged with a splash"
+                 alt="A glass jar on a café counter, full of fruit with sleepy faces"
                  data-i18n-alt="confitura.shot.alt">
           </picture>
         </div>
       </div>
-      <p class="art__caption" data-i18n="confitura.caption">From the game itself. In dark mode, the café works the night shift.</p>
+      <p class="art__caption" data-i18n="confitura.caption">From the game itself. Keep an eye on the fruit: they're not quite asleep.</p>
     </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.puzzle">Puzzle</span></p>
-      <h2>Confitura</h2>
-      <p class="tagline" data-i18n="confitura.tagline">Drop, merge, make jam.</p>
+    <div class="app__body">
       <p data-i18n="confitura.body">Fruit falls into a glass jar. Two of the same that touch become the next one up, from blueberries to watermelons, and two watermelons make a finished jar of jam. When nothing more fits, the lid tries to close and the café tells you how many grams you made.</p>
       <ul class="features">
         <li data-i18n="confitura.f1">Ten jam fruits that roll, squash and splash, all drawn in code.</li>
         <li data-i18n="confitura.f2">No timer. You let go when you are ready.</li>
         <li data-i18n="confitura.f3">A best of the week, so there is always something within reach.</li>
-        <li data-i18n="confitura.f4">Day and night, the way your phone is set.</li>
       </ul>
       <div class="store" data-store="confitura">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
+        <a class="btn btn--store" href="#" data-store-link>
           <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
           <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
         </a>
-        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
       </div>
     </div>
   </section>
 
   <!-- ──────────────────────── Vitrall ──────────────────────── -->
   <section class="app" id="vitrall">
+    <div class="app__head">
+      <img class="icon icon--ios app__icon" src="assets/icons/vitrall.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Vitrall</h2>
+        <p class="app__kind" data-i18n="vitrall.kind">A logic puzzle for iPhone</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="vitrall.tagline">Light, cell by cell.</p>
     <div class="app__art">
       <div class="phone">
         <div class="phone__island" aria-hidden="true"></div>
-        <div class="phone__screen phone__screen--shot">
-          <picture>
-            <source srcset="assets/vitrall-nit.jpg" media="(prefers-color-scheme: dark)">
-            <img src="assets/vitrall-dia.jpg" width="600" height="1304" loading="lazy"
-                 alt="A logic puzzle on a stone wall: numbers beside a grid of panes, some of them lit"
-                 data-i18n-alt="vitrall.shot.alt">
-          </picture>
+        <div class="phone__screen phone__screen--live">
+          <div class="vit" id="vitrallDemo" data-vitrall-demo></div>
         </div>
       </div>
-      <p class="art__caption" data-i18n="vitrall.caption">From the game itself. In dark mode, the window glows.</p>
+      <p class="art__caption" data-i18n="vitrall.caption">Five windows from the game, a step harder each time. The app has 300.</p>
     </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.puzzle">Puzzle</span></p>
-      <h2>Vitrall</h2>
-      <p class="tagline" data-i18n="vitrall.tagline">Light, cell by cell.</p>
+    <div class="app__body">
       <p data-i18n="vitrall.body">The numbers beside each line say which panes to light. Work it out without guessing, and when the last pane comes on the grid turns into a stained-glass window.</p>
       <ul class="features">
         <li data-i18n="vitrall.f1">Every window can be solved by logic alone.</li>
         <li data-i18n="vitrall.f2">No timer, no lives, no score.</li>
         <li data-i18n="vitrall.f3">Make one to measure: its size and how hard, up to where you've reached.</li>
-        <li data-i18n="vitrall.f4">Day and night, the way your phone is set.</li>
       </ul>
       <div class="store" data-store="vitrall">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
+        <a class="btn btn--store" href="#" data-store-link>
           <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
           <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
         </a>
-        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
       </div>
     </div>
   </section>
 
   <!-- ──────────────────────── Planxa ──────────────────────── -->
   <section class="app app--flip" id="planxa">
+    <div class="app__head">
+      <img class="icon icon--ios app__icon" src="assets/icons/planxa.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Planxa</h2>
+        <p class="app__kind" data-i18n="planxa.kind">Turn-based strategy for iPhone</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="planxa.tagline">A griddle that waits for you.</p>
     <div class="app__art">
       <div class="phone">
         <div class="phone__island" aria-hidden="true"></div>
@@ -194,30 +274,33 @@
       </div>
       <p class="art__caption" data-i18n="planxa.caption">From the game itself. In dark mode, it's the late shift.</p>
     </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.strategy">Turn-based strategy</span></p>
-      <h2>Planxa</h2>
-      <p class="tagline" data-i18n="planxa.tagline">A griddle that waits for you.</p>
+    <div class="app__body">
       <p data-i18n="planxa.body">Turn-based strategy, with burgers. A late-night diner where time only moves when you do: plan the rush and serve everyone the way they asked. It's a puzzle, not a race, so think for as long as you like, or put it down and come back tomorrow.</p>
       <ul class="features">
         <li data-i18n="planxa.f1">One stroke of your thumb along a row is a single turn.</li>
         <li data-i18n="planxa.f2">You can't lose, and there's always a way of serving everybody.</li>
         <li data-i18n="planxa.f3">Make a night to measure: the ingredients and how hard.</li>
-        <li data-i18n="planxa.f4">Day and night, the way your phone is set.</li>
       </ul>
       <div class="store" data-store="planxa">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
+        <a class="btn btn--store" href="#" data-store-link>
           <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
           <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
         </a>
-        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
       </div>
     </div>
   </section>
 
   <!-- ──────────────────────── Finestreta ──────────────────────── -->
   <section class="app" id="finestreta">
+    <div class="app__head">
+      <img class="icon icon--ios app__icon" src="assets/icons/finestreta.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Finestreta</h2>
+        <p class="app__kind" data-i18n="finestreta.kind">A cooking game for iPhone</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="finestreta.tagline">Pizza for the whole street.</p>
     <div class="app__art">
       <div class="phone">
         <div class="phone__island" aria-hidden="true"></div>
@@ -232,212 +315,39 @@
       </div>
       <p class="art__caption" data-i18n="finestreta.caption">From the game itself. In dark mode, the street lights come on.</p>
     </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.ios">iPhone</span> · <span data-i18n="label.cooking">Cooking</span></p>
-      <h2>Finestreta</h2>
-      <p class="tagline" data-i18n="finestreta.tagline">Pizza for the whole street.</p>
+    <div class="app__body">
       <p data-i18n="finestreta.body">You run a pizza window on a street at dusk. Slap the dough, spread the tomato with your finger, scatter the toppings, fire it and hand it to whoever's waiting.</p>
       <ul class="features">
         <li data-i18n="finestreta.f1">The menu grows by one dish a night.</li>
         <li data-i18n="finestreta.f2">Nothing punishes you: a lopsided pizza still gets eaten.</li>
         <li data-i18n="finestreta.f3">Make a night to measure: from a quiet street to a packed one.</li>
-        <li data-i18n="finestreta.f4">Day and night, the way your phone is set.</li>
       </ul>
       <div class="store" data-store="finestreta">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
+        <a class="btn btn--store" href="#" data-store-link>
           <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
           <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
         </a>
-        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
       </div>
     </div>
   </section>
 
-  <!-- ──────────────────────── Brillantor ──────────────────────── -->
-  <section class="app app--flip" id="brillantor">
-    <div class="app__art">
-      <div class="mac">
-        <div class="mac__bar" aria-hidden="true">
-          <span class="mac__apple"></span>
-          <span class="mac__menus"><i></i><i></i><i></i></span>
-          <span class="mac__right">
-            <svg class="mac__sun" viewBox="0 0 24 24" aria-hidden="true"><g><circle cx="12" cy="12" r="4.6"/><g class="mac__rays"><rect x="11.1" y="1" width="1.8" height="4" rx=".9"/><rect x="11.1" y="19" width="1.8" height="4" rx=".9"/><rect x="1" y="11.1" width="4" height="1.8" rx=".9"/><rect x="19" y="11.1" width="4" height="1.8" rx=".9"/><rect x="3.6" y="4.4" width="1.8" height="4" rx=".9" transform="rotate(-45 4.5 6.4)"/><rect x="18.6" y="15.6" width="1.8" height="4" rx=".9" transform="rotate(-45 19.5 17.6)"/><rect x="18.6" y="4.4" width="1.8" height="4" rx=".9" transform="rotate(45 19.5 6.4)"/><rect x="3.6" y="15.6" width="1.8" height="4" rx=".9" transform="rotate(45 4.5 17.6)"/></g></g></svg>
-          </span>
-        </div>
-
-        <!-- The dark photo the app is fixing -->
-        <svg class="mac__scene" viewBox="0 0 400 260" role="img" aria-labelledby="sceneTitle">
-          <title id="sceneTitle" data-i18n="brillantor.scene.alt">A dark photo whose shadows lift as you move the slider</title>
-          <defs>
-            <filter id="gammaLift" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
-              <feComponentTransfer id="gammaFuncs">
-                <feFuncR type="gamma" exponent="1" amplitude="1" offset="0"/>
-                <feFuncG type="gamma" exponent="1" amplitude="1" offset="0"/>
-                <feFuncB type="gamma" exponent="1" amplitude="1" offset="0"/>
-              </feComponentTransfer>
-            </filter>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#141a2e"/><stop offset=".55" stop-color="#2b2340"/><stop offset="1" stop-color="#4a3346"/>
-            </linearGradient>
-            <radialGradient id="glow" cx=".72" cy=".76" r=".38">
-              <stop offset="0" stop-color="#e8c468" stop-opacity=".85"/><stop offset="1" stop-color="#e8c468" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <g filter="url(#gammaLift)">
-            <rect width="400" height="260" fill="url(#sky)"/>
-            <circle cx="288" cy="198" r="70" fill="url(#glow)"/>
-            <circle cx="288" cy="198" r="15" fill="#f0d68f"/>
-            <!-- far hills: barely there, they appear when you lift -->
-            <path d="M0 196c46-26 74-8 118-26s70 10 108-6 96 6 174-14v110H0Z" fill="#1c2333"/>
-            <path d="M0 216c58-18 92 4 142-12s88 14 132 0 86 6 126-8v64H0Z" fill="#151b28"/>
-            <!-- foreground: near-black detail -->
-            <path d="M0 238c70-12 118 10 176-4s104 12 224-6v32H0Z" fill="#0d1119"/>
-            <g fill="#10151d">
-              <path d="M36 260c0-26 8-44 14-56 4 14 10 22 12 34 4-8 8-12 12-16 2 14 4 24 4 38Z"/>
-              <path d="M330 260c-2-30 6-50 12-62 5 16 12 26 14 40 4-10 8-14 12-18 3 16 5 26 5 40Z"/>
-            </g>
-            <g fill="#171e28">
-              <rect x="120" y="222" width="46" height="38" rx="4"/>
-              <rect x="176" y="232" width="34" height="28" rx="4"/>
-            </g>
-            <rect x="132" y="232" width="9" height="9" rx="2" fill="#2a2f2a"/>
-            <rect x="147" y="232" width="9" height="9" rx="2" fill="#2a2f2a"/>
-          </g>
-        </svg>
-
-        <!-- The menu-bar popover: it acts on the screen you opened it from -->
-        <div class="popover">
-          <p class="popover__header" data-i18n="brillantor.screen">Built-in Display</p>
-          <div class="popover__row">
-            <svg class="popover__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
-            <input class="slider" id="boost" type="range" min="-1" max="1" step="0.01" value="0"
-                   aria-label="Screen light" data-i18n-aria="brillantor.slider.label">
-            <svg class="popover__icon popover__icon--max" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><g><rect x="11.1" y="1.5" width="1.8" height="3.4" rx=".9"/><rect x="11.1" y="19.1" width="1.8" height="3.4" rx=".9"/><rect x="1.5" y="11.1" width="3.4" height="1.8" rx=".9"/><rect x="19.1" y="11.1" width="3.4" height="1.8" rx=".9"/></g></svg>
-          </div>
-          <hr>
-          <button class="popover__item is-off" id="offRow" type="button" disabled data-i18n="brillantor.off">Turn Off</button>
-          <hr>
-          <p class="popover__item popover__item--quiet">Quit Brillantor</p>
-        </div>
-      </div>
-      <p class="art__caption" data-i18n="brillantor.demo.caption">Move the slider both ways. The photo is the same one.</p>
-      <p class="art__readout" id="boostReadout">Neutral</p>
-    </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.mac">Mac</span> · <span data-i18n="label.utility">Menu bar utility</span></p>
-      <h2>Brillantor</h2>
-      <p class="tagline" data-i18n="brillantor.tagline">Lighter shadows, darker nights.</p>
-      <p data-i18n="brillantor.body">A small sun in your menu bar. Open it on any screen and you get one slider for that screen. Push it right and the dark parts of the picture open up, for a film that is too dark to follow. Push it left and the screen goes darker than macOS will let it go, for reading in bed at three in the morning.</p>
-      <ul class="features">
-        <li data-i18n="brillantor.f1">One slider. That is the whole app.</li>
-        <li data-i18n="brillantor.f2">Each display keeps its own light, and gets it back when you plug it in again.</li>
-        <li data-i18n="brillantor.f3">Darker than the system minimum, when the room is dark too.</li>
-        <li data-i18n="brillantor.f4">Restores your colours the moment you quit. Nothing is permanent.</li>
-      </ul>
-      <div class="store" data-store="brillantor">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
-          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
-          <span class="btn__stack"><small data-i18n="store.pre.mac">Download on the</small><strong>Mac App Store</strong></span>
-        </a>
-        <span class="soon" data-store-soon data-i18n="store.soon">Link coming soon</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── Segell ────────────────────────── -->
-  <section class="app" id="segell">
-    <div class="app__art">
-      <!-- Segell's window: it follows light or dark like the app; the page is
-           paper either way, because Segell never inverts a page. -->
-      <div class="seg" role="img"
-           aria-label="A Segell window with a signed document: a green strip at the top says who signed it and that it has not changed, and the blue signature box on the page carries the name, the date and the Minta Cafè leaf"
-           data-i18n-aria="segell.art.alt">
-        <div class="seg__bar">
-          <span class="seg__lights"><i></i><i></i><i></i></span>
-          <span class="seg__title" data-i18n="segell.art.file">agreement-signed.pdf</span>
-          <span class="seg__tools">
-            <svg viewBox="0 0 16 16"><circle cx="6.8" cy="6.8" r="4.6"/><path d="M10.2 10.2 14 14M4.6 6.8h4.4M6.8 4.6v4.4"/></svg>
-            <svg viewBox="0 0 16 16"><circle cx="6.8" cy="6.8" r="4.6"/><path d="M10.2 10.2 14 14M4.6 6.8h4.4"/></svg>
-            <svg viewBox="0 0 16 16"><rect x="1.6" y="2.8" width="12.8" height="10.4" rx="2.2"/><path d="M5.8 2.8v10.4"/></svg>
-          </span>
-          <span class="seg__tools seg__tools--end">
-            <svg viewBox="0 0 16 16"><path d="M1.8 11.2c1.6-4.6 2.8-7.4 4-6.6s-1.6 6 .2 5.6 2-3.2 3.2-2.8.6 2.2 2 1.8 2-1 3-1.2M1.8 13.8h12.4"/></svg>
-          </span>
-        </div>
-        <div class="seg__banner">
-          <svg class="seg__seal" viewBox="0 0 16 16"><path d="M15.4 8.0 15.1 8.6 14.4 9.1 14.0 9.6 14.1 10.2 14.4 11.0 14.4 11.7 13.8 12.1 13.0 12.2 12.4 12.4 12.2 13.0 12.1 13.8 11.7 14.4 11.0 14.4 10.2 14.1 9.6 14.0 9.1 14.4 8.6 15.1 8.0 15.4 7.4 15.1 6.9 14.4 6.4 14.0 5.8 14.1 5.0 14.4 4.3 14.4 3.9 13.8 3.8 13.0 3.6 12.4 3.0 12.2 2.2 12.1 1.6 11.7 1.6 11.0 1.9 10.2 2.0 9.6 1.6 9.1 0.9 8.6 0.6 8.0 0.9 7.4 1.6 6.9 2.0 6.4 1.9 5.8 1.6 5.0 1.6 4.3 2.2 3.9 3.0 3.8 3.6 3.6 3.8 3.0 3.9 2.2 4.3 1.6 5.0 1.6 5.8 1.9 6.4 2.0 6.9 1.6 7.4 0.9 8.0 0.6 8.6 0.9 9.1 1.6 9.6 2.0 10.2 1.9 11.0 1.6 11.7 1.6 12.1 2.2 12.2 3.0 12.4 3.6 13.0 3.8 13.8 3.9 14.4 4.3 14.4 5.0 14.1 5.8 14.0 6.4 14.4 6.9 15.1 7.4Z"/><path class="seg__check" d="M5.1 8.3 7.1 10.2 11 6"/></svg>
-          <span class="seg__text" data-i18n="segell.art.banner">Signed by Marta Puig on 18 Oct 2026 at 10:42. The document hasn’t changed since.</span>
-          <span class="seg__button" data-i18n="segell.art.details">Details…</span>
-        </div>
-        <!-- The bottom right corner of an A4 page, in PDF points. The box is the
-             app's own drawing (SignatureAppearance.swift) for a 240 × 84 box:
-             the same text size, line spacing, ink and leaf. -->
-        <svg class="seg__view" viewBox="250 600 369 266" aria-hidden="true">
-          <defs>
-            <filter id="segPaper" x="-5%" y="-5%" width="110%" height="110%">
-              <feDropShadow dx="0" dy="1.2" stdDeviation="2.4" flood-color="#000" flood-opacity=".28"/>
-            </filter>
-            <clipPath id="segBox"><rect width="240" height="84"/></clipPath>
-          </defs>
-          <rect class="seg__under" x="250" y="600" width="369" height="266"/>
-          <rect x="-10" y="-10" width="605" height="852" fill="#fff" filter="url(#segPaper)"/>
-          <g fill="#DCDFE2">
-            <rect x="230" y="614" width="305" height="5" rx="2.5"/>
-            <rect x="230" y="628" width="305" height="5" rx="2.5"/>
-            <rect x="230" y="642" width="305" height="5" rx="2.5"/>
-            <rect x="230" y="656" width="190" height="5" rx="2.5"/>
-          </g>
-          <g transform="translate(295 698)">
-            <g clip-path="url(#segBox)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <g stroke="#CCE6D6">
-                <circle cx="197.16" cy="42" r="34.68" stroke-width="1.81"/>
-                <circle cx="197.16" cy="42" r="30.70" stroke-width="0.79"/>
-              </g>
-              <path fill="#DEF0E3" d="M201.01 17.67C205.49 22.40 214.97 31.14 212.97 42.49C211.04 53.45 202.19 58.49 194.92 56.13C187.28 56.12 180.43 48.60 181.97 37.58C183.58 26.17 195.29 20.79 201.01 17.67Z"/>
-              <g stroke="#C2E0CC">
-                <path stroke-width="1.35" d="M194.61 65.73C194.18 62.85 194.36 59.66 195.17 54.56"/>
-                <path stroke-width="0.79" d="M195.05 55.34C197.18 44.42 199.04 32.64 200.39 21.59M196.04 49.06C199.80 48.45 204.38 45.96 207.49 42.83M196.04 49.06C192.66 47.32 189.07 43.53 187.08 39.60M197.41 40.43C201.30 39.84 206.04 37.37 209.25 34.26M197.41 40.43C193.89 38.67 190.15 34.85 188.06 30.90M198.71 32.19C201.37 31.40 204.59 29.36 206.83 26.64M198.71 32.19C196.43 30.62 194.00 27.68 192.71 24.40"/>
-              </g>
-            </g>
-            <rect x=".25" y=".25" width="239.5" height="83.5" fill="none" stroke="#0F3394" stroke-width=".5"/>
-            <g fill="#0F3394" font-family="Helvetica, Arial, sans-serif" font-size="11.16">
-              <text x="7.14" y="17.74" font-weight="700">Marta Puig</text>
-              <text x="7.14" y="31.68" data-i18n="segell.box.signed">Digitally signed</text>
-              <text x="7.14" y="45.62">2026-10-18 10:42:07 +02:00</text>
-              <text x="7.14" y="59.56" data-i18n="segell.box.reason">Approved</text>
-              <text x="7.14" y="73.50">Barcelona</text>
-            </g>
-          </g>
-        </svg>
-      </div>
-      <p class="art__caption" data-i18n="segell.caption">The signature box as Segell draws it. In dark mode the window goes dark, but the page stays paper.</p>
-    </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.mac">Mac</span> · <span data-i18n="label.signer">PDF signer</span></p>
-      <h2>Segell</h2>
-      <p class="tagline" data-i18n="segell.tagline">Open, sign, done.</p>
-      <p data-i18n="segell.body">Someone sends you a contract or a form, and it has to come back signed with your digital certificate. Until now that meant a big PDF suite that goes online and starts with your Mac. Segell is a small viewer that does just this: open the PDF, choose Sign…, pick your certificate (the one in your keychain, like idCAT, or a .p12 file) and you get a signed copy that other PDF readers accept. It has no permission to use the network, so your documents and your keys stay with you.</p>
-      <ul class="features">
-        <li data-i18n="segell.f1">Put the signature where it belongs: drag a box over the line, or sign without a visible mark.</li>
-        <li data-i18n="segell.f2">Signing something someone else already signed? Their signature stays valid.</li>
-        <li data-i18n="segell.f3">Open a signed PDF and a strip tells you who signed it and whether it has changed since.</li>
-        <li data-i18n="segell.f4">Opens at once. Nothing in the background, nothing to install.</li>
-      </ul>
-      <div class="store" data-store="segell">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
-          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
-          <span class="btn__stack"><small data-i18n="store.pre.mac">Download on the</small><strong>Mac App Store</strong></span>
-        </a>
-        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
-      </div>
-    </div>
-  </section>
+  <!-- ═════════════════════════ Mac ═════════════════════════ -->
+  <header class="chapter" id="mac">
+    <h2 data-i18n="group.mac">Tools for the Mac</h2>
+    <p data-i18n="group.mac.lede">Small and quick. Each one does one job, opens at once and never connects to the internet.</p>
+  </header>
 
   <!-- ───────────────────────── Ploma ───────────────────────── -->
   <section class="app app--flip" id="ploma">
+    <div class="app__head">
+      <img class="icon icon--mac app__icon" src="assets/icons/ploma.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Ploma</h2>
+        <p class="app__kind" data-i18n="ploma.kind">A text editor for Mac</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="ploma.tagline">Opens in a blink.</p>
     <div class="app__art">
       <!-- Ploma's window, drawn with the app's own measures: Menlo 16 on a grid of
            9.633 × 19, a margin of four cells for the line numbers, the 96-point
@@ -632,32 +542,244 @@
         </g>
         </svg>
       </div>
+      <!-- Feel it: the window comes back after exactly the time Ploma takes
+           to open on a Mac, from the click to the first frame. -->
+      <div class="plm-open">
+        <button class="plm-open__btn" id="plomaOpen" type="button">
+          <img class="icon icon--mac" src="assets/icons/ploma.webp" alt="" width="34" height="34">
+          <span data-i18n="ploma.open">Open it again</span>
+        </button>
+        <p class="plm-open__time" id="plomaTime" aria-live="polite"></p>
+      </div>
       <p class="art__caption" data-i18n="ploma.caption">Ploma follows your Mac by default: light by day, dark at night. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.</p>
     </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.mac">Mac</span> · <span data-i18n="label.editor">Text editor</span></p>
-      <h2>Ploma</h2>
-      <p class="tagline" data-i18n="ploma.tagline">Opens like a drawer.</p>
-      <p data-i18n="ploma.body">For the moment you need to write something down: a list, meeting notes, a few lines of Markdown, a config file. Ploma is open before you have finished the thought, every key you press is on screen on the very next frame, and if you quit without saving, everything is there next time. It is a plain-text editor for notes, not a whole development environment, and it has no permission to use the network.</p>
+    <div class="app__body">
+      <!-- Measured with Ploma's own mesura.sh (Apps/Ploma/Docs/Rendiment.md). -->
+      <dl class="speed">
+        <div class="speed__item"><dt data-i18n="ploma.speed1.n">0.15 s</dt><dd data-i18n="ploma.speed1">from clicking the icon to your text on screen</dd></div>
+        <div class="speed__item"><dt data-i18n="ploma.speed2.n">0.2 ms</dt><dd data-i18n="ploma.speed2">of work for each key, so it's on screen on the very next frame</dd></div>
+        <div class="speed__item"><dt data-i18n="ploma.speed3.n">0.19 s</dt><dd data-i18n="ploma.speed3">to open a 146 MB file, with 37 MB of memory</dd></div>
+      </dl>
+      <p class="speed__note" data-i18n="ploma.speed.note">Measured on a MacBook Pro with an M1 Max.</p>
+      <p data-i18n="ploma.body">For the moment you need to write something down: a list, meeting notes, a few lines of Markdown, a config file. Ploma is open before you have finished the thought, and every key you press is on screen on the very next frame. Quit without saving and everything is still there next time. It is a plain-text editor for notes, not a whole development environment, and it has no permission to use the network.</p>
       <ul class="features">
         <li data-i18n="ploma.f1">Multiple cursors and a command palette, to change many lines at once.</li>
         <li data-i18n="ploma.f2">Markdown tables that line up by themselves, and boxes and arrows drawn in plain text.</li>
         <li data-i18n="ploma.f3">If a script or a coding assistant changes your file, you see each change and keep what you want.</li>
-        <li data-i18n="ploma.f4">Light on your Mac: a 150 MB file opens in a fifth of a second.</li>
       </ul>
       <div class="store" data-store="ploma">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
+        <a class="btn btn--store" href="#" data-store-link>
           <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
           <span class="btn__stack"><small data-i18n="store.pre.mac">Download on the</small><strong>Mac App Store</strong></span>
         </a>
-        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
       </div>
     </div>
   </section>
 
+  <!-- ───────────────────────── Segell ────────────────────────── -->
+  <section class="app" id="segell">
+    <div class="app__head">
+      <img class="icon icon--mac app__icon" src="assets/icons/segell.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Segell</h2>
+        <p class="app__kind" data-i18n="segell.kind">A PDF signer for Mac</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="segell.tagline">Open, sign, done.</p>
+    <div class="app__art">
+      <!-- Segell's window: it follows light or dark like the app; the page is
+           paper either way, because Segell never inverts a page. -->
+      <div class="seg" role="img"
+           aria-label="A Segell window with a signed document: a green strip at the top says who signed it and that it has not changed, and the blue signature box on the page carries the name, the date and the Minta Cafè leaf"
+           data-i18n-aria="segell.art.alt">
+        <div class="seg__bar">
+          <span class="seg__lights"><i></i><i></i><i></i></span>
+          <span class="seg__title" data-i18n="segell.art.file">agreement-signed.pdf</span>
+          <span class="seg__tools">
+            <svg viewBox="0 0 16 16"><circle cx="6.8" cy="6.8" r="4.6"/><path d="M10.2 10.2 14 14M4.6 6.8h4.4M6.8 4.6v4.4"/></svg>
+            <svg viewBox="0 0 16 16"><circle cx="6.8" cy="6.8" r="4.6"/><path d="M10.2 10.2 14 14M4.6 6.8h4.4"/></svg>
+            <svg viewBox="0 0 16 16"><rect x="1.6" y="2.8" width="12.8" height="10.4" rx="2.2"/><path d="M5.8 2.8v10.4"/></svg>
+          </span>
+          <span class="seg__tools seg__tools--end">
+            <svg viewBox="0 0 16 16"><path d="M1.8 11.2c1.6-4.6 2.8-7.4 4-6.6s-1.6 6 .2 5.6 2-3.2 3.2-2.8.6 2.2 2 1.8 2-1 3-1.2M1.8 13.8h12.4"/></svg>
+          </span>
+        </div>
+        <div class="seg__banner">
+          <svg class="seg__seal" viewBox="0 0 16 16"><path d="M15.4 8.0 15.1 8.6 14.4 9.1 14.0 9.6 14.1 10.2 14.4 11.0 14.4 11.7 13.8 12.1 13.0 12.2 12.4 12.4 12.2 13.0 12.1 13.8 11.7 14.4 11.0 14.4 10.2 14.1 9.6 14.0 9.1 14.4 8.6 15.1 8.0 15.4 7.4 15.1 6.9 14.4 6.4 14.0 5.8 14.1 5.0 14.4 4.3 14.4 3.9 13.8 3.8 13.0 3.6 12.4 3.0 12.2 2.2 12.1 1.6 11.7 1.6 11.0 1.9 10.2 2.0 9.6 1.6 9.1 0.9 8.6 0.6 8.0 0.9 7.4 1.6 6.9 2.0 6.4 1.9 5.8 1.6 5.0 1.6 4.3 2.2 3.9 3.0 3.8 3.6 3.6 3.8 3.0 3.9 2.2 4.3 1.6 5.0 1.6 5.8 1.9 6.4 2.0 6.9 1.6 7.4 0.9 8.0 0.6 8.6 0.9 9.1 1.6 9.6 2.0 10.2 1.9 11.0 1.6 11.7 1.6 12.1 2.2 12.2 3.0 12.4 3.6 13.0 3.8 13.8 3.9 14.4 4.3 14.4 5.0 14.1 5.8 14.0 6.4 14.4 6.9 15.1 7.4Z"/><path class="seg__check" d="M5.1 8.3 7.1 10.2 11 6"/></svg>
+          <span class="seg__text" data-i18n="segell.art.banner">Signed by Marta Puig on 18 Oct 2026 at 10:42. The document hasn’t changed since.</span>
+          <span class="seg__button" data-i18n="segell.art.details">Details…</span>
+        </div>
+        <!-- The bottom right corner of an A4 page, in PDF points. The box is the
+             app's own drawing (SignatureAppearance.swift) for a 240 × 84 box:
+             the same text size, line spacing, ink and leaf. -->
+        <svg class="seg__view" viewBox="250 600 369 266" aria-hidden="true">
+          <defs>
+            <filter id="segPaper" x="-5%" y="-5%" width="110%" height="110%">
+              <feDropShadow dx="0" dy="1.2" stdDeviation="2.4" flood-color="#000" flood-opacity=".28"/>
+            </filter>
+            <clipPath id="segBox"><rect width="240" height="84"/></clipPath>
+          </defs>
+          <rect class="seg__under" x="250" y="600" width="369" height="266"/>
+          <rect x="-10" y="-10" width="605" height="852" fill="#fff" filter="url(#segPaper)"/>
+          <g fill="#DCDFE2">
+            <rect x="230" y="614" width="305" height="5" rx="2.5"/>
+            <rect x="230" y="628" width="305" height="5" rx="2.5"/>
+            <rect x="230" y="642" width="305" height="5" rx="2.5"/>
+            <rect x="230" y="656" width="190" height="5" rx="2.5"/>
+          </g>
+          <g transform="translate(295 698)">
+            <g clip-path="url(#segBox)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <g stroke="#CCE6D6">
+                <circle cx="197.16" cy="42" r="34.68" stroke-width="1.81"/>
+                <circle cx="197.16" cy="42" r="30.70" stroke-width="0.79"/>
+              </g>
+              <path fill="#DEF0E3" d="M201.01 17.67C205.49 22.40 214.97 31.14 212.97 42.49C211.04 53.45 202.19 58.49 194.92 56.13C187.28 56.12 180.43 48.60 181.97 37.58C183.58 26.17 195.29 20.79 201.01 17.67Z"/>
+              <g stroke="#C2E0CC">
+                <path stroke-width="1.35" d="M194.61 65.73C194.18 62.85 194.36 59.66 195.17 54.56"/>
+                <path stroke-width="0.79" d="M195.05 55.34C197.18 44.42 199.04 32.64 200.39 21.59M196.04 49.06C199.80 48.45 204.38 45.96 207.49 42.83M196.04 49.06C192.66 47.32 189.07 43.53 187.08 39.60M197.41 40.43C201.30 39.84 206.04 37.37 209.25 34.26M197.41 40.43C193.89 38.67 190.15 34.85 188.06 30.90M198.71 32.19C201.37 31.40 204.59 29.36 206.83 26.64M198.71 32.19C196.43 30.62 194.00 27.68 192.71 24.40"/>
+              </g>
+            </g>
+            <rect x=".25" y=".25" width="239.5" height="83.5" fill="none" stroke="#0F3394" stroke-width=".5"/>
+            <g fill="#0F3394" font-family="Helvetica, Arial, sans-serif" font-size="11.16">
+              <text x="7.14" y="17.74" font-weight="700">Marta Puig</text>
+              <text x="7.14" y="31.68" data-i18n="segell.box.signed">Digitally signed</text>
+              <text x="7.14" y="45.62">2026-10-18 10:42:07 +02:00</text>
+              <text x="7.14" y="59.56" data-i18n="segell.box.reason">Approved</text>
+              <text x="7.14" y="73.50">Barcelona</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <p class="art__caption" data-i18n="segell.caption">The signature box as Segell draws it. In dark mode the window goes dark, but the page stays paper.</p>
+    </div>
+    <div class="app__body">
+      <p data-i18n="segell.body">Someone sends you a contract or a form, and it has to come back signed with your digital certificate. Until now that meant a big PDF suite that goes online and starts with your Mac. Segell is a small viewer that does just this: open the PDF, choose Sign…, pick your certificate (the one in your keychain, like idCAT, or a .p12 file) and you get a signed copy that other PDF readers accept. It has no permission to use the network, so your documents and your keys stay with you.</p>
+      <ul class="features">
+        <li data-i18n="segell.f1">Put the signature where it belongs: drag a box over the line, or sign without a visible mark.</li>
+        <li data-i18n="segell.f2">Signing something someone else already signed? Their signature stays valid.</li>
+        <li data-i18n="segell.f3">Open a signed PDF and a strip tells you who signed it and whether it has changed since.</li>
+      </ul>
+      <div class="store" data-store="segell">
+        <a class="btn btn--store" href="#" data-store-link>
+          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.mac">Download on the</small><strong>Mac App Store</strong></span>
+        </a>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── Brillantor ──────────────────────── -->
+  <section class="app app--flip" id="brillantor">
+    <div class="app__head">
+      <img class="icon icon--mac app__icon" src="assets/icons/brillantor.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Brillantor</h2>
+        <p class="app__kind" data-i18n="brillantor.kind">A menu bar utility for Mac</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="brillantor.tagline">Lighter shadows, darker nights.</p>
+    <div class="app__art">
+      <div class="mac">
+        <div class="mac__bar" aria-hidden="true">
+          <span class="mac__apple"></span>
+          <span class="mac__menus"><i></i><i></i><i></i></span>
+          <span class="mac__right">
+            <svg class="mac__sun" viewBox="0 0 24 24" aria-hidden="true"><g><circle cx="12" cy="12" r="4.6"/><g class="mac__rays"><rect x="11.1" y="1" width="1.8" height="4" rx=".9"/><rect x="11.1" y="19" width="1.8" height="4" rx=".9"/><rect x="1" y="11.1" width="4" height="1.8" rx=".9"/><rect x="19" y="11.1" width="4" height="1.8" rx=".9"/><rect x="3.6" y="4.4" width="1.8" height="4" rx=".9" transform="rotate(-45 4.5 6.4)"/><rect x="18.6" y="15.6" width="1.8" height="4" rx=".9" transform="rotate(-45 19.5 17.6)"/><rect x="18.6" y="4.4" width="1.8" height="4" rx=".9" transform="rotate(45 19.5 6.4)"/><rect x="3.6" y="15.6" width="1.8" height="4" rx=".9" transform="rotate(45 4.5 17.6)"/></g></g></svg>
+          </span>
+        </div>
+
+        <!-- The dark photo the app is fixing -->
+        <svg class="mac__scene" viewBox="0 0 400 260" role="img" aria-labelledby="sceneTitle">
+          <title id="sceneTitle" data-i18n="brillantor.scene.alt">A dark photo whose shadows lift as you move the slider</title>
+          <defs>
+            <filter id="gammaLift" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+              <feComponentTransfer id="gammaFuncs">
+                <feFuncR type="gamma" exponent="1" amplitude="1" offset="0"/>
+                <feFuncG type="gamma" exponent="1" amplitude="1" offset="0"/>
+                <feFuncB type="gamma" exponent="1" amplitude="1" offset="0"/>
+              </feComponentTransfer>
+            </filter>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#141a2e"/><stop offset=".55" stop-color="#2b2340"/><stop offset="1" stop-color="#4a3346"/>
+            </linearGradient>
+            <radialGradient id="glow" cx=".72" cy=".76" r=".38">
+              <stop offset="0" stop-color="#e8c468" stop-opacity=".85"/><stop offset="1" stop-color="#e8c468" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g filter="url(#gammaLift)">
+            <rect width="400" height="260" fill="url(#sky)"/>
+            <circle cx="288" cy="198" r="70" fill="url(#glow)"/>
+            <circle cx="288" cy="198" r="15" fill="#f0d68f"/>
+            <!-- far hills: barely there, they appear when you lift -->
+            <path d="M0 196c46-26 74-8 118-26s70 10 108-6 96 6 174-14v110H0Z" fill="#1c2333"/>
+            <path d="M0 216c58-18 92 4 142-12s88 14 132 0 86 6 126-8v64H0Z" fill="#151b28"/>
+            <!-- foreground: near-black detail -->
+            <path d="M0 238c70-12 118 10 176-4s104 12 224-6v32H0Z" fill="#0d1119"/>
+            <g fill="#10151d">
+              <path d="M36 260c0-26 8-44 14-56 4 14 10 22 12 34 4-8 8-12 12-16 2 14 4 24 4 38Z"/>
+              <path d="M330 260c-2-30 6-50 12-62 5 16 12 26 14 40 4-10 8-14 12-18 3 16 5 26 5 40Z"/>
+            </g>
+            <g fill="#171e28">
+              <rect x="120" y="222" width="46" height="38" rx="4"/>
+              <rect x="176" y="232" width="34" height="28" rx="4"/>
+            </g>
+            <rect x="132" y="232" width="9" height="9" rx="2" fill="#2a2f2a"/>
+            <rect x="147" y="232" width="9" height="9" rx="2" fill="#2a2f2a"/>
+          </g>
+        </svg>
+
+        <!-- The menu-bar popover: it acts on the screen you opened it from -->
+        <div class="popover">
+          <p class="popover__header" data-i18n="brillantor.screen">Built-in Display</p>
+          <div class="popover__row">
+            <svg class="popover__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/></svg>
+            <input class="slider" id="boost" type="range" min="-1" max="1" step="0.01" value="0"
+                   aria-label="Screen light" data-i18n-aria="brillantor.slider.label">
+            <svg class="popover__icon popover__icon--max" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><g><rect x="11.1" y="1.5" width="1.8" height="3.4" rx=".9"/><rect x="11.1" y="19.1" width="1.8" height="3.4" rx=".9"/><rect x="1.5" y="11.1" width="3.4" height="1.8" rx=".9"/><rect x="19.1" y="11.1" width="3.4" height="1.8" rx=".9"/></g></svg>
+          </div>
+          <hr>
+          <button class="popover__item is-off" id="offRow" type="button" disabled data-i18n="brillantor.off">Turn Off</button>
+          <hr>
+          <p class="popover__item popover__item--quiet">Quit Brillantor</p>
+        </div>
+      </div>
+      <p class="art__caption" data-i18n="brillantor.demo.caption">Move the slider both ways. The photo is the same one.</p>
+      <p class="art__readout" id="boostReadout">Neutral</p>
+    </div>
+    <div class="app__body">
+      <p data-i18n="brillantor.body">A small sun in your menu bar. Open it on any screen and you get one slider for that screen. Push it right and the dark parts of the picture open up, for a film that is too dark to follow. Push it left and the screen goes darker than macOS will let it go, for reading in bed at three in the morning.</p>
+      <ul class="features">
+        <li data-i18n="brillantor.f1">One slider. That is the whole app.</li>
+        <li data-i18n="brillantor.f2">Each display keeps its own light, and gets it back when you plug it in again.</li>
+        <li data-i18n="brillantor.f4">Restores your colours the moment you quit. Nothing is permanent.</li>
+      </ul>
+      <div class="store" data-store="brillantor">
+        <a class="btn btn--store" href="#" data-store-link>
+          <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
+          <span class="btn__stack"><small data-i18n="store.pre.mac">Download on the</small><strong>Mac App Store</strong></span>
+        </a>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════ TV ═════════════════════════ -->
+  <header class="chapter" id="tv">
+    <h2 data-i18n="group.tv">For the TV and iPad</h2>
+  </header>
+
   <!-- ──────────────────────── Vistes ──────────────────────── -->
   <section class="app" id="vistes">
+    <div class="app__head">
+      <img class="icon icon--ios app__icon" src="assets/icons/vistes.webp" alt="" width="64" height="64">
+      <div>
+        <h2>Vistes</h2>
+        <p class="app__kind" data-i18n="vistes.kind">Ambient, for Apple TV and iPad</p>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="vistes.tagline">Something lovely to leave on.</p>
     <div class="app__art">
       <div class="tv">
         <div class="tv__screen">
@@ -672,24 +794,19 @@
       </div>
       <p class="art__caption" data-i18n="vistes.caption">From the app itself. In dark mode, it's night and raining.</p>
     </div>
-
-    <div class="app__text">
-      <p class="eyebrow"><span data-i18n="platform.tv">Apple TV &amp; iPad</span> · <span data-i18n="label.ambient">Ambient</span></p>
-      <h2>Vistes</h2>
-      <p class="tagline" data-i18n="vistes.tagline">Something lovely to leave on.</p>
+    <div class="app__body">
       <p data-i18n="vistes.body">A girl with headphones studies by the window of a high flat, her cat asleep on the sill, the city and the sea outside. The sky keeps changing, the rain comes and goes, and the lofi is made live on your own device, so it never goes round a loop.</p>
       <ul class="features">
         <li data-i18n="vistes.f1">Buy it once and it's yours, on the TV and on the iPad.</li>
-        <li data-i18n="vistes.f2">No ads in the middle, and nothing asks you to wait.</li>
         <li data-i18n="vistes.f3">Choose the moment of the day, how long a day lasts and the weather, or leave it be.</li>
         <li data-i18n="vistes.f4">Runs on every Apple TV, from the HD up.</li>
       </ul>
       <div class="store" data-store="vistes">
-        <a class="btn btn--store is-soon" href="#" data-store-link>
+        <a class="btn btn--store" href="#" data-store-link>
           <svg viewBox="1.8 1 20.4 26" aria-hidden="true" class="btn__glyph"><path d="M12 3.5c1.4-1.6 3.4-2 4.3-2 .1 1.3-.4 2.6-1.2 3.5-.8 1-2.1 1.8-3.4 1.7-.2-1.3.4-2.6 1.3-3.2Zm4.6 5c-1.9-.1-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 .1-3.8 1.2-4.8 3-2 3.5-.5 8.8 1.5 11.7 1 1.4 2.1 3 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9.7-1 1.2-2.1 1.5-3.3-3.9-1.5-4.2-6.9-.4-8.6-.9-1.4-2.5-2.7-4-2.9Z"/></svg>
           <span class="btn__stack"><small data-i18n="store.pre.ios">Download on the</small><strong>App Store</strong></span>
         </a>
-        <span class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon</span>
+        <p class="soon" data-store-soon data-i18n="store.comingSoon">Coming soon to the App Store</p>
       </div>
     </div>
   </section>
@@ -698,29 +815,24 @@
   <section class="promise" id="promise">
     <h2 data-i18n="promise.title">How we sell things</h2>
     <p class="lede" data-i18n="promise.lede">The same rules for every app we make. Written here so you can hold us to them.</p>
-    <div class="cards">
-      <article class="card">
-        <span class="card__num">01</span>
+    <ul class="rules">
+      <li>
         <h3 data-i18n="promise.c1.t">One payment</h3>
         <p data-i18n="promise.c1.b">You buy it once and it is yours. No subscription on what you already own.</p>
-      </article>
-      <article class="card">
-        <span class="card__num">02</span>
+      </li>
+      <li>
         <h3 data-i18n="promise.c2.t">A round price</h3>
         <p data-i18n="promise.c2.b">Whole numbers. Nothing ends in .99 to look smaller than it is.</p>
-      </article>
-      <article class="card">
-        <span class="card__num">03</span>
+      </li>
+      <li>
         <h3 data-i18n="promise.c3.t">No ads</h3>
         <p data-i18n="promise.c3.b">Nothing interrupts you, nothing asks you to wait or watch.</p>
-      </article>
-      <article class="card">
-        <span class="card__num">04</span>
+      </li>
+      <li>
         <h3 data-i18n="promise.c4.t">No tracking</h3>
         <p data-i18n="promise.c4.b">No analytics, no ad profiles, no accounts, nothing about you sold.</p>
-      </article>
-    </div>
-
+      </li>
+    </ul>
     <p class="fineprint" data-i18n="promise.fine">The small print, and it really is small. If we ever make a game that needs a server to connect players, that server costs us money every month, so that game may carry a subscription. We will say so here and on the App Store before you pay, never after. A game that talks to a server also has to send something, and we will spell out exactly what leaves your device and why. What we will never do is take something you have already bought and put it behind a subscription.</p>
   </section>
 
@@ -731,11 +843,11 @@
     <ul class="brew">
       <li>
         <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><circle cx="30" cy="30" r="17" fill="none" stroke="var(--mint)" stroke-width="4.5"/><path d="M30 13v34M13 30h34" fill="none" stroke="var(--mint)" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="30" r="6.5" fill="var(--gold)"/><circle cx="47" cy="30" r="3.6" fill="var(--terracotta)"/></svg>
-        <h3>Tiny Apogeu</h3><p data-i18n="brew.tiny">A small space station, and its first tourists.</p>
+        <div><h3>Tiny Apogeu</h3><p data-i18n="brew.tiny">A small space station, and its first tourists.</p></div>
       </li>
       <li>
         <svg viewBox="0 0 60 60" aria-hidden="true" class="brew__mark"><path d="M11 49C16 28 28 15 49 11" fill="none" stroke="var(--mint)" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1 9"/><circle cx="11" cy="49" r="6" fill="var(--mint)"/><circle cx="49" cy="11" r="4.5" fill="var(--gold)"/><path d="M40 16L25 21l6 3 3 6z" fill="var(--terracotta)"/></svg>
-        <h3>Llançadores</h3><p data-i18n="brew.llancadores">People, ships, and the way to the Moon.</p>
+        <div><h3>Llançadores</h3><p data-i18n="brew.llancadores">People, ships, and the way to the Moon.</p></div>
       </li>
     </ul>
   </section>
@@ -749,7 +861,6 @@
     <p><a href="mailto:info@mintacafe.com">info@mintacafe.com</a></p>
     <nav class="foot__nav">
       <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
-      <span aria-hidden="true">·</span>
       <a href="#top" data-i18n="foot.top">Back to top</a>
     </nav>
     <p class="foot__fine"><span data-i18n="foot.made">Made in Catalonia.</span> © <span id="year">2026</span> Minta Cafè.</p>
@@ -757,5 +868,7 @@
 </footer>
 
 <script src="assets/app.js"></script>
+<script src="assets/vitrall.js" defer></script>
+<script src="assets/confitura-faces.js" defer></script>
 </body>
 </html>

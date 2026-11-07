@@ -1,7 +1,8 @@
 /* ===========================================================
    Minta Cafè website
    Solarpunk-Mint, straight from MintaKit: cream paper, mint
-   accent, deep leaf greens, terracotta and sun gold.
+   accent, deep leaf greens, terracotta and sun gold. Every app
+   has a room of its own, painted in its own colours.
    No external assets, no fonts to download.
    =========================================================== */
 
@@ -11,39 +12,61 @@
   --leaf-deep:  #2E4A3E;
   --leaf:       #3E6B52;
   --terracotta: #C97B4A;
-  --terracotta-soft: #B98253;
   --cream:      #F3EEE0;
   --surface:    #FBF7EC;
   --gold:       #E8C468;
 
   --bg:      var(--cream);
-  --card:    var(--surface);
-  --ink:     var(--leaf-deep);
-  --ink-2:   var(--leaf);
+  --paper:   var(--surface);
+  --ink:     #24392F;
+  --ink-2:   #4A6557;
+  --clay:    #9C552B;
   --line:    color-mix(in srgb, var(--leaf) 18%, transparent);
   --shadow:  0 18px 40px -24px rgba(46, 74, 62, .45);
 
-  --wrap: 1080px;
-  --radius: 22px;
+  /* Each app's room: the wall it hangs on, and the colour it speaks in. */
+  --room-circell:    #E4EFE3;  --say-circell:    #3B7454;
+  --room-confitura:  #F7E6DA;  --say-confitura:  #AE3647;
+  --room-vitrall:    #E9E4DA;  --say-vitrall:    #2457A6;
+  --room-planxa:     #F2E6D3;  --say-planxa:     #B03D2B;
+  --room-finestreta: #E2E9F0;  --say-finestreta: #2D5E86;
+  --room-ploma:      #EDEBE3;  --say-ploma:      #A6511F;
+  --room-segell:     #E4EAF3;  --say-segell:     #23409C;
+  --room-brillantor: #E9E5F0;  --say-brillantor: #8A690C;
+  --room-vistes:     #F4E3DB;  --say-vistes:     #A95234;
+
+  --wrap: 1120px;
+  --gutter: clamp(1.1rem, 5vw, 2.4rem);
   --font: ui-rounded, "SF Pro Rounded", -apple-system, "Segoe UI Variable Display",
           "Varela Round", "Quicksand", "Nunito", system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:     #1E3128;
-    --card:   #27412F;
-    --ink:    #ECF4EC;
-    --ink-2:  #A9C8B5;
-    --line:   color-mix(in srgb, var(--mint) 22%, transparent);
+    --bg:     #16231D;
+    --paper:  #1D2E26;
+    --ink:    #EAF2EC;
+    --ink-2:  #A9C4B4;
+    --clay:   #E6A777;
+    --line:   color-mix(in srgb, var(--mint) 20%, transparent);
     --shadow: 0 18px 40px -22px rgba(0, 0, 0, .6);
     --terracotta: #E2A272;
+
+    --room-circell:    #1A2E25;  --say-circell:    #8ED2AF;
+    --room-confitura:  #2D221E;  --say-confitura:  #F3A1A9;
+    --room-vitrall:    #1A1F2E;  --say-vitrall:    #93B9F2;
+    --room-planxa:     #29231C;  --say-planxa:     #F2A08D;
+    --room-finestreta: #19232E;  --say-finestreta: #9CC5E6;
+    --room-ploma:      #171F1B;  --say-ploma:      #EBCB7A;
+    --room-segell:     #1B202D;  --say-segell:     #A9BBF5;
+    --room-brillantor: #1C1C2B;  --say-brillantor: #EBCB7A;
+    --room-vistes:     #2A1E25;  --say-vistes:     #F1A783;
   }
 }
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 
 body {
   margin: 0;
@@ -56,10 +79,10 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3 { line-height: 1.15; letter-spacing: -.02em; margin: 0 0 .4em; }
-h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; }
-h2 { font-size: clamp(2rem, 4.4vw, 2.9rem); font-weight: 700; }
-h3 { font-size: 1.18rem; font-weight: 600; }
+h1, h2, h3 { line-height: 1.12; letter-spacing: -.02em; margin: 0 0 .4em; }
+h1 { font-size: clamp(2.5rem, 6.4vw, 4.4rem); font-weight: 750; letter-spacing: -.03em; }
+h2 { font-size: clamp(2rem, 4.2vw, 2.9rem); font-weight: 720; }
+h3 { font-size: 1.15rem; font-weight: 680; }
 p  { margin: 0 0 1em; }
 a  { color: var(--leaf); text-decoration-color: color-mix(in srgb, var(--mint) 70%, transparent); text-underline-offset: 3px; }
 a:hover { color: var(--terracotta); }
@@ -89,63 +112,61 @@ a:hover { color: var(--terracotta); }
 .backdrop__leaf { position: absolute; fill: var(--leaf); }
 .backdrop__leaf--a { width: 30vw; opacity: .05;  left: -8vw;  top: 6vh;  transform: rotate(38deg); }
 .backdrop__leaf--b { width: 26vw; opacity: .045; right: -7vw; top: 42vh; transform: rotate(-24deg); }
-.backdrop__leaf--c { width: 28vw; opacity: .04;  left: 6vw;   top: 74vh; transform: rotate(155deg); }
 @media (prefers-color-scheme: dark) {
   .backdrop__leaf { fill: var(--mint); }
   .backdrop__glow { opacity: .5; }
+}
+
+/* ── Icons ────────────────────────────────────────────────── */
+/* The iPhone and TV icons are full squares that the system rounds; the Mac
+   ones bring their own shape. */
+
+.icon { display: block; flex: none; }
+.icon--ios { border-radius: 22.5%; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .08), 0 6px 14px -8px rgba(30, 50, 40, .55); }
+.icon--mac { filter: drop-shadow(0 5px 7px rgba(30, 50, 40, .22)); }
+@media (prefers-color-scheme: dark) {
+  .icon--ios { box-shadow: 0 0 0 .5px rgba(255, 255, 255, .1), 0 6px 14px -8px rgba(0, 0, 0, .7); }
+  .icon--mac { filter: drop-shadow(0 5px 7px rgba(0, 0, 0, .45)); }
 }
 
 /* ── Header ───────────────────────────────────────────────── */
 
 .head {
   position: sticky; top: 0; z-index: 20;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem;
-  padding: .8rem clamp(1rem, 4vw, 2.4rem);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  display: flex; align-items: center; gap: 1rem;
+  min-height: 56px;
+  padding: .45rem var(--gutter);
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
   backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: 1px solid transparent;
   transition: border-color .3s;
 }
-.head.is-stuck { border-bottom-color: var(--line); }
+.head.has-dock { border-bottom-color: var(--line); }
 
-.brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--ink); }
+.brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--ink); flex: none; }
 .brand__mark { width: 30px; height: 30px; color: var(--leaf); flex: none; }
 @media (prefers-color-scheme: dark) { .brand__mark { color: var(--mint); } }
 .brand__name { font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em; white-space: nowrap; }
 
-.nav { display: flex; align-items: center; gap: clamp(.6rem, 2vw, 1.5rem); margin-left: auto; }
-.nav a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: .95rem; white-space: nowrap; }
-.nav a:hover { color: var(--terracotta); }
-@media (max-width: 560px) { .nav a { font-size: .88rem; } }
-/* When the row gets tight, the promise link is the first to go. */
-@media (max-width: 720px) { .nav a[href="#promise"] { display: none; } }
-/* The app names don't fit beside the brand and the language any more: from here
-   down they get a row of their own, under them, and on a phone as many rows as it
-   takes, so that every name can be seen. */
-@media (max-width: 1040px) {
-  html { scroll-padding-top: 108px; }
-  .head { flex-wrap: wrap; row-gap: .4rem; padding-bottom: .6rem; }
-  .nav { order: 3; flex-basis: 100%; min-width: 0; margin-left: 0; flex-wrap: wrap; row-gap: .1rem; }
-  .nav a { padding-block: .2rem; }
+/* The dock: every app's icon, one click from anywhere. It waits while the menu
+   on the page is in view, and the app you are looking at gets a mint ring. */
+.dock {
+  --dock-icon: 30px;
+  display: flex; align-items: center; gap: 5px;
+  margin: 0 auto; min-width: 0;
+  opacity: 0; visibility: hidden; transform: translateY(-3px);
+  transition: opacity .25s, transform .25s, visibility 0s .25s;
 }
-/* On a phone that would be a lot to keep on screen, so the brand scrolls away and
-   only the names stay: -49px is the brand's row, padding and gap included. */
-@media (max-width: 540px) {
-  html { scroll-padding-top: 88px; }
-  .head { top: -49px; background: color-mix(in srgb, var(--bg) 95%, transparent); }
-  .nav { column-gap: .85rem; }
-}
-@media (max-width: 340px) {
-  html { scroll-padding-top: 118px; }
-}
-/* A phone on its side or a very small one: a header this tall would leave no room. */
-@media (max-height: 640px) {
-  html { scroll-padding-top: 1rem; }
-  .head { position: static; }
-}
+.head.has-dock .dock { opacity: 1; visibility: visible; transform: none; transition: opacity .25s, transform .25s; }
+.dock a { display: block; padding: 2px; border-radius: 10px; flex: none; }
+.dock img { width: var(--dock-icon); height: var(--dock-icon); }
+.dock a:hover img { transform: translateY(-1px); }
+.dock a[aria-current="true"] { box-shadow: 0 0 0 2px var(--mint); }
+.dock__gap { width: 7px; flex: none; }
 
 .lang {
+  margin-left: auto; flex: none;
   font: inherit; font-size: .8rem; font-weight: 700; letter-spacing: .06em;
   padding: .3em .7em; border-radius: 999px; cursor: pointer;
   color: var(--leaf); background: transparent;
@@ -153,16 +174,26 @@ a:hover { color: var(--terracotta); }
 }
 .lang:hover { background: color-mix(in srgb, var(--mint) 25%, transparent); }
 @media (prefers-color-scheme: dark) { .lang { color: var(--mint); border-color: color-mix(in srgb, var(--mint) 45%, transparent); } }
+.dock + .lang { margin-left: 0; }
+
+/* On a phone the dock takes the brand's place: nine icons need the width. */
+@media (max-width: 640px) {
+  .head.has-dock .brand { display: none; }
+  .dock { --dock-icon: clamp(20px, 6.4vw, 28px); gap: 3px; position: absolute; left: var(--gutter); right: 4.2rem; justify-content: center; }
+  .dock a { padding: 1px; border-radius: 8px; }
+  .dock__gap { width: 4px; }
+  .head:not(.has-dock) .dock { pointer-events: none; }
+  .dock + .lang { margin-left: auto; }
+}
+/* A phone on its side or a very small one: no room for a header that stays. */
+@media (max-height: 520px) {
+  .head { position: static; }
+  html { scroll-padding-top: 1rem; }
+}
 
 /* ── Shared bits ──────────────────────────────────────────── */
 
-.eyebrow {
-  text-transform: uppercase; letter-spacing: .14em; font-size: .75rem;
-  font-weight: 700; color: var(--terracotta); margin-bottom: .8em;
-}
-.lede { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--ink-2); max-width: 34em; }
-.tagline { color: var(--mint-deep); font-size: 1.25rem; font-weight: 600; margin-bottom: 1em; }
-@media (prefers-color-scheme: dark) { .tagline { color: var(--mint); } }
+.lede { font-size: clamp(1.06rem, 2vw, 1.25rem); color: var(--ink-2); max-width: 36em; }
 
 .btn {
   display: inline-flex; align-items: center; gap: .6rem;
@@ -171,10 +202,6 @@ a:hover { color: var(--terracotta); }
   transition: transform .18s ease, box-shadow .18s ease, background .18s;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn--primary { background: var(--mint); color: var(--leaf-deep); box-shadow: var(--shadow); }
-.btn--primary:hover { background: var(--mint-deep); color: var(--leaf-deep); }
-.btn--ghost { border-color: color-mix(in srgb, var(--leaf) 30%, transparent); color: var(--ink); }
-.btn--ghost:hover { border-color: var(--mint); color: var(--ink); }
 
 .btn--store {
   background: var(--leaf-deep); color: var(--cream);
@@ -192,50 +219,196 @@ a:hover { color: var(--terracotta); }
 .btn__stack { display: grid; line-height: 1.15; }
 .btn__stack small { font-size: .68rem; opacity: .8; }
 .btn__stack strong { font-size: 1.05rem; font-weight: 650; }
-.btn--store.is-soon { opacity: .45; pointer-events: none; }
 
+/* With a link the button shows; without one, a plain line says it's coming. */
 .store { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+.store.is-soon .btn--store { display: none; }
+.store:not(.is-soon) .soon { display: none; }
 .soon {
-  font-size: .82rem; color: var(--terracotta); font-weight: 600;
-  border: 1.5px dashed color-mix(in srgb, var(--terracotta) 50%, transparent);
-  padding: .3em .8em; border-radius: 999px;
+  margin: 0; font-size: .95rem; font-weight: 650; color: var(--ink-2);
+  display: inline-flex; align-items: center; gap: .5rem;
 }
-.store:not(:has(.is-soon)) .soon { display: none; }
+.soon::before {
+  content: ""; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 30%, transparent);
+}
 
-/* ── Hero ─────────────────────────────────────────────────── */
+/* ── Hero: the café's menu ────────────────────────────────── */
 
 .hero {
   max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(4rem, 12vh, 8rem) clamp(1.2rem, 5vw, 2.4rem) clamp(3rem, 8vh, 5rem);
+  padding: clamp(3rem, 9vh, 5.5rem) var(--gutter) clamp(3rem, 8vh, 5rem);
   text-align: center;
 }
 .hero .lede { margin-inline: auto; }
-.hero__cta { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
 
-/* ── App sections ─────────────────────────────────────────── */
+/* Printed like a café's carta: a card with a second rule inside the edge. */
+.carta {
+  position: relative;
+  max-width: 1000px;
+  margin: clamp(2rem, 5vh, 3.2rem) auto 0;
+  padding: clamp(1.3rem, 3.2vw, 2.4rem) clamp(1.1rem, 3.6vw, 2.8rem) clamp(.6rem, 2vw, 1.2rem);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(1.6rem, 4.5vw, 3.6rem);
+  text-align: left;
+  background: var(--paper);
+  border-radius: 30px;
+  box-shadow: var(--shadow), 0 0 0 1px var(--line);
+}
+.carta::before {
+  content: ""; position: absolute; inset: 9px; border-radius: 22px;
+  border: 1px solid var(--line); pointer-events: none;
+}
+@media (max-width: 780px) { .carta { grid-template-columns: minmax(0, 1fr); } }
+
+.carta__group { margin-bottom: 1rem; }
+.carta__title {
+  display: flex; align-items: center; gap: .8rem;
+  margin: .5rem 0 .5rem;
+  font-size: 1rem; font-weight: 700; letter-spacing: 0; color: var(--ink-2);
+}
+.carta__title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.carta__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .1rem; }
+.dish {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  gap: .95rem;
+  margin: 0 -.75rem; padding: .55rem .75rem;
+  border-radius: 20px;
+  color: var(--ink); text-decoration: none;
+  transition: background-color .2s ease;
+}
+.dish:hover { background: var(--dish); color: var(--ink); }
+.dish__icon { width: 56px; height: 56px; }
+.dish__text { display: grid; line-height: 1.28; }
+.dish__name { font-weight: 720; font-size: 1.14rem; }
+.dish__line { color: var(--ink-2); font-size: .96rem; }
+.dish__soon { margin-left: .3rem; font-size: .76rem; font-weight: 700; color: var(--clay); }
+.dish__tag {
+  font-size: .78rem; font-weight: 700; white-space: nowrap;
+  color: var(--leaf); padding: .25em .75em; border-radius: 999px;
+  background: color-mix(in srgb, var(--mint) 28%, transparent);
+}
+@media (prefers-color-scheme: dark) { .dish__tag { color: var(--mint); background: color-mix(in srgb, var(--mint) 16%, transparent); } }
+@media (max-width: 380px) {
+  .dish { grid-template-columns: auto minmax(0, 1fr); }
+  .dish__tag { display: none; }
+}
+
+/* ── Chapters: games, Mac, TV ─────────────────────────────── */
+
+.chapter {
+  max-width: 46rem; margin: 0 auto;
+  padding: clamp(3rem, 8vh, 4.8rem) var(--gutter) clamp(1.8rem, 5vh, 2.8rem);
+  text-align: center;
+}
+.chapter h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: .35em; }
+.chapter p { color: var(--ink-2); margin: 0 auto; max-width: 34em; }
+
+/* ── App rooms ────────────────────────────────────────────── */
+/* Full-width walls in each app's colours; the content keeps to the page's
+   width. Text on one side, centred against the art on the other; on a phone
+   the order is name, tagline, art, the rest. */
 
 .app {
-  max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(3rem, 9vh, 6rem) clamp(1.2rem, 5vw, 2.4rem);
-  display: grid; gap: clamp(2rem, 6vw, 4.5rem);
+  --room: var(--bg);
+  --say: var(--leaf);
+  background: var(--room);
+  padding-block: clamp(3.4rem, 9vh, 6rem);
+  padding-inline: max(var(--gutter), calc((100% - var(--wrap)) / 2));
+  display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
+  grid-template-rows: 1fr auto auto auto 1fr;
+  grid-template-areas: ".    art" "head art" "tag  art" "body art" ".    art";
+  column-gap: clamp(2rem, 6vw, 5rem);
 }
-.app--flip .app__art { order: 2; }
+.app--flip { grid-template-areas: "art ." "art head" "art tag" "art body" "art ."; }
 @media (max-width: 860px) {
-  .app { grid-template-columns: 1fr; }
-  .app--flip .app__art { order: 0; }
+  .app, .app--flip {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas: "head" "tag" "art" "body";
+  }
 }
-.app__art { display: grid; justify-items: center; gap: 1rem; }
-.art__caption { font-size: .85rem; color: var(--ink-2); opacity: .8; margin: 0; text-align: center; }
+
+#circell    { --room: var(--room-circell);    --say: var(--say-circell); }
+#confitura  { --room: var(--room-confitura);  --say: var(--say-confitura); }
+#vitrall    { --room: var(--room-vitrall);    --say: var(--say-vitrall); }
+#planxa     { --room: var(--room-planxa);     --say: var(--say-planxa); }
+#finestreta { --room: var(--room-finestreta); --say: var(--say-finestreta); }
+#ploma      { --room: var(--room-ploma);      --say: var(--say-ploma); }
+#segell     { --room: var(--room-segell);     --say: var(--say-segell); }
+#brillantor { --room: var(--room-brillantor); --say: var(--say-brillantor); }
+#vistes     { --room: var(--room-vistes);     --say: var(--say-vistes); }
+
+.app__head { grid-area: head; display: flex; align-items: center; gap: 1.1rem; }
+.app__head h2 { margin: 0; }
+.app__icon { width: 64px; height: 64px; }
+.app__kind { margin: .1rem 0 0; color: var(--ink-2); font-size: .98rem; }
+.tagline {
+  grid-area: tag;
+  margin: 1.1rem 0 1.2rem;
+  color: var(--say); font-size: clamp(1.3rem, 2.4vw, 1.55rem); font-weight: 680; letter-spacing: -.01em;
+  line-height: 1.25;
+}
+.app__art { grid-area: art; display: grid; justify-items: center; align-content: center; gap: 1rem; }
+@media (max-width: 860px) {
+  .app { padding-block: clamp(2.6rem, 7vh, 3.6rem); }
+  .app__art { margin-bottom: 2rem; }
+  /* A screenshot needs less room than a board you play with your thumb. */
+  .phone:has(.phone__screen--shot) { width: min(290px, 72vw); }
+}
+.app__body { grid-area: body; }
+.app__body > p { color: var(--ink); }
+.art__caption { font-size: .86rem; color: var(--ink-2); margin: 0; text-align: center; max-width: 30em; }
 
 .features { list-style: none; margin: 0 0 1.8rem; padding: 0; display: grid; gap: .55rem; }
 .features li { position: relative; padding-left: 1.7rem; color: var(--ink-2); }
 .features li::before {
   content: ""; position: absolute; left: 0; top: .55em;
   width: 10px; height: 10px; border-radius: 50% 0;
-  background: var(--mint); transform: rotate(45deg);
+  background: var(--say); opacity: .75; transform: rotate(45deg);
 }
+
+/* ── Ploma: how fast ──────────────────────────────────────── */
+
+.speed {
+  margin: 0 0 .5rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid var(--line);
+}
+.speed__item { padding: .85rem 1rem .9rem; }
+.speed__item + .speed__item { border-left: 1px solid var(--line); }
+.speed__item:first-child { padding-left: 0; }
+.speed dt {
+  font-size: clamp(1.7rem, 3.2vw, 2.25rem); font-weight: 750; line-height: 1.05;
+  letter-spacing: -.02em; color: var(--say); font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.speed dd { margin: .35rem 0 0; font-size: .86rem; line-height: 1.4; color: var(--ink-2); }
+.speed__note { font-size: .8rem; color: var(--ink-2); margin: 0 0 1.4rem; }
+@media (max-width: 520px) {
+  .speed { grid-template-columns: minmax(0, 1fr); }
+  .speed__item { display: grid; grid-template-columns: 6.6rem minmax(0, 1fr); align-items: baseline; gap: .8rem; padding: .7rem 0; }
+  .speed__item + .speed__item { border-left: 0; border-top: 1px solid var(--line); }
+  .speed dd { margin: 0; }
+}
+
+.plm-open { display: flex; align-items: center; justify-content: center; gap: .9rem; flex-wrap: wrap; min-height: 46px; }
+.plm-open__btn {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .3rem 1.05rem .3rem .35rem; border-radius: 999px; cursor: pointer;
+  font: inherit; font-size: .92rem; font-weight: 650; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); box-shadow: 0 6px 16px -12px rgba(0, 0, 0, .45);
+}
+.plm-open__btn:hover { border-color: var(--say); }
+.plm-open__btn img { width: 32px; height: 32px; }
+.plm-open__time { margin: 0; min-width: 14ch; font-size: .9rem; font-weight: 680; color: var(--say); }
+/* Closed: the window goes, its place stays. */
+.plm.is-closed { visibility: hidden; }
+
+/* ── Live demos inside a phone ───────────────────────────── */
+
+.phone__screen--live { padding: 0; display: block; position: relative; overflow: hidden; }
 
 /* ── Phone + Circell board ────────────────────────────────── */
 
@@ -530,50 +703,52 @@ button.popover__item:focus-visible { outline: 2px solid var(--mint); outline-off
 html:not([lang="ca"]) .plm .only-ca,
 html[lang="ca"] .plm .only-en { display: none; }
 
+/* A real screenshot can carry a layer of its own on top (Confitura's faces). */
+.phone__screen--shot { position: relative; }
+
 /* ── Promise ──────────────────────────────────────────────── */
 
 .promise, .brewing {
   max-width: var(--wrap); margin: 0 auto;
-  padding: clamp(3rem, 9vh, 6rem) clamp(1.2rem, 5vw, 2.4rem);
-  text-align: center;
+  padding: clamp(3.6rem, 10vh, 6rem) var(--gutter) clamp(2rem, 5vh, 3rem);
 }
-.promise .lede, .brewing .lede { margin-inline: auto; margin-bottom: 2.6rem; }
+.promise > h2, .brewing > h2 { text-align: center; }
+.promise > .lede, .brewing > .lede { text-align: center; margin: 0 auto 2.6rem; }
 
-.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); text-align: left; }
-.card {
-  background: var(--card); border-radius: var(--radius);
-  padding: 1.5rem 1.4rem 1.2rem;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--line);
-  position: relative;
+.rules {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 1.8rem 2.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
 }
-.card__num {
-  font-size: .72rem; font-weight: 700; letter-spacing: .1em;
-  color: var(--terracotta); display: block; margin-bottom: .7rem;
+.rules li { position: relative; padding-left: 2rem; }
+.rules li::before {
+  content: ""; position: absolute; left: 0; top: .32em;
+  width: 13px; height: 13px; border-radius: 50% 0;
+  background: var(--mint); transform: rotate(45deg);
 }
-.card p { margin: 0; color: var(--ink-2); font-size: .95rem; }
+.rules h3 { margin-bottom: .25em; }
+.rules p { margin: 0; color: var(--ink-2); font-size: .97rem; }
 
 /* The fine print, written by us, in plain words. */
 .fineprint {
-  max-width: 44em; margin: 2.4rem auto 0;
+  max-width: 44em; margin: 2.8rem auto 0;
   padding-top: 1.4rem;
   border-top: 1px dashed var(--line);
-  text-align: left; font-size: .88rem; line-height: 1.7;
+  font-size: .88rem; line-height: 1.7;
   color: var(--ink-2);
 }
 
 /* ── Brewing ──────────────────────────────────────────────── */
 
 .brew {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  list-style: none; margin: 0 auto; padding: 0; max-width: 46rem;
+  display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 .brew li {
-  background: color-mix(in srgb, var(--card) 60%, transparent);
-  border: 1px dashed var(--line);
-  border-radius: var(--radius); padding: 1.6rem 1rem;
+  display: flex; align-items: center; gap: 1rem;
+  border: 1px dashed var(--line); border-radius: 22px; padding: 1rem 1.2rem;
 }
-.brew__mark { width: 46px; height: 46px; margin-bottom: .5rem; }
+.brew__mark { width: 46px; height: 46px; flex: none; }
 .brew h3 { margin-bottom: .1em; }
 .brew p { margin: 0; color: var(--ink-2); font-size: .92rem; }
 
@@ -582,20 +757,19 @@ html[lang="ca"] .plm .only-en { display: none; }
 .foot {
   border-top: 1px solid var(--line);
   margin-top: clamp(2rem, 6vh, 4rem);
-  padding: clamp(2.5rem, 8vh, 4rem) clamp(1.2rem, 5vw, 2.4rem);
+  padding: clamp(2.5rem, 8vh, 4rem) var(--gutter);
   text-align: center;
 }
 .foot__inner { max-width: 46em; margin: 0 auto; }
 .foot__brand { font-weight: 700; font-size: 1.15rem; margin-bottom: .3em; }
 .foot__line { color: var(--ink-2); }
-.foot__nav { display: flex; gap: .6rem; justify-content: center; margin: 1.2rem 0; color: var(--ink-2); }
-.foot__fine { font-size: .8rem; color: var(--ink-2); opacity: .75; margin: 0; }
+.foot__nav { display: flex; gap: 1.4rem; justify-content: center; margin: 1.2rem 0; color: var(--ink-2); }
+.foot__fine { font-size: .8rem; color: var(--ink-2); opacity: .8; margin: 0; }
 
-/* ── Reveal on scroll ─────────────────────────────────────── */
-
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .dock, .head.has-dock .dock { transition: none; }
+  .dish { transition: none; }
+}
 
 /* ── Legal pages ──────────────────────────────────────────── */
 

@@ -4,11 +4,15 @@
    2. Language toggle  English / Català
    3. Circell demo     a real, playable rotation board
    4. Brillantor demo  a real gamma lift on a dark photo
+   5. Ploma            reopens in the time it really takes
+   6. The dock         every app one click away, and where you are
+   Vitrall's windows and Confitura's faces live in their own files
+   (vitrall.js, confitura-faces.js).
    =========================================================== */
 
 /* ── 1. Store links ───────────────────────────────────────────
-   Leave a string empty and the button stays dimmed with a
-   "Link coming soon" note. Fill it in and the button lights up.
+   Leave a string empty and the button gives way to a "Coming
+   soon to the App Store" line. Fill it in and the button shows.
    Nothing else needs changing.                                */
 const STORE_LINKS = {
   circell:    "https://apps.apple.com/us/app/circell/id6795101676",           // iPhone, live 2026-10-06
@@ -22,6 +26,11 @@ const STORE_LINKS = {
   vistes:     "",                                                              // Apple TV and iPad, coming soon
 };
 
+/* How long Ploma takes to open on a Mac, from the click to the first frame on
+   screen (Apps/Ploma/Docs/Rendiment.md, MacBook Pro M1 Max). The button under
+   its window waits exactly this long. */
+const PLOMA_LAUNCH_MS = 150;
+
 /* ── 2. Copy, in both languages ───────────────────────────── */
 const I18N = {
   en: {
@@ -30,38 +39,111 @@ const I18N = {
     "lang.toggle": "CA",
     "lang.aria": "Canvia la llengua a català",
     "skip": "Skip to content",
-    "nav.promise": "The promise",
 
-    "hero.eyebrow": "iPhone & Mac",
     "hero.title": "Small apps, made with care.",
     "hero.lede": "One payment, a round price. No ads, no subscriptions, no pay-to-win, no dark patterns. Each one is a pause, like a coffee.",
-    "hero.cta1": "Circell for iPhone",
-    "hero.cta2": "Brillantor for Mac",
 
+    "carta.label": "All our apps",
+    "dock.label": "Apps",
     "platform.ios": "iPhone",
     "platform.mac": "Mac",
     "platform.tv": "Apple TV & iPad",
-    "label.puzzle": "Puzzle",
-    "label.utility": "Menu bar utility",
-    "label.signer": "PDF signer",
-    "label.editor": "Text editor",
+    "group.games": "Games for iPhone",
+    "group.games.lede": "To play at your own pace. Nothing nags you: no notifications, no streaks. Day or night, the way your phone is set, in English and Catalan.",
+    "group.mac": "Tools for the Mac",
+    "group.mac.lede": "Small and quick. Each one does one job, opens at once and never connects to the internet.",
+    "group.tv": "For the TV and iPad",
+    "tag.play": "Play it here",
+    "tag.try": "Try it here",
+    "tag.soon": "soon",
 
+    "store.pre.ios": "Download on the",
+    "store.pre.mac": "Download on the",
+    "store.comingSoon": "Coming soon to the App Store",
+
+    "circell.kind": "A puzzle for iPhone",
     "circell.tagline": "Turn, join, bloom.",
     "circell.body": "A puzzle of rotation and connection. Tap the tiles to turn the vine strands 90° until no end is left open and the whole board is one living vine. When the vine closes, a wave of golden light runs through it and it blooms.",
     "circell.f1": "A gentle ladder of levels that opens up as you go.",
     "circell.f2": "Everything drawn in code: no clutter, no noise.",
     "circell.f3": "Sound synthesised on the fly, and it never interrupts your music.",
-    "circell.f4": "English and Catalan, fully localised.",
     "circell.demo.hint": "Tap the tiles to close the vine.",
     "circell.demo.won": "The vine lives!",
     "circell.demo.new": "New board",
     "circell.demo.caption": "A real board. Play it right here.",
 
+    "confitura.kind": "A puzzle for iPhone",
+    "confitura.tagline": "Drop, merge, make jam.",
+    "confitura.body": "Fruit falls into a glass jar. Two of the same that touch become the next one up, from blueberries to watermelons, and two watermelons make a finished jar of jam. When nothing more fits, the lid tries to close and the café tells you how many grams you made.",
+    "confitura.f1": "Ten jam fruits that roll, squash and splash, all drawn in code.",
+    "confitura.f2": "No timer. You let go when you are ready.",
+    "confitura.f3": "A best of the week, so there is always something within reach.",
+    "confitura.caption": "From the game itself. Keep an eye on the fruit: they're not quite asleep.",
+    "confitura.shot.alt": "A glass jar on a café counter, full of fruit with sleepy faces",
+
+    "vitrall.kind": "A logic puzzle for iPhone",
+    "vitrall.tagline": "Light, cell by cell.",
+    "vitrall.body": "The numbers beside each line say which panes to light. Work it out without guessing, and when the last pane comes on the grid turns into a stained-glass window.",
+    "vitrall.f1": "Every window can be solved by logic alone.",
+    "vitrall.f2": "No timer, no lives, no score.",
+    "vitrall.f3": "Make one to measure: its size and how hard, up to where you've reached.",
+    "vitrall.caption": "Five windows from the game, a step harder each time. In the app they go on, up to 8×8.",
+
+    "planxa.kind": "Turn-based strategy for iPhone",
+    "planxa.tagline": "A griddle that waits for you.",
+    "planxa.body": "Turn-based strategy, with burgers. A late-night diner where time only moves when you do: plan the rush and serve everyone the way they asked. It's a puzzle, not a race, so think for as long as you like, or put it down and come back tomorrow.",
+    "planxa.f1": "One stroke of your thumb along a row is a single turn.",
+    "planxa.f2": "You can't lose, and there's always a way of serving everybody.",
+    "planxa.f3": "Make a night to measure: the ingredients and how hard.",
+    "planxa.caption": "From the game itself. In dark mode, it's the late shift.",
+    "planxa.shot.alt": "A diner counter by day: customers on stools, tickets, and burgers on a griddle",
+
+    "finestreta.kind": "A cooking game for iPhone",
+    "finestreta.tagline": "Pizza for the whole street.",
+    "finestreta.body": "You run a pizza window on a street at dusk. Slap the dough, spread the tomato with your finger, scatter the toppings, fire it and hand it to whoever's waiting.",
+    "finestreta.f1": "The menu grows by one dish a night.",
+    "finestreta.f2": "Nothing punishes you: a lopsided pizza still gets eaten.",
+    "finestreta.f3": "Make a night to measure: from a quiet street to a packed one.",
+    "finestreta.caption": "From the game itself. In dark mode, the street lights come on.",
+    "finestreta.shot.alt": "A pizza window on a street: neighbours with their tickets, an oven, and pizzas on a green marble counter",
+
+    "ploma.kind": "A text editor for Mac",
+    "ploma.tagline": "Opens in a blink.",
+    "ploma.speed1.n": "0.15 s",
+    "ploma.speed1": "from clicking the icon to your text on screen",
+    "ploma.speed2.n": "0.2 ms",
+    "ploma.speed2": "of work for each key, so it's on screen on the very next frame",
+    "ploma.speed3.n": "0.19 s",
+    "ploma.speed3": "to open a 146 MB file, with 37 MB of memory",
+    "ploma.speed.note": "Measured on a MacBook Pro with an M1 Max.",
+    "ploma.body": "For the moment you need to write something down: a list, meeting notes, a few lines of Markdown, a config file. Ploma is open before you have finished the thought, and every key you press is on screen on the very next frame. Quit without saving and everything is still there next time. It is a plain-text editor for notes, not a whole development environment, and it has no permission to use the network.",
+    "ploma.f1": "Multiple cursors and a command palette, to change many lines at once.",
+    "ploma.f2": "Markdown tables that line up by themselves, and boxes and arrows drawn in plain text.",
+    "ploma.f3": "If a script or a coding assistant changes your file, you see each change and keep what you want.",
+    "ploma.open": "Open it again",
+    "ploma.opened": "Back in 0.15 s, as on a Mac.",
+    "ploma.art.alt": "A Ploma window with a short Markdown note: headings, a short list, a small table with its columns lined up and three boxes joined by arrows drawn in text. The first tab has a dot because it has unsaved changes",
+    "ploma.caption": "Ploma follows your Mac by default: light by day, dark at night. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.",
+
+    "segell.kind": "A PDF signer for Mac",
+    "segell.tagline": "Open, sign, done.",
+    "segell.body": "Someone sends you a contract or a form, and it has to come back signed with your digital certificate. Until now that meant a big PDF suite that goes online and starts with your Mac. Segell is a small viewer that does just this: open the PDF, choose Sign…, pick your certificate (the one in your keychain, like idCAT, or a .p12 file) and you get a signed copy that other PDF readers accept. It has no permission to use the network, so your documents and your keys stay with you.",
+    "segell.f1": "Put the signature where it belongs: drag a box over the line, or sign without a visible mark.",
+    "segell.f2": "Signing something someone else already signed? Their signature stays valid.",
+    "segell.f3": "Open a signed PDF and a strip tells you who signed it and whether it has changed since.",
+    "segell.art.alt": "A Segell window with a signed document: a green strip at the top says who signed it and that it has not changed, and the blue signature box on the page carries the name, the date and the Minta Cafè leaf",
+    "segell.art.file": "agreement-signed.pdf",
+    "segell.art.banner": "Signed by Marta Puig on 18 Oct 2026 at 10:42. The document hasn’t changed since.",
+    "segell.art.details": "Details…",
+    "segell.box.signed": "Digitally signed",
+    "segell.box.reason": "Approved",
+    "segell.caption": "The signature box as Segell draws it. In dark mode the window goes dark, but the page stays paper.",
+
+    "brillantor.kind": "A menu bar utility for Mac",
     "brillantor.tagline": "Lighter shadows, darker nights.",
     "brillantor.body": "A small sun in your menu bar. Open it on any screen and you get one slider for that screen. Push it right and the dark parts of the picture open up, for a film that is too dark to follow. Push it left and the screen goes darker than macOS will let it go, for reading in bed at three in the morning.",
     "brillantor.f1": "One slider. That is the whole app.",
     "brillantor.f2": "Each display keeps its own light, and gets it back when you plug it in again.",
-    "brillantor.f3": "Darker than the system minimum, when the room is dark too.",
     "brillantor.f4": "Restores your colours the moment you quit. Nothing is permanent.",
     "brillantor.slider.label": "Screen light",
     "brillantor.scene.alt": "A dark photo that opens up or dims further as you move the slider",
@@ -73,77 +155,14 @@ const I18N = {
     "brillantor.lift": "Shadows +{n}%",
     "brillantor.dim": "Dimmed to {n}%",
 
-    "store.pre.ios": "Download on the",
-    "store.pre.mac": "Download on the",
-    "store.soon": "Link coming soon",
-    "label.cooking": "Cooking",
-    "label.strategy": "Turn-based strategy",
-    "label.ambient": "Ambient",
-    "label.soon": "Coming soon",
-    "store.comingSoon": "Coming soon",
-    "confitura.tagline": "Drop, merge, make jam.",
-    "confitura.body": "Fruit falls into a glass jar. Two of the same that touch become the next one up, from blueberries to watermelons, and two watermelons make a finished jar of jam. When nothing more fits, the lid tries to close and the café tells you how many grams you made.",
-    "confitura.f1": "Ten jam fruits that roll, squash and splash, all drawn in code.",
-    "confitura.f2": "No timer. You let go when you are ready.",
-    "confitura.f3": "A best of the week, so there is always something within reach.",
-    "confitura.f4": "Day and night, the way your phone is set.",
-    "confitura.caption": "From the game itself. In dark mode, the café works the night shift.",
-    "confitura.shot.alt": "A glass jar on a café counter, full of fruit with sleepy faces; a peach has just merged with a splash",
-    "vitrall.tagline": "Light, cell by cell.",
-    "vitrall.body": "The numbers beside each line say which panes to light. Work it out without guessing, and when the last pane comes on the grid turns into a stained-glass window.",
-    "vitrall.f1": "Every window can be solved by logic alone.",
-    "vitrall.f2": "No timer, no lives, no score.",
-    "vitrall.f3": "Make one to measure: its size and how hard, up to where you've reached.",
-    "vitrall.f4": "Day and night, the way your phone is set.",
-    "vitrall.caption": "From the game itself. In dark mode, the window glows.",
-    "vitrall.shot.alt": "A logic puzzle on a stone wall: numbers beside a grid of panes, some of them lit",
-    "planxa.tagline": "A griddle that waits for you.",
-    "planxa.body": "Turn-based strategy, with burgers. A late-night diner where time only moves when you do: plan the rush and serve everyone the way they asked. It's a puzzle, not a race, so think for as long as you like, or put it down and come back tomorrow.",
-    "planxa.f1": "One stroke of your thumb along a row is a single turn.",
-    "planxa.f2": "You can't lose, and there's always a way of serving everybody.",
-    "planxa.f3": "Make a night to measure: the ingredients and how hard.",
-    "planxa.f4": "Day and night, the way your phone is set.",
-    "planxa.caption": "From the game itself. In dark mode, it's the late shift.",
-    "planxa.shot.alt": "A diner counter by day: customers on stools, tickets, and burgers on a griddle",
+    "vistes.kind": "Ambient, for Apple TV and iPad",
     "vistes.tagline": "Something lovely to leave on.",
     "vistes.body": "A girl with headphones studies by the window of a high flat, her cat asleep on the sill, the city and the sea outside. The sky keeps changing, the rain comes and goes, and the lofi is made live on your own device, so it never goes round a loop.",
     "vistes.f1": "Buy it once and it's yours, on the TV and on the iPad.",
-    "vistes.f2": "No ads in the middle, and nothing asks you to wait.",
     "vistes.f3": "Choose the moment of the day, how long a day lasts and the weather, or leave it be.",
     "vistes.f4": "Runs on every Apple TV, from the HD up.",
     "vistes.caption": "From the app itself. In dark mode, it's night and raining.",
     "vistes.shot.alt": "A pixel-art room: a girl with headphones at her desk, a cat asleep on the sill, and the sun going down over the city and the sea",
-    "finestreta.tagline": "Pizza for the whole street.",
-    "finestreta.body": "You run a pizza window on a street at dusk. Slap the dough, spread the tomato with your finger, scatter the toppings, fire it and hand it to whoever's waiting.",
-    "finestreta.f1": "The menu grows by one dish a night.",
-    "finestreta.f2": "Nothing punishes you: a lopsided pizza still gets eaten.",
-    "finestreta.f3": "Make a night to measure: from a quiet street to a packed one.",
-    "finestreta.f4": "Day and night, the way your phone is set.",
-    "finestreta.caption": "From the game itself. In dark mode, the street lights come on.",
-    "finestreta.shot.alt": "A pizza window on a street: neighbours with their tickets, an oven, and pizzas on a green marble counter",
-
-    "segell.tagline": "Open, sign, done.",
-    "segell.body": "Someone sends you a contract or a form, and it has to come back signed with your digital certificate. Until now that meant a big PDF suite that goes online and starts with your Mac. Segell is a small viewer that does just this: open the PDF, choose Sign…, pick your certificate (the one in your keychain, like idCAT, or a .p12 file) and you get a signed copy that other PDF readers accept. It has no permission to use the network, so your documents and your keys stay with you.",
-    "segell.f1": "Put the signature where it belongs: drag a box over the line, or sign without a visible mark.",
-    "segell.f2": "Signing something someone else already signed? Their signature stays valid.",
-    "segell.f3": "Open a signed PDF and a strip tells you who signed it and whether it has changed since.",
-    "segell.f4": "Opens at once. Nothing in the background, nothing to install.",
-    "segell.art.alt": "A Segell window with a signed document: a green strip at the top says who signed it and that it has not changed, and the blue signature box on the page carries the name, the date and the Minta Cafè leaf",
-    "segell.art.file": "agreement-signed.pdf",
-    "segell.art.banner": "Signed by Marta Puig on 18 Oct 2026 at 10:42. The document hasn’t changed since.",
-    "segell.art.details": "Details…",
-    "segell.box.signed": "Digitally signed",
-    "segell.box.reason": "Approved",
-    "segell.caption": "The signature box as Segell draws it. In dark mode the window goes dark, but the page stays paper.",
-
-    "ploma.tagline": "Opens like a drawer.",
-    "ploma.body": "For the moment you need to write something down: a list, meeting notes, a few lines of Markdown, a config file. Ploma is open before you have finished the thought, every key you press is on screen on the very next frame, and if you quit without saving, everything is there next time. It is a plain-text editor for notes, not a whole development environment, and it has no permission to use the network.",
-    "ploma.f1": "Multiple cursors and a command palette, to change many lines at once.",
-    "ploma.f2": "Markdown tables that line up by themselves, and boxes and arrows drawn in plain text.",
-    "ploma.f3": "If a script or a coding assistant changes your file, you see each change and keep what you want.",
-    "ploma.f4": "Light on your Mac: a 150 MB file opens in a fifth of a second.",
-    "ploma.art.alt": "A Ploma window with a short Markdown note: headings, a short list, a small table with its columns lined up and three boxes joined by arrows drawn in text. The first tab has a dot because it has unsaved changes",
-    "ploma.caption": "Ploma follows your Mac by default: light by day, dark at night. The dot on the first tab means unsaved changes: quit anyway, and they are still there next time.",
 
     "promise.title": "How we sell things",
     "promise.lede": "The same rules for every app we make. Written here so you can hold us to them.",
@@ -204,38 +223,111 @@ const I18N = {
     "lang.toggle": "EN",
     "lang.aria": "Switch language to English",
     "skip": "Ves al contingut",
-    "nav.promise": "El compromís",
 
-    "hero.eyebrow": "iPhone i Mac",
     "hero.title": "Apps petites, fetes amb cura.",
     "hero.lede": "Un sol pagament, preu rodó. Sense anuncis, sense subscripcions, sense pagar per guanyar, sense trampes. Cada una és una pausa, com un cafè.",
-    "hero.cta1": "Circell per a iPhone",
-    "hero.cta2": "Brillantor per a Mac",
 
+    "carta.label": "Totes les nostres apps",
+    "dock.label": "Apps",
     "platform.ios": "iPhone",
     "platform.mac": "Mac",
     "platform.tv": "Apple TV i iPad",
-    "label.puzzle": "Trencaclosques",
-    "label.utility": "Utilitat de la barra de menú",
-    "label.signer": "Signar PDFs",
-    "label.editor": "Editor de text",
+    "group.games": "Jocs per a iPhone",
+    "group.games.lede": "Per jugar al teu ritme. Res no et reclama: ni avisos ni ratxes. De dia o de nit, com tinguis el telèfon, en català i en anglès.",
+    "group.mac": "Eines per al Mac",
+    "group.mac.lede": "Petites i ràpides. Cadascuna fa una sola feina, s'obre a l'instant i no es connecta mai a internet.",
+    "group.tv": "Per a la tele i l'iPad",
+    "tag.play": "Juga-hi aquí",
+    "tag.try": "Prova-la aquí",
+    "tag.soon": "aviat",
 
+    "store.pre.ios": "Descarrega-la a l'",
+    "store.pre.mac": "Descarrega-la al",
+    "store.comingSoon": "Aviat a l'App Store",
+
+    "circell.kind": "Un trencaclosques per a iPhone",
     "circell.tagline": "Gira, uneix, floreix.",
     "circell.body": "Un trencaclosques de rotació i connexió. Toca les caselles per girar els brins de vinya 90° fins que cap punta quedi oberta i tot el tauler sigui una sola parra viva. Quan la vinya es tanca, una onada de llum daurada la recorre i floreix.",
     "circell.f1": "Una escala suau de nivells que s'obre a mesura que avances.",
     "circell.f2": "Tot dibuixat amb codi: net, sense soroll.",
     "circell.f3": "So sintetitzat al moment, i mai no talla la teva música.",
-    "circell.f4": "Anglès i català, completament traduït.",
     "circell.demo.hint": "Toca les caselles per tancar la vinya.",
     "circell.demo.won": "Vinya viva!",
     "circell.demo.new": "Tauler nou",
     "circell.demo.caption": "Un tauler de debò. Juga-hi aquí mateix.",
 
+    "confitura.kind": "Un trencaclosques per a iPhone",
+    "confitura.tagline": "Deixa caure, fon, fes confitura.",
+    "confitura.body": "La fruita cau dins un pot de vidre. Dues d'iguals que es toquen es fonen en la següent, dels nabius fins a les síndries, i dues síndries fan un pot de confitura acabat. Quan ja no hi cap res més, la tapa intenta tancar i el cafè et diu quants grams n'has fet.",
+    "confitura.f1": "Deu fruites de confitura que rodolen, s'aixafen i esquitxen, tot dibuixat amb codi.",
+    "confitura.f2": "Sense rellotge. Deixes anar quan vols.",
+    "confitura.f3": "Un rècord de la setmana, perquè sempre hi hagi alguna cosa a l'abast.",
+    "confitura.caption": "Del joc mateix. No els treguis l'ull: no dormen del tot.",
+    "confitura.shot.alt": "Un pot de vidre al taulell d'un cafè, ple de fruites amb cara de son",
+
+    "vitrall.kind": "Un trencaclosques de lògica per a iPhone",
+    "vitrall.tagline": "Llum, cel·la a cel·la.",
+    "vitrall.body": "Els números al costat de cada línia diuen quins vidres encendre. Dedueix-ho sense endevinar, i quan s'encén l'últim vidre la quadrícula es torna un vitrall.",
+    "vitrall.f1": "Totes les finestres es resolen només amb lògica.",
+    "vitrall.f2": "Sense rellotge, sense vides i sense puntuació.",
+    "vitrall.f3": "Fes-te'n una a mida: la mida i la dificultat, fins on hagis arribat.",
+    "vitrall.caption": "Cinc finestres del joc, cada una un pas més difícil. A l'app continuen, fins a 8×8.",
+
+    "planxa.kind": "Estratègia per torns per a iPhone",
+    "planxa.tagline": "Una planxa que t'espera.",
+    "planxa.body": "Estratègia per torns, amb hamburgueses. Una cafeteria de nit on el temps només passa si tu actues: planifica l'hora punta i serveix cadascú tal com ho vol. És un trencaclosques, no una cursa, així que pensa tant com vulguis, o deixa-ho i torna-hi demà.",
+    "planxa.f1": "Una passada de dit al llarg d'una fila és un sol torn.",
+    "planxa.f2": "No es pot perdre, i sempre hi ha manera de servir tothom.",
+    "planxa.f3": "Fes-te una nit a mida: els ingredients i la dificultat.",
+    "planxa.caption": "Del joc mateix. En mode fosc, és el torn de nit.",
+    "planxa.shot.alt": "El taulell d'una cafeteria de dia: gent als tamborets, tiquets i hamburgueses a la planxa",
+
+    "finestreta.kind": "Un joc de cuina per a iPhone",
+    "finestreta.tagline": "Pizzes per a tot el carrer.",
+    "finestreta.body": "Portes una finestra de pizzeria en un carrer al capvespre. Pica la massa, escampa el tomàquet amb el dit, deixa anar els ingredients, enforna i serveix.",
+    "finestreta.f1": "La carta creix un plat cada nit.",
+    "finestreta.f2": "Res no et castiga: una pizza torta també es menja.",
+    "finestreta.f3": "Fes-te una nit a mida: d'un carrer tranquil a un de ple.",
+    "finestreta.caption": "Del joc mateix. En mode fosc, s'encenen els fanals.",
+    "finestreta.shot.alt": "Una finestra de pizzeria al carrer: veïns amb els seus tiquets, un forn i pizzes en un taulell de marbre verd",
+
+    "ploma.kind": "Un editor de text per a Mac",
+    "ploma.tagline": "S'obre en un parpelleig.",
+    "ploma.speed1.n": "0,15 s",
+    "ploma.speed1": "de clicar la icona a tenir el text a la pantalla",
+    "ploma.speed2.n": "0,2 ms",
+    "ploma.speed2": "de feina per tecla: surt a la pantalla al fotograma següent",
+    "ploma.speed3.n": "0,19 s",
+    "ploma.speed3": "per obrir un fitxer de 146 MB, amb 37 MB de memòria",
+    "ploma.speed.note": "Mesurat en un MacBook Pro amb M1 Max.",
+    "ploma.body": "Per al moment en què has d'apuntar alguna cosa: una llista, les notes d'una reunió, quatre línies de Markdown, un fitxer de configuració. Ploma ja és oberta abans que acabis de pensar-ho, i cada tecla surt a la pantalla al fotograma següent. Si surts sense desar, ho retrobes tot la propera vegada. És un editor de text pla per apuntar, no un entorn de programació sencer, i no té permís per fer servir la xarxa.",
+    "ploma.f1": "Multicursor i paleta d'ordres, per canviar moltes línies d'un cop.",
+    "ploma.f2": "Taules de Markdown que s'alineen soles, i quadres i fletxes dibuixats amb text.",
+    "ploma.f3": "Si un script o un assistent de programació et canvia el fitxer, veus cada canvi i et quedes el que vols.",
+    "ploma.open": "Torna-la a obrir",
+    "ploma.opened": "Tornada en 0,15 s, com al Mac.",
+    "ploma.art.alt": "Una finestra de Ploma amb una nota curta en Markdown: títols, una llista curta, una taula petita amb les columnes alineades i tres quadres units per fletxes dibuixades amb text. La primera pestanya porta una rodona perquè té canvis sense desar",
+    "ploma.caption": "Per defecte, Ploma segueix el Mac: clara de dia i fosca de nit. La rodona de la primera pestanya vol dir canvis sense desar: surt igualment, i la propera vegada encara hi seran.",
+
+    "segell.kind": "Per signar PDFs al Mac",
+    "segell.tagline": "Obre, signa i prou.",
+    "segell.body": "T'envien un contracte o un formulari i l'has de tornar signat amb el teu certificat digital. Fins ara calia un paquet de PDF enorme que es connecta a internet i s'engega amb el Mac. Segell és un visor petit que fa just això: obre el PDF, tria Signa…, escull el certificat (el del clauer, com l'idCAT, o un fitxer .p12) i tens una còpia signada que els altres lectors de PDF donen per bona. No té permís per fer servir la xarxa: els teus documents i les teves claus es queden amb tu.",
+    "segell.f1": "La signatura on toca: arrossega un requadre sobre la línia, o signa sense que es vegi.",
+    "segell.f2": "Signes un document que algú ja ha signat? La seva signatura continua valent.",
+    "segell.f3": "Obre un PDF signat i una franja et diu qui l'ha signat i si ha canviat des d'aleshores.",
+    "segell.art.alt": "Una finestra de Segell amb un document signat: una franja verda a dalt diu qui l'ha signat i que no ha canviat, i el requadre blau de la signatura porta el nom, la data i la fulla de Minta Cafè",
+    "segell.art.file": "contracte-signat.pdf",
+    "segell.art.banner": "Signat per Marta Puig el 18 oct. 2026, 10:42. El document no ha canviat des de llavors.",
+    "segell.art.details": "Detalls…",
+    "segell.box.signed": "Signat digitalment",
+    "segell.box.reason": "Conforme",
+    "segell.caption": "El requadre de la signatura, tal com el dibuixa Segell. En mode fosc la finestra es fa fosca, però la pàgina continua sent paper.",
+
+    "brillantor.kind": "Una utilitat de la barra de menú per a Mac",
     "brillantor.tagline": "Ombres més clares, nits més fosques.",
     "brillantor.body": "Un solet a la barra de menú. Obre'l a qualsevol pantalla i tens un control per a aquella pantalla. Cap a la dreta, les zones fosques de la imatge s'obren, per a una pel·lícula massa fosca de seguir. Cap a l'esquerra, la pantalla es fa més fosca del que el macOS et deixa arribar, per llegir al llit a les tres de la matinada.",
     "brillantor.f1": "Un control lliscant. L'app és això.",
     "brillantor.f2": "Cada pantalla guarda la seva llum, i la recupera quan la tornes a connectar.",
-    "brillantor.f3": "Més fosca que el mínim del sistema, quan l'habitació també és fosca.",
     "brillantor.f4": "Recupera els teus colors just en sortir. Res no és permanent.",
     "brillantor.slider.label": "Llum de la pantalla",
     "brillantor.scene.alt": "Una foto fosca que s'obre o s'enfosqueix encara més quan mous el control",
@@ -247,77 +339,14 @@ const I18N = {
     "brillantor.lift": "Ombres +{n}%",
     "brillantor.dim": "Enfosquida al {n}%",
 
-    "store.pre.ios": "Descarrega-la a l'",
-    "store.pre.mac": "Descarrega-la al",
-    "store.soon": "Enllaç a punt aviat",
-    "label.cooking": "Cuina",
-    "label.strategy": "Estratègia per torns",
-    "label.ambient": "Ambient",
-    "label.soon": "Pròximament",
-    "store.comingSoon": "Pròximament",
-    "confitura.tagline": "Deixa caure, fon, fes confitura.",
-    "confitura.body": "La fruita cau dins un pot de vidre. Dues d'iguals que es toquen es fonen en la següent, dels nabius fins a les síndries, i dues síndries fan un pot de confitura acabat. Quan ja no hi cap res més, la tapa intenta tancar i el cafè et diu quants grams n'has fet.",
-    "confitura.f1": "Deu fruites de confitura que rodolen, s'aixafen i esquitxen, tot dibuixat amb codi.",
-    "confitura.f2": "Sense rellotge. Deixes anar quan vols.",
-    "confitura.f3": "Un rècord de la setmana, perquè sempre hi hagi alguna cosa a l'abast.",
-    "confitura.f4": "De dia i de nit, com tinguis el telèfon.",
-    "confitura.caption": "Del joc mateix. En mode fosc, el cafè fa el torn de nit.",
-    "confitura.shot.alt": "Un pot de vidre al taulell d'un cafè, ple de fruites amb cara de son; un préssec s'acaba de fondre amb un esquitx",
-    "vitrall.tagline": "Llum, cel·la a cel·la.",
-    "vitrall.body": "Els números al costat de cada línia diuen quins vidres encendre. Dedueix-ho sense endevinar, i quan s'encén l'últim vidre la quadrícula es torna un vitrall.",
-    "vitrall.f1": "Totes les finestres es resolen només amb lògica.",
-    "vitrall.f2": "Sense rellotge, sense vides i sense puntuació.",
-    "vitrall.f3": "Fes-te'n una a mida: la mida i la dificultat, fins on hagis arribat.",
-    "vitrall.f4": "De dia i de nit, com tinguis el telèfon.",
-    "vitrall.caption": "Del joc mateix. En mode fosc, la finestra brilla.",
-    "vitrall.shot.alt": "Un trencaclosques de lògica en una paret de pedra: números al costat d'una quadrícula de vidres, alguns d'encesos",
-    "planxa.tagline": "Una planxa que t'espera.",
-    "planxa.body": "Estratègia per torns, amb hamburgueses. Una cafeteria de nit on el temps només passa si tu actues: planifica l'hora punta i serveix cadascú tal com ho vol. És un trencaclosques, no una cursa, així que pensa tant com vulguis, o deixa-ho i torna-hi demà.",
-    "planxa.f1": "Una passada de dit al llarg d'una fila és un sol torn.",
-    "planxa.f2": "No es pot perdre, i sempre hi ha manera de servir tothom.",
-    "planxa.f3": "Fes-te una nit a mida: els ingredients i la dificultat.",
-    "planxa.f4": "De dia i de nit, com tinguis el telèfon.",
-    "planxa.caption": "Del joc mateix. En mode fosc, és el torn de nit.",
-    "planxa.shot.alt": "El taulell d'una cafeteria de dia: gent als tamborets, tiquets i hamburgueses a la planxa",
+    "vistes.kind": "Ambient, per a l'Apple TV i l'iPad",
     "vistes.tagline": "Una cosa bonica per deixar encesa.",
     "vistes.body": "Una noia amb cascos estudia al costat de la finestra d'un pis alt, amb el gat dormint a l'ampit i la ciutat i el mar a fora. El cel no para de canviar, la pluja va i ve, i la lofi es fa en directe al teu aparell, de manera que no dóna mai voltes a cap bucle.",
     "vistes.f1": "La compres un cop i és teva, a la tele i a l'iPad.",
-    "vistes.f2": "Sense anuncis pel mig, i res no et fa esperar.",
     "vistes.f3": "Tria el moment del dia, quant dura un dia i el temps, o deixa-ho estar.",
     "vistes.f4": "Va a totes les Apple TV, des de la HD.",
     "vistes.caption": "De l'app mateixa. En mode fosc, és de nit i plou.",
     "vistes.shot.alt": "Una habitació en píxels: una noia amb cascos a l'escriptori, un gat dormint a l'ampit, i el sol que es pon sobre la ciutat i el mar",
-    "finestreta.tagline": "Pizzes per a tot el carrer.",
-    "finestreta.body": "Portes una finestra de pizzeria en un carrer al capvespre. Pica la massa, escampa el tomàquet amb el dit, deixa anar els ingredients, enforna i serveix.",
-    "finestreta.f1": "La carta creix un plat cada nit.",
-    "finestreta.f2": "Res no et castiga: una pizza torta també es menja.",
-    "finestreta.f3": "Fes-te una nit a mida: d'un carrer tranquil a un de ple.",
-    "finestreta.f4": "De dia i de nit, com tinguis el telèfon.",
-    "finestreta.caption": "Del joc mateix. En mode fosc, s'encenen els fanals.",
-    "finestreta.shot.alt": "Una finestra de pizzeria al carrer: veïns amb els seus tiquets, un forn i pizzes en un taulell de marbre verd",
-
-    "segell.tagline": "Obre, signa i prou.",
-    "segell.body": "T'envien un contracte o un formulari i l'has de tornar signat amb el teu certificat digital. Fins ara calia un paquet de PDF enorme que es connecta a internet i s'engega amb el Mac. Segell és un visor petit que fa just això: obre el PDF, tria Signa…, escull el certificat (el del clauer, com l'idCAT, o un fitxer .p12) i tens una còpia signada que els altres lectors de PDF donen per bona. No té permís per fer servir la xarxa: els teus documents i les teves claus es queden amb tu.",
-    "segell.f1": "La signatura on toca: arrossega un requadre sobre la línia, o signa sense que es vegi.",
-    "segell.f2": "Signes un document que algú ja ha signat? La seva signatura continua valent.",
-    "segell.f3": "Obre un PDF signat i una franja et diu qui l'ha signat i si ha canviat des d'aleshores.",
-    "segell.f4": "S'obre a l'instant. Res engegat de fons, res per instal·lar.",
-    "segell.art.alt": "Una finestra de Segell amb un document signat: una franja verda a dalt diu qui l'ha signat i que no ha canviat, i el requadre blau de la signatura porta el nom, la data i la fulla de Minta Cafè",
-    "segell.art.file": "contracte-signat.pdf",
-    "segell.art.banner": "Signat per Marta Puig el 18 oct. 2026, 10:42. El document no ha canviat des de llavors.",
-    "segell.art.details": "Detalls…",
-    "segell.box.signed": "Signat digitalment",
-    "segell.box.reason": "Conforme",
-    "segell.caption": "El requadre de la signatura, tal com el dibuixa Segell. En mode fosc la finestra es fa fosca, però la pàgina continua sent paper.",
-
-    "ploma.tagline": "S'obre com un calaix.",
-    "ploma.body": "Per al moment en què has d'apuntar alguna cosa: una llista, les notes d'una reunió, quatre línies de Markdown, un fitxer de configuració. Ploma ja és oberta abans que acabis de pensar-ho, cada tecla surt a la pantalla al fotograma següent, i si surts sense desar, ho retrobes tot la propera vegada. És un editor de text pla per apuntar, no un entorn de programació sencer, i no té permís per fer servir la xarxa.",
-    "ploma.f1": "Multicursor i paleta d'ordres, per canviar moltes línies d'un cop.",
-    "ploma.f2": "Taules de Markdown que s'alineen soles, i quadres i fletxes dibuixats amb text.",
-    "ploma.f3": "Si un script o un assistent de programació et canvia el fitxer, veus cada canvi i et quedes el que vols.",
-    "ploma.f4": "Lleugera: un fitxer de 150 MB s'obre en una cinquena part de segon.",
-    "ploma.art.alt": "Una finestra de Ploma amb una nota curta en Markdown: títols, una llista curta, una taula petita amb les columnes alineades i tres quadres units per fletxes dibuixades amb text. La primera pestanya porta una rodona perquè té canvis sense desar",
-    "ploma.caption": "Per defecte, Ploma segueix el Mac: clara de dia i fosca de nit. La rodona de la primera pestanya vol dir canvis sense desar: surt igualment, i la propera vegada encara hi seran.",
 
     "promise.title": "Com venem les coses",
     "promise.lede": "Les mateixes regles per a totes les apps que fem. Escrites aquí perquè ens hi puguis fer complir.",
@@ -435,25 +464,6 @@ document.getElementById("langToggle")?.addEventListener("click", () => {
   syncLangUrl();
   applyLang();
 });
-
-/* ── Store links ──────────────────────────────────────────── */
-
-function wireStores() {
-  document.querySelectorAll("[data-store]").forEach(box => {
-    const url = STORE_LINKS[box.dataset.store];
-    const link = box.querySelector("[data-store-link]");
-    if (!link) return;
-    if (url) {
-      link.href = url;
-      link.classList.remove("is-soon");
-      link.removeAttribute("aria-disabled");
-    } else {
-      link.classList.add("is-soon");
-      link.setAttribute("aria-disabled", "true");
-      link.setAttribute("tabindex", "-1");
-    }
-  });
-}
 
 /* ── 3. Circell: a playable board ─────────────────────────── */
 /* Bits: N=1 E=2 S=4 W=8. A random spanning tree over the grid
@@ -647,33 +657,80 @@ document.addEventListener("langchange", () => {
   if (quit) quit.textContent = t("brillantor.quit");
 });
 
-/* ── Small touches ────────────────────────────────────────── */
+/* ── Store links ──────────────────────────────────────────── */
+/* With a link the button shows; without one, "Coming soon" takes its place. */
 
-const head = document.querySelector(".head");
-if (head) {
-  const onScroll = () => head.classList.toggle("is-stuck", window.scrollY > 8);
-  addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+function wireStores() {
+  document.querySelectorAll("[data-store]").forEach(box => {
+    const url = STORE_LINKS[box.dataset.store];
+    const link = box.querySelector("[data-store-link]");
+    box.classList.toggle("is-soon", !url);
+    if (link && url) link.href = url;
+  });
 }
+
+/* ── 5. Ploma: it opens in the time it really takes ───────── */
+/* The window goes, and comes back after exactly as long as Ploma takes from
+   the click to its first frame on a Mac. Nothing else is staged. */
+
+const plomaOpen = document.getElementById("plomaOpen");
+const plomaWindow = document.querySelector(".plm");
+const plomaTime = document.getElementById("plomaTime");
+let plomaTimer = 0;
+
+if (plomaOpen && plomaWindow) {
+  plomaOpen.addEventListener("click", () => {
+    clearTimeout(plomaTimer);
+    plomaWindow.classList.add("is-closed");
+    plomaTime.textContent = "";
+    plomaTimer = setTimeout(() => {
+      plomaWindow.classList.remove("is-closed");
+      plomaTime.textContent = t("ploma.opened");
+    }, PLOMA_LAUNCH_MS);
+  });
+  document.addEventListener("langchange", () => {
+    if (plomaTime.textContent) plomaTime.textContent = t("ploma.opened");
+  });
+}
+
+/* ── 6. The dock ──────────────────────────────────────────── */
+/* The icons show in the header once the menu at the top has scrolled away,
+   and the one of the app on screen is ringed. */
+
+const head = document.getElementById("head");
+const dock = document.getElementById("dock");
+const carta = document.getElementById("carta");
+
+if (head && dock) {
+  if (carta) {
+    new IntersectionObserver(([entry]) => {
+      head.classList.toggle("has-dock", !entry.isIntersecting);
+    }, { rootMargin: "-56px 0px 0px 0px" }).observe(carta);
+  } else {
+    head.classList.add("has-dock");
+  }
+
+  const links = new Map([...dock.querySelectorAll("a")].map(a => [a.hash.slice(1), a]));
+  const mark = id => links.forEach((a, key) => {
+    if (key === id) a.setAttribute("aria-current", "true");
+    else a.removeAttribute("aria-current");
+  });
+  /* A room counts as the one on screen while it crosses the middle of the window. */
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) mark(e.target.id); });
+  }, { rootMargin: "-45% 0px -54% 0px" });
+  document.querySelectorAll("section.app").forEach(room => spy.observe(room));
+}
+
+/* ── Small touches ────────────────────────────────────────── */
 
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const targets = document.querySelectorAll(".app, .promise, .brewing, .foot__inner");
-  targets.forEach(el => el.classList.add("reveal"));
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-    });
-  }, { rootMargin: "-40px" });
-  targets.forEach(el => io.observe(el));
-}
-
 /* Xarxa de seguretat per a l'àncora: el navegador hi salta abans que el text
-   es tradueixi i que les seccions revelades agafin l'alçada final, i llavors
-   el punt on ha anat ja no és el bo. Ho refem quan la pàgina ja té la mida
-   definitiva. Importa perquè /#support és l'enllaç de suport de l'App Store. */
+   es tradueixi i que les imatges agafin l'alçada final, i llavors el punt on
+   ha anat ja no és el bo. Ho refem quan la pàgina ja té la mida definitiva.
+   Importa perquè /#support és l'enllaç de suport de l'App Store. */
 addEventListener("load", () => {
   const el = location.hash && document.getElementById(location.hash.slice(1));
   if (el) requestAnimationFrame(() => el.scrollIntoView());
