@@ -9,6 +9,12 @@ web**: tot el que es pot provar aquí és el de debò, tret de quantitat.
 
 D'amunt a avall:
 
+0. **L'aparador** (`.aparador`), just sota el títol: les pantalles de debò de les nou apps, una al
+   costat de l'altra, com en un aparador. No es mou sol (un carrusel que passa sol amaga la resta i
+   gairebé ningú no passa del primer): es passa amb el dit, el trackpad o les dues fletxes (només amb
+   ratolí), i la següent treu el cap per convidar a seguir. Un clic porta a l'app. Les imatges són a
+   `assets/aparador/`, de les captures de la botiga (`Screenshots/AppStore-*`), reduïdes a WebP; les
+   finestres de Mac, retallades amb les seves cantonades.
 1. **La carta** (`.carta`). Totes les apps d'un cop d'ull, com la carta d'un cafè, en tres grups:
    jocs per a iPhone, eines per al Mac, per a la tele. Cada plat és la icona de l'app, el nom, la
    frase i, si és el cas, «aviat» i «juga-hi aquí» / «prova-la aquí». Un clic porta a la seva sala.

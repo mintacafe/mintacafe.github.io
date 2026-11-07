@@ -64,6 +64,52 @@
     <h1 data-i18n="hero.title">Small apps, made with care.</h1>
     <p class="lede" data-i18n="hero.lede">One payment, a round price. No ads, no subscriptions, no pay-to-win, no dark patterns. Each one is a pause, like a coffee.</p>
 
+    <!-- The shop window: the apps' own screens, side by side. It never moves by
+         itself: you pass it with a finger, the trackpad or the two arrows, and a
+         click takes you to the app. -->
+    <div class="aparador is-start" id="aparador">
+      <ul class="aparador__track" id="aparadorTrack" aria-label="The apps, screen by screen" data-i18n-aria="aparador.label">
+        <li class="vitrina vitrina--phone"><a href="#confitura">
+          <span class="vitrina__glass"><img src="assets/aparador/confitura.webp" width="372" height="809" alt=""></span>
+          <span class="vitrina__name">Confitura</span>
+        </a></li>
+        <li class="vitrina vitrina--tv"><a href="#vistes">
+          <span class="vitrina__glass"><img src="assets/aparador/vistes.webp" width="960" height="540" alt=""></span>
+          <span class="vitrina__name">Vistes</span>
+        </a></li>
+        <li class="vitrina vitrina--phone"><a href="#planxa">
+          <span class="vitrina__glass"><img src="assets/aparador/planxa.webp" width="372" height="809" alt=""></span>
+          <span class="vitrina__name">Planxa</span>
+        </a></li>
+        <li class="vitrina vitrina--window"><a href="#ploma">
+          <span class="vitrina__glass"><img src="assets/aparador/ploma.webp" width="920" height="553" alt=""></span>
+          <span class="vitrina__name">Ploma</span>
+        </a></li>
+        <li class="vitrina vitrina--phone"><a href="#finestreta">
+          <span class="vitrina__glass"><img src="assets/aparador/finestreta.webp" width="372" height="809" alt="" loading="lazy"></span>
+          <span class="vitrina__name">Finestreta</span>
+        </a></li>
+        <li class="vitrina vitrina--phone"><a href="#vitrall">
+          <span class="vitrina__glass"><img src="assets/aparador/vitrall.webp" width="372" height="809" alt="" loading="lazy"></span>
+          <span class="vitrina__name">Vitrall</span>
+        </a></li>
+        <li class="vitrina vitrina--window"><a href="#segell">
+          <span class="vitrina__glass"><img src="assets/aparador/segell.webp" width="920" height="523" alt="" loading="lazy"></span>
+          <span class="vitrina__name">Segell</span>
+        </a></li>
+        <li class="vitrina vitrina--phone"><a href="#circell">
+          <span class="vitrina__glass"><img src="assets/aparador/circell.webp" width="372" height="809" alt="" loading="lazy"></span>
+          <span class="vitrina__name">Circell</span>
+        </a></li>
+        <li class="vitrina vitrina--screen"><a href="#brillantor">
+          <span class="vitrina__glass"><img src="assets/aparador/brillantor.webp" width="960" height="540" alt="" loading="lazy"></span>
+          <span class="vitrina__name">Brillantor</span>
+        </a></li>
+      </ul>
+      <button class="aparador__nav aparador__nav--prev" type="button" data-dir="-1" aria-label="Previous" data-i18n-aria="aparador.prev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></button>
+      <button class="aparador__nav aparador__nav--next" type="button" data-dir="1" aria-label="Next" data-i18n-aria="aparador.next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg></button>
+    </div>
+
     <!-- The café's menu: every app at a glance, grouped by what it's for. -->
     <nav class="carta" id="carta" aria-label="All our apps" data-i18n-aria="carta.label">
       <div class="carta__col">

@@ -43,6 +43,9 @@ const I18N = {
     "hero.title": "Small apps, made with care.",
     "hero.lede": "One payment, a round price. No ads, no subscriptions, no pay-to-win, no dark patterns. Each one is a pause, like a coffee.",
 
+    "aparador.label": "The apps, screen by screen",
+    "aparador.prev": "Previous",
+    "aparador.next": "Next",
     "carta.label": "All our apps",
     "dock.label": "Apps",
     "platform.ios": "iPhone",
@@ -227,6 +230,9 @@ const I18N = {
     "hero.title": "Apps petites, fetes amb cura.",
     "hero.lede": "Un sol pagament, preu rodó. Sense anuncis, sense subscripcions, sense pagar per guanyar, sense trampes. Cada una és una pausa, com un cafè.",
 
+    "aparador.label": "Les apps, pantalla a pantalla",
+    "aparador.prev": "Anteriors",
+    "aparador.next": "Següents",
     "carta.label": "Totes les nostres apps",
     "dock.label": "Apps",
     "platform.ios": "iPhone",
@@ -691,6 +697,32 @@ if (plomaOpen && plomaWindow) {
   document.addEventListener("langchange", () => {
     if (plomaTime.textContent) plomaTime.textContent = t("ploma.opened");
   });
+}
+
+/* ── The shop window ──────────────────────────────────────── */
+/* It never moves by itself. The arrows (only with a mouse) pass it by most of a
+   screen; at either end the arrow and the fade on that side go. */
+
+const shelf = document.getElementById("aparadorTrack");
+if (shelf) {
+  const box = shelf.parentElement;
+  const ends = () => {
+    box.classList.toggle("is-start", shelf.scrollLeft < 8);
+    box.classList.toggle("is-end", shelf.scrollLeft + shelf.clientWidth > shelf.scrollWidth - 8);
+  };
+  shelf.addEventListener("scroll", ends, { passive: true });
+  addEventListener("resize", ends);
+  ends();
+  box.querySelectorAll(".aparador__nav").forEach(button => button.addEventListener("click", () => {
+    const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    shelf.scrollBy({ left: +button.dataset.dir * shelf.clientWidth * 0.7, behavior: calm ? "auto" : "smooth" });
+  }));
+}
+
+/* To compare, while David decides (temporary): ?franges=no takes the rooms'
+   walls away. */
+if (new URLSearchParams(location.search).get("franges") === "no") {
+  document.documentElement.classList.add("sense-franges");
 }
 
 /* ── 6. The dock ──────────────────────────────────────────── */
