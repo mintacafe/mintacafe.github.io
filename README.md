@@ -92,24 +92,23 @@ imatges i les posicions de cada fruita surten del director `-ConfituraWebStill` 
 Res de tot això es fa si el navegador demana poc moviment (`prefers-reduced-motion`), ni quan la
 secció no es veu.
 
-### Els preus, la frase i el tiquet
+### La frase i el tiquet
 
-Cada plat de la carta porta el seu preu, com a la carta d'una cafeteria, i al peu hi ha la frase de
-la casa: «Si el cafè t'agrada, demà el tornes a pagar. **Si el joc t'agrada, ja és teu.**» A «Com
-venem les coses» hi ha un sol tiquet, centrat i amb les regles a sota: el que costa un joc de debò
-(el Vitrall, `data-receipt="vitrall"`, perquè un «joc sencer, 3 €» genèric feia pensar que tot val 3)
-i el que no (la versió sense anuncis, les compres de dins, les actualitzacions, la família fins a
-sis: 0), la frase de la casa, «Gràcies. Torna quan vulguis.», i que si no és el teu cafè pots
-demanar a Apple que et torni els diners
-(`reportaproblem.apple.com`: a la UE i al Regne Unit són 14 dies sense explicacions; a la resta ho
-decideix Apple, per això diu «pots demanar»).
+Al peu de la carta hi ha la frase de la casa: «Si el cafè t'agrada, demà el tornes a pagar. **Si el
+joc t'agrada, ja és teu.**» La carta no porta preus, a posta: s'haurien de mantenir i l'embruten. A
+«Com venem les coses» hi ha un sol tiquet, centrat i amb les regles a sota: el que costa un joc de
+debò (el Vitrall, `data-receipt="vitrall"`, perquè un «joc sencer, 3 €» genèric feia pensar que tot
+val 3) i el que no (la versió sense anuncis, les compres de dins, les actualitzacions, la família fins
+a sis: 0), la frase de la casa, «Gràcies. Torna quan vulguis.», i que si no és el teu cafè pots
+demanar a Apple que et torni els diners (`reportaproblem.apple.com`: a la UE i al Regne Unit són 14
+dies sense explicacions; a la resta ho decideix Apple, per això diu «pots demanar»).
 
-Els preus surten en la moneda de qui mira, sense dir mai el país: l'endevina per la zona horària i,
-si no, per la regió de la llengua del navegador; si no en sap res, euros. `?store=JP` ensenya els
-d'una altra botiga. Són a `assets/preus.js`, generat per `Eines/preus-web.py` (al repositori de Minta
-Cafè) des d'App Store Connect: **cal tornar-lo a generar quan canviï un preu o surti una app nova**, i
-`--comprova` el compara amb el que diu la botiga de debò. Sense aquest fitxer no surt cap preu ni el
-tiquet: millor res que un preu equivocat.
+El preu del tiquet surt en la moneda de qui mira, sense dir mai el país: l'endevina per la zona
+horària i, si no, per la regió de la llengua del navegador; si no en sap res, euros. `?store=JP`
+ensenya el d'una altra botiga. És a `assets/preus.js`, generat per `Eines/preus-web.py` (al
+repositori de Minta Cafè) des d'App Store Connect: **cal tornar-lo a generar si canvia el preu dels
+jocs**, i `--comprova` el compara amb el que diu la botiga de debò. Sense aquest fitxer no surt el
+tiquet: millor cap que un d'equivocat.
 
 Les regles «Sense anuncis» i «Sense seguiment» diuen que a dins no hi ha codi d'anuncis ni cap
 llibreria d'altres, només el nostre codi i el d'Apple. Comprovat el 8/11/2026 a les nou apps (i a
@@ -122,8 +121,8 @@ Web/
 ├── privacy.html            política de privadesa (l'App Store en demana una URL)
 ├── assets/
 │   ├── style.css           paleta Solarpunk-Mint, sales de cada app, mode clar i fosc
-│   ├── app.js              enllaços, idiomes, Circell, Brillantor, Ploma, el moll, preus i tiquet
-│   ├── preus.js            els preus de cada botiga (generat: no el toquis)
+│   ├── app.js              enllaços, idiomes, Circell, Brillantor, Ploma, el moll, el tiquet
+│   ├── preus.js            els preus de cada botiga, per al tiquet (generat: no el toquis)
 │   ├── vitrall.js / .css   el Vitrall jugable
 │   ├── confitura-faces.js  les cares de la Confitura
 │   ├── icons/<app>.webp    icones de 192 px, de l'AppIcon de cada app
@@ -145,9 +144,7 @@ Web/
 5. **Els textos** als dos idiomes de `app.js`: `<app>.kind`, `.tagline`, `.body`, `.f1`–`.f3`,
    `.caption`, i l'`alt` de les captures. Pensant en qui la voldria, no com una llista de funcions.
 6. **L'enllaç de la botiga** a `STORE_LINKS` (buit mentre no hi sigui) i **la fila de privadesa**.
-7. **El preu**: el plat de la carta porta `<span class="dish__price" data-price="<app>">`; posa l'app
-   a `APPS` d'`Eines/preus-web.py` i torna a fer córrer l'eina.
-8. **Si és de Mac**, a l'aparador porta la icona a la cantonada: `<img class="vitrina__badge icon
+7. **Si és de Mac**, a l'aparador porta la icona a la cantonada: `<img class="vitrina__badge icon
    icon--mac" …>` just després del seu `.vitrina__glass`.
 
 ## Veure'l en local

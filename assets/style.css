@@ -457,39 +457,29 @@ a:hover { color: var(--terracotta); }
 
 .carta__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .1rem; }
 .dish {
-  display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
-  /* The outer rows take up the icon's extra height, so name and line stay together. */
-  grid-template-rows: 1fr auto auto 1fr; column-gap: .95rem; row-gap: 0;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  gap: .95rem;
   margin: 0 -.75rem; padding: .55rem .75rem;
   border-radius: 20px;
   color: var(--ink); text-decoration: none;
   transition: background-color .2s ease;
 }
 .dish:hover { background: var(--dish-hover); color: var(--ink); }
-.dish__icon { width: 56px; height: 56px; grid-row: 1 / -1; }
-.dish__name, .dish__line { line-height: 1.28; }
+.dish__icon { width: 56px; height: 56px; }
+.dish__text { display: grid; line-height: 1.28; }
 .dish__name { font-weight: 720; font-size: 1.14rem; }
 .dish__line { color: var(--ink-2); font-size: .96rem; }
 .dish__soon { margin-left: .3rem; font-size: .76rem; font-weight: 700; color: var(--clay); }
-/* Two rows: the name and its price, like a menu's, then the line and the
-   "play it here" tag, if any. The wrappers step aside (display: contents) so
-   all four sit on the dish's own grid, and every price lines up with its name. */
-.dish__text, .dish__side { display: contents; }
-.dish__name  { grid-column: 2; grid-row: 2; align-self: baseline; }
-.dish__line  { grid-column: 2; grid-row: 3; align-self: start; }
-.dish__price { grid-column: 3; grid-row: 2; align-self: baseline; justify-self: end;
-               font-weight: 620; font-size: 1.04rem; color: var(--ink);
-               font-variant-numeric: tabular-nums; white-space: nowrap; }
-.dish__price:empty { display: none; }
 .dish__tag {
-  grid-column: 3; grid-row: 3; align-self: start; justify-self: end; margin-top: .15rem;
   font-size: .78rem; font-weight: 700; white-space: nowrap;
   color: var(--leaf); padding: .25em .75em; border-radius: 999px;
   background: color-mix(in srgb, var(--mint) 28%, transparent);
 }
 @media (prefers-color-scheme: dark) { .dish__tag { color: var(--mint); background: color-mix(in srgb, var(--mint) 16%, transparent); } }
 @media (max-width: 380px) {
+  .dish { grid-template-columns: auto minmax(0, 1fr); }
   .dish__tag { display: none; }
+}
 }
 
 /* ── Chapters: games, Mac, TV ─────────────────────────────── */

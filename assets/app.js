@@ -709,13 +709,13 @@ function wireStores() {
   });
 }
 
-/* ── Prices: on the carta, and one receipt ────────────────── */
-/* Every dish on the carta carries its price, like a café's menu, and "How we
-   sell things" has one receipt: what a game costs and what it doesn't. The
-   prices are in your own currency (preus.js, from App Store Connect), guessed
-   from your time zone or else your browser's language, and never named: a shop
-   just shows you its price. When we can't tell, euros. ?store=JP shows another.
-   Without the price table nothing is shown: better no price than a wrong one. */
+/* ── The receipt ──────────────────────────────────────────── */
+/* "How we sell things" has one receipt: what a real game costs and what it
+   doesn't. The price is in your own currency (preus.js, from App Store
+   Connect), guessed from your time zone or else your browser's language, and
+   never named: a shop just shows you its price. When we can't tell, euros.
+   ?store=JP shows another. Without the price table there's no receipt: better
+   none than a wrong price. */
 
 const PRICES = window.MINTA_PRICES;
 const REFUND_URL = "https://reportaproblem.apple.com/";
@@ -753,15 +753,10 @@ function el(tag, cls, text) {
   return node;
 }
 
-function paintPrices() {
+function paintReceipt() {
   if (!PRICES) return;
   const [currency, ...columns] = PRICES.stores[guessStore()];
   const priceOf = key => columns[PRICES.apps[key]];
-
-  document.querySelectorAll("[data-price]").forEach(node => {
-    const price = priceOf(node.dataset.price);
-    if (price != null) node.textContent = money(price, currency);
-  });
 
   // The receipt: one real game as the example, so it doesn't read as "all 3".
   const box = document.querySelector("[data-receipt]");
@@ -810,7 +805,7 @@ function paintPrices() {
   box.hidden = false;
 }
 
-document.addEventListener("langchange", paintPrices);
+document.addEventListener("langchange", paintReceipt);
 
 /* ── 5. Ploma: it opens in the time it really takes ───────── */
 /* The window goes, and comes back after exactly as long as Ploma takes from
@@ -1004,7 +999,7 @@ addEventListener("load", () => {
 
 /* ── Go ───────────────────────────────────────────────────── */
 
-applyLang();   // its "langchange" also paints the prices
+applyLang();   // its "langchange" also paints the receipt
 wireStores();
 if (board) newBoard();
 if (boost) applyBoost();
