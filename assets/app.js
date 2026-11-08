@@ -65,17 +65,19 @@ const I18N = {
     "store.pre.ios": "Download on the",
     "store.pre.mac": "Download on the",
     "store.comingSoon": "Coming soon to the App Store",
-    "receipt.whole": "A whole game",
+    "receipt.whole": "{app}, the whole game",
     "receipt.noads": "Ad-free version",
     "receipt.updates": "Every update",
     "receipt.family": "Up to six in the family",
     "receipt.iap": "In-app purchases",
     "receipt.total": "Total",
-    "receipt.thanks": "Thank you.\nCome back whenever you like.",
+    "receipt.coffee": "If you like the coffee,\nyou pay again tomorrow.",
+    "receipt.yours": "If you like the game,\nit's already yours.",
+    "receipt.thanks": "Thank you. Come back any time.",
     "receipt.refund.pre": "Not your cup of coffee? You can ",
     "receipt.refund.link": "ask Apple for your money back",
     "receipt.refund.post": ".",
-    "receipt.aria": "What a game costs",
+    "receipt.aria": "What {app} costs",
     "carta.motto.a": "If you like the coffee, you pay again tomorrow.",
     "carta.motto.b": "If you like the game, it's already yours.",
 
@@ -267,17 +269,19 @@ const I18N = {
     "store.pre.ios": "Descarrega-la a l'",
     "store.pre.mac": "Descarrega-la al",
     "store.comingSoon": "Aviat a l'App Store",
-    "receipt.whole": "Un joc sencer",
+    "receipt.whole": "{app}, el joc sencer",
     "receipt.noads": "Versió sense anuncis",
     "receipt.updates": "Totes les actualitzacions",
     "receipt.family": "Fins a sis de la família",
     "receipt.iap": "Compres dins del joc",
     "receipt.total": "Total",
-    "receipt.thanks": "Gràcies.\nTorna quan vulguis.",
+    "receipt.coffee": "Si el cafè t'agrada,\ndemà el tornes a pagar.",
+    "receipt.yours": "Si el joc t'agrada,\nja és teu.",
+    "receipt.thanks": "Gràcies. Torna quan vulguis.",
     "receipt.refund.pre": "No és el teu cafè? Pots ",
     "receipt.refund.link": "demanar a Apple que et torni els diners",
     "receipt.refund.post": ".",
-    "receipt.aria": "Què costa un joc",
+    "receipt.aria": "Què costa {app}",
     "carta.motto.a": "Si el cafè t'agrada, demà el tornes a pagar.",
     "carta.motto.b": "Si el joc t'agrada, ja és teu.",
 
@@ -759,10 +763,11 @@ function paintPrices() {
     if (price != null) node.textContent = money(price, currency);
   });
 
-  // The receipt: priced like the app it names (any game: they all cost the same).
+  // The receipt: one real game as the example, so it doesn't read as "all 3".
   const box = document.querySelector("[data-receipt]");
   const price = box && priceOf(box.dataset.receipt);
   if (price == null) return;
+  const name = document.querySelector(`#${box.dataset.receipt} h2`)?.textContent || box.dataset.receipt;
 
   // Name and amount pairs: a list for a screen reader, two columns to the eye.
   const lines = (cls, rows) => {
@@ -775,13 +780,13 @@ function paintPrices() {
     return dl;
   };
   const items = lines("receipt__lines", [
-    [t("receipt.whole"), price],
+    [t("receipt.whole").replace("{app}", name), price],
     [t("receipt.noads"), 0],
     [t("receipt.iap"), 0],
     [t("receipt.updates"), 0],
     [t("receipt.family"), 0],
   ]);
-  items.setAttribute("aria-label", t("receipt.aria"));
+  items.setAttribute("aria-label", t("receipt.aria").replace("{app}", name));
 
   const refund = el("p", "receipt__refund", t("receipt.refund.pre"));
   const link = el("a", null, t("receipt.refund.link"));
@@ -796,6 +801,8 @@ function paintPrices() {
     el("p", "receipt__addr", "mintacafe.com"),
     items,
     lines("receipt__lines receipt__lines--total", [[t("receipt.total"), price]]),
+    el("p", "receipt__motto", t("receipt.coffee")),
+    el("p", "receipt__motto receipt__motto--yours", t("receipt.yours")),
     el("p", "receipt__thanks", t("receipt.thanks")),
     refund,
   );

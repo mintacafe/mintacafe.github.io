@@ -96,9 +96,11 @@ secció no es veu.
 
 Cada plat de la carta porta el seu preu, com a la carta d'una cafeteria, i al peu hi ha la frase de
 la casa: «Si el cafè t'agrada, demà el tornes a pagar. **Si el joc t'agrada, ja és teu.**» A «Com
-venem les coses», al costat de les regles, hi ha un sol tiquet: el que costa un joc i el que no (la
-versió sense anuncis, les compres de dins, les actualitzacions, la família fins a sis: 0), «Gràcies.
-Torna quan vulguis.», i que si no és el teu cafè pots demanar a Apple que et torni els diners
+venem les coses» hi ha un sol tiquet, centrat i amb les regles a sota: el que costa un joc de debò
+(el Vitrall, `data-receipt="vitrall"`, perquè un «joc sencer, 3 €» genèric feia pensar que tot val 3)
+i el que no (la versió sense anuncis, les compres de dins, les actualitzacions, la família fins a
+sis: 0), la frase de la casa, «Gràcies. Torna quan vulguis.», i que si no és el teu cafè pots
+demanar a Apple que et torni els diners
 (`reportaproblem.apple.com`: a la UE i al Regne Unit són 14 dies sense explicacions; a la resta ho
 decideix Apple, per això diu «pots demanar»).
 
