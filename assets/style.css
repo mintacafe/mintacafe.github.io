@@ -227,8 +227,9 @@ a:hover { color: var(--terracotta); }
 .btn__stack small { font-size: .68rem; opacity: .8; }
 .btn__stack strong { font-size: 1.05rem; font-weight: 650; }
 
-/* With a link the button shows; without one, a plain line says it's coming. */
-.store { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+/* With a link the button shows; without one, a plain line says it's coming.
+   The receipt comes first: you read what you pay, then you go and buy it. */
+.store { display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; }
 .store.is-soon .btn--store { display: none; }
 .store:not(.is-soon) .soon { display: none; }
 .soon {
@@ -239,6 +240,63 @@ a:hover { color: var(--terracotta); }
   content: ""; width: 9px; height: 9px; border-radius: 50%;
   background: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 30%, transparent);
 }
+
+/* ── The receipt ──────────────────────────────────────────── */
+/* A café's till roll: what you pay and what you don't. Plain paper and the
+   till's own type, no colour of the app's: it's the same café for every one.
+   The zigzag is a mask on the paper, so the shadow lives on the box around it
+   (a mask would cut a box-shadow off). */
+
+.receipt {
+  --roll:      #FFFDF6;
+  --roll-ink:  #33372F;
+  --roll-ink-2:#6B6F64;
+  --roll-rule: rgba(51, 55, 47, .32);
+  --tooth: 7px;
+  width: min(100%, 19.5rem);
+  filter: drop-shadow(0 1px 1px rgba(46, 74, 62, .10)) drop-shadow(0 10px 14px rgba(46, 74, 62, .14));
+}
+.receipt[hidden] { display: none; }
+@media (prefers-color-scheme: dark) {
+  .receipt {
+    --roll:      #24372D;
+    --roll-ink:  #E4EDE6;
+    --roll-ink-2:#A3BCAD;
+    --roll-rule: rgba(228, 237, 230, .28);
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .35));
+  }
+}
+.receipt__paper {
+  background: var(--roll);
+  color: var(--roll-ink);
+  padding: 1.15rem 1.2rem calc(1.1rem + var(--tooth));
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .76rem;
+  line-height: 1.55;
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--tooth)) 100%;
+          mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--tooth)) 100%;
+}
+.receipt p { margin: 0; }
+.receipt__brand {
+  text-align: center; font-weight: 700; letter-spacing: .32em; text-transform: uppercase;
+  font-size: .82rem; padding-left: .32em; /* the tracking after the last letter */
+}
+.receipt__store { text-align: center; color: var(--roll-ink-2); margin-bottom: .7rem !important; }
+.receipt__lines {
+  margin: 0; padding: .5rem 0;
+  border-top: 1px dashed var(--roll-rule);
+  font-variant-numeric: tabular-nums;
+}
+.receipt__lines > div { display: flex; justify-content: space-between; gap: 1rem; }
+.receipt__lines dd { margin: 0; white-space: nowrap; }
+.receipt__lines--total { padding: .45rem 0 0; font-weight: 700; font-size: .9rem; }
+.receipt__motto { text-align: center; white-space: pre-line; margin-top: 1rem !important; }
+.receipt__motto--yours { margin-top: .55rem !important; font-weight: 700; }
+.receipt__refund {
+  text-align: center; margin-top: .75rem !important;
+  font-size: .68rem; color: var(--roll-ink-2); text-wrap: balance;
+}
+.receipt__refund a { color: inherit; }
 
 /* ── Hero: the café's menu ────────────────────────────────── */
 

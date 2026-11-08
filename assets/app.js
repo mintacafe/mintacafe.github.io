@@ -65,6 +65,21 @@ const I18N = {
     "store.pre.ios": "Download on the",
     "store.pre.mac": "Download on the",
     "store.comingSoon": "Coming soon to the App Store",
+    "receipt.store": "App Store · {country}",
+    "receipt.whole.game": "The whole game",
+    "receipt.whole.app": "The whole app",
+    "receipt.updates": "Every update",
+    "receipt.family": "Up to six in the family",
+    "receipt.iap.game": "In-app purchases",
+    "receipt.iap.app": "In-app purchases",
+    "receipt.total": "Total",
+    "receipt.motto.coffee": "If you like the coffee,\nyou pay again tomorrow.",
+    "receipt.motto.game": "If you like the game,\nit's already yours.",
+    "receipt.motto.app": "If you like the app,\nit's already yours.",
+    "receipt.refund.pre": "Not your cup of coffee? You can ",
+    "receipt.refund.link": "ask Apple for your money back",
+    "receipt.refund.post": ".",
+    "receipt.aria": "What {app} costs",
 
     "circell.kind": "A puzzle for iPhone",
     "circell.tagline": "Turn, join, bloom.",
@@ -254,6 +269,21 @@ const I18N = {
     "store.pre.ios": "Descarrega-la a l'",
     "store.pre.mac": "Descarrega-la al",
     "store.comingSoon": "Aviat a l'App Store",
+    "receipt.store": "App Store · {country}",
+    "receipt.whole.game": "El joc sencer",
+    "receipt.whole.app": "L'app sencera",
+    "receipt.updates": "Totes les actualitzacions",
+    "receipt.family": "Fins a sis de la família",
+    "receipt.iap.game": "Compres dins del joc",
+    "receipt.iap.app": "Compres dins de l'app",
+    "receipt.total": "Total",
+    "receipt.motto.coffee": "Si el cafè t'agrada,\ndemà el tornes a pagar.",
+    "receipt.motto.game": "Si el joc t'agrada,\nja és teu.",
+    "receipt.motto.app": "Si l'app t'agrada,\nja és teva.",
+    "receipt.refund.pre": "No és el teu cafè? Pots ",
+    "receipt.refund.link": "demanar a Apple que et torni els diners",
+    "receipt.refund.post": ".",
+    "receipt.aria": "Què costa {app}",
 
     "circell.kind": "Un trencaclosques per a iPhone",
     "circell.tagline": "Gira, uneix, floreix.",
@@ -679,6 +709,109 @@ function wireStores() {
   });
 }
 
+/* ── The receipt ──────────────────────────────────────────── */
+/* Beside each button, a café receipt: what you pay, and what you don't. The
+   prices are your own store's (preus.js, from App Store Connect), guessed from
+   your time zone, or else from your browser's language; ?store=JP shows
+   another. Without a price table, or a store we can't place, it stays hidden:
+   better no receipt than a wrong one. */
+
+const PRICES = window.MINTA_PRICES;
+const RECEIPT_REFUND_URL = "https://reportaproblem.apple.com/";
+
+function guessStore() {
+  const asked = (new URLSearchParams(location.search).get("store") || "").toUpperCase();
+  if (PRICES.stores[asked]) return asked;
+  try {
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (PRICES.zones[zone]) return PRICES.zones[zone];
+  } catch (e) { /* no time zone: try the language */ }
+  for (const tag of navigator.languages || [navigator.language || ""]) {
+    const m = /[-_]([A-Za-z]{2})(?:[-_]|$)/.exec(tag);
+    if (m && PRICES.stores[m[1].toUpperCase()]) return m[1].toUpperCase();
+  }
+  return "ES";
+}
+
+function money(amount, currency) {
+  const whole = Number.isInteger(amount);
+  try {
+    return new Intl.NumberFormat(lang === "ca" ? "ca" : "en", {
+      style: "currency", currency, currencyDisplay: "narrowSymbol",
+      minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: whole ? 0 : 2,
+    }).format(amount);
+  } catch (e) {
+    return `${amount} ${currency}`;
+  }
+}
+
+function countryName(code) {
+  try { return new Intl.DisplayNames([lang], { type: "region" }).of(code); }
+  catch (e) { return code; }
+}
+
+function el(tag, cls, text) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (text != null) node.textContent = text;
+  return node;
+}
+
+function paintReceipts() {
+  if (!PRICES) return;
+  const store = guessStore();
+  const [currency, ...columns] = PRICES.stores[store];
+
+  document.querySelectorAll("[data-receipt]").forEach(box => {
+    const key = box.closest("[data-store]").dataset.store;
+    const price = columns[PRICES.apps[key]];
+    if (price == null) return;
+    const kind = box.dataset.receipt;
+    const name = box.closest(".app").querySelector("h2").textContent;
+
+    // Name and amount pairs: a list for a screen reader, two columns to the eye.
+    const lines = (cls, rows) => {
+      const dl = el("dl", cls);
+      rows.forEach(([label, amount]) => {
+        const pair = el("div");
+        pair.append(el("dt", null, label), el("dd", null, money(amount, currency)));
+        dl.append(pair);
+      });
+      return dl;
+    };
+    const items = lines("receipt__lines", [
+      [t(`receipt.whole.${kind}`), price],
+      [t("receipt.updates"), 0],
+      [t("receipt.family"), 0],
+      [t(`receipt.iap.${kind}`), 0],
+    ]);
+    items.setAttribute("aria-label", t("receipt.aria").replace("{app}", name));
+    const total = lines("receipt__lines receipt__lines--total", [[t("receipt.total"), price]]);
+
+    const refund = el("p", "receipt__refund", t("receipt.refund.pre"));
+    const link = el("a", null, t("receipt.refund.link"));
+    link.href = RECEIPT_REFUND_URL;
+    link.rel = "noopener";
+    refund.append(link, t("receipt.refund.post"));
+
+    // The paper inside carries the torn edge; the box outside, its shadow.
+    const paper = el("div", "receipt__paper");
+    paper.append(
+      el("p", "receipt__brand", "Minta Cafè"),
+      el("p", "receipt__store", t("receipt.store").replace("{country}", countryName(store))),
+      items,
+      total,
+      el("p", "receipt__motto", t("receipt.motto.coffee")),
+      el("p", "receipt__motto receipt__motto--yours", t(`receipt.motto.${kind}`)),
+      refund,
+    );
+    box.replaceChildren(paper);
+    box.hidden = false;
+  });
+}
+
+document.addEventListener("langchange", paintReceipts);
+
 /* ── 5. Ploma: it opens in the time it really takes ───────── */
 /* The window goes, and comes back after exactly as long as Ploma takes from
    the click to its first frame on a Mac. Nothing else is staged. */
@@ -871,7 +1004,7 @@ addEventListener("load", () => {
 
 /* ── Go ───────────────────────────────────────────────────── */
 
-applyLang();
+applyLang();   // its "langchange" also paints the receipts
 wireStores();
 if (board) newBoard();
 if (boost) applyBoost();

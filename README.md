@@ -92,13 +92,29 @@ imatges i les posicions de cada fruita surten del director `-ConfituraWebStill` 
 Res de tot això es fa si el navegador demana poc moviment (`prefers-reduced-motion`), ni quan la
 secció no es veu.
 
+### El tiquet
+
+Al costat del botó de cada app hi ha un tiquet de cafeteria: el que pagues i el que no (les
+actualitzacions, la família fins a sis, les compres de dins: 0), i la frase de la casa, «Si el cafè
+t'agrada, demà el tornes a pagar. Si el joc t'agrada, ja és teu.» A sota, que si no és el teu cafè pots
+demanar a Apple que et torni els diners (`reportaproblem.apple.com`: a la UE i al Regne Unit són 14
+dies sense explicacions; a la resta, ho decideix Apple, per això diu «pots demanar» i no «te'ls torna»).
+
+El preu és el de la botiga de qui mira: l'endevina per la zona horària i, si no, per la regió de la
+llengua del navegador; si no en sap res, Espanya. `?store=JP` ensenya el d'una altra botiga. Els
+preus són a `assets/preus.js`, generat per `Eines/preus-web.py` (al repositori de Minta Cafè) des
+d'App Store Connect; **cal tornar-lo a generar quan canviï un preu o surti una app nova**, i
+`--comprova` el compara amb el que diu la botiga de debò. Sense aquest fitxer, el tiquet no surt:
+millor cap tiquet que un d'equivocat.
+
 ```
 Web/
 ├── index.html              la pàgina principal
 ├── privacy.html            política de privadesa (l'App Store en demana una URL)
 ├── assets/
 │   ├── style.css           paleta Solarpunk-Mint, sales de cada app, mode clar i fosc
-│   ├── app.js              enllaços, idiomes, Circell, Brillantor, Ploma, el moll
+│   ├── app.js              enllaços, idiomes, Circell, Brillantor, Ploma, el moll, el tiquet
+│   ├── preus.js            els preus de cada botiga, per al tiquet (generat: no el toquis)
 │   ├── vitrall.js / .css   el Vitrall jugable
 │   ├── confitura-faces.js  les cares de la Confitura
 │   ├── icons/<app>.webp    icones de 192 px, de l'AppIcon de cada app
@@ -120,6 +136,8 @@ Web/
 5. **Els textos** als dos idiomes de `app.js`: `<app>.kind`, `.tagline`, `.body`, `.f1`–`.f3`,
    `.caption`, i l'`alt` de les captures. Pensant en qui la voldria, no com una llista de funcions.
 6. **L'enllaç de la botiga** a `STORE_LINKS` (buit mentre no hi sigui) i **la fila de privadesa**.
+7. **El tiquet**: un `<div class="receipt" data-receipt="game">` (o `"app"`) a dins del seu `.store`,
+   l'app a `APPS` d'`Eines/preus-web.py`, i tornar a fer córrer l'eina.
 
 ## Veure'l en local
 
