@@ -65,21 +65,19 @@ const I18N = {
     "store.pre.ios": "Download on the",
     "store.pre.mac": "Download on the",
     "store.comingSoon": "Coming soon to the App Store",
-    "receipt.store": "App Store · {country}",
-    "receipt.whole.game": "The whole game",
-    "receipt.whole.app": "The whole app",
+    "receipt.whole": "A whole game",
+    "receipt.noads": "Ad-free version",
     "receipt.updates": "Every update",
     "receipt.family": "Up to six in the family",
-    "receipt.iap.game": "In-app purchases",
-    "receipt.iap.app": "In-app purchases",
+    "receipt.iap": "In-app purchases",
     "receipt.total": "Total",
-    "receipt.motto.coffee": "If you like the coffee,\nyou pay again tomorrow.",
-    "receipt.motto.game": "If you like the game,\nit's already yours.",
-    "receipt.motto.app": "If you like the app,\nit's already yours.",
+    "receipt.thanks": "Thank you.\nCome back whenever you like.",
     "receipt.refund.pre": "Not your cup of coffee? You can ",
     "receipt.refund.link": "ask Apple for your money back",
     "receipt.refund.post": ".",
-    "receipt.aria": "What {app} costs",
+    "receipt.aria": "What a game costs",
+    "carta.motto.a": "If you like the coffee, you pay again tomorrow.",
+    "carta.motto.b": "If you like the game, it's already yours.",
 
     "circell.kind": "A puzzle for iPhone",
     "circell.tagline": "Turn, join, bloom.",
@@ -191,9 +189,9 @@ const I18N = {
     "promise.c2.t": "A round price",
     "promise.c2.b": "Whole numbers. Nothing ends in .99 to look smaller than it is.",
     "promise.c3.t": "No ads",
-    "promise.c3.b": "Nothing interrupts you, nothing asks you to wait or watch.",
+    "promise.c3.b": "Nothing interrupts you, nothing asks you to wait or watch. And they aren't just switched off: there isn't a single line of ad code inside.",
     "promise.c4.t": "No tracking",
-    "promise.c4.b": "No analytics, no ad profiles, no accounts, nothing about you sold.",
+    "promise.c4.b": "No analytics, no ad profiles, no accounts, nothing about you sold. Inside there's only our code and Apple's: no one else's library doing things you can't see.",
     "promise.fine": "The small print, and it really is small. If we ever make a game that needs a server to connect players, that server costs us money every month, so that game may carry a subscription. We will say so here and on the App Store before you pay, never after. A game that talks to a server also has to send something, and we will spell out exactly what leaves your device and why. What we will never do is take something you have already bought and put it behind a subscription.",
 
     "brewing.title": "Brewing",
@@ -269,21 +267,19 @@ const I18N = {
     "store.pre.ios": "Descarrega-la a l'",
     "store.pre.mac": "Descarrega-la al",
     "store.comingSoon": "Aviat a l'App Store",
-    "receipt.store": "App Store · {country}",
-    "receipt.whole.game": "El joc sencer",
-    "receipt.whole.app": "L'app sencera",
+    "receipt.whole": "Un joc sencer",
+    "receipt.noads": "Versió sense anuncis",
     "receipt.updates": "Totes les actualitzacions",
     "receipt.family": "Fins a sis de la família",
-    "receipt.iap.game": "Compres dins del joc",
-    "receipt.iap.app": "Compres dins de l'app",
+    "receipt.iap": "Compres dins del joc",
     "receipt.total": "Total",
-    "receipt.motto.coffee": "Si el cafè t'agrada,\ndemà el tornes a pagar.",
-    "receipt.motto.game": "Si el joc t'agrada,\nja és teu.",
-    "receipt.motto.app": "Si l'app t'agrada,\nja és teva.",
+    "receipt.thanks": "Gràcies.\nTorna quan vulguis.",
     "receipt.refund.pre": "No és el teu cafè? Pots ",
     "receipt.refund.link": "demanar a Apple que et torni els diners",
     "receipt.refund.post": ".",
-    "receipt.aria": "Què costa {app}",
+    "receipt.aria": "Què costa un joc",
+    "carta.motto.a": "Si el cafè t'agrada, demà el tornes a pagar.",
+    "carta.motto.b": "Si el joc t'agrada, ja és teu.",
 
     "circell.kind": "Un trencaclosques per a iPhone",
     "circell.tagline": "Gira, uneix, floreix.",
@@ -395,9 +391,9 @@ const I18N = {
     "promise.c2.t": "Preu rodó",
     "promise.c2.b": "Xifres senceres. Res no acaba en .99 per semblar més barat.",
     "promise.c3.t": "Sense anuncis",
-    "promise.c3.b": "Res no t'interromp, res no et fa esperar ni mirar.",
+    "promise.c3.b": "Res no t'interromp, res no et fa esperar ni mirar. I no és que estiguin apagats: dins l'app no hi ha ni una línia de codi d'anuncis.",
     "promise.c4.t": "Sense seguiment",
-    "promise.c4.b": "Ni analítiques, ni perfils publicitaris, ni comptes, ni res teu venut.",
+    "promise.c4.b": "Ni analítiques, ni perfils publicitaris, ni comptes, ni res teu venut. A dins només hi ha el nostre codi i el d'Apple: cap llibreria d'altres que faci coses que no veus.",
     "promise.fine": "La lletra petita, i és petita de debò. Si algun dia fem un joc que necessiti un servidor per connectar jugadors, aquell servidor ens costarà diners cada mes, i per tant aquell joc pot portar subscripció. Ho direm aquí i a l'App Store abans que paguis, mai després. Un joc que parla amb un servidor també ha d'enviar alguna cosa, i direm exactament què surt del teu dispositiu i per què. El que no farem mai és agafar una cosa que ja has comprat i posar-la darrere d'una subscripció.",
 
     "brewing.title": "Al foc",
@@ -709,15 +705,16 @@ function wireStores() {
   });
 }
 
-/* ── The receipt ──────────────────────────────────────────── */
-/* Beside each button, a café receipt: what you pay, and what you don't. The
-   prices are your own store's (preus.js, from App Store Connect), guessed from
-   your time zone, or else from your browser's language; ?store=JP shows
-   another. Without a price table, or a store we can't place, it stays hidden:
-   better no receipt than a wrong one. */
+/* ── Prices: on the carta, and one receipt ────────────────── */
+/* Every dish on the carta carries its price, like a café's menu, and "How we
+   sell things" has one receipt: what a game costs and what it doesn't. The
+   prices are in your own currency (preus.js, from App Store Connect), guessed
+   from your time zone or else your browser's language, and never named: a shop
+   just shows you its price. When we can't tell, euros. ?store=JP shows another.
+   Without the price table nothing is shown: better no price than a wrong one. */
 
 const PRICES = window.MINTA_PRICES;
-const RECEIPT_REFUND_URL = "https://reportaproblem.apple.com/";
+const REFUND_URL = "https://reportaproblem.apple.com/";
 
 function guessStore() {
   const asked = (new URLSearchParams(location.search).get("store") || "").toUpperCase();
@@ -745,11 +742,6 @@ function money(amount, currency) {
   }
 }
 
-function countryName(code) {
-  try { return new Intl.DisplayNames([lang], { type: "region" }).of(code); }
-  catch (e) { return code; }
-}
-
 function el(tag, cls, text) {
   const node = document.createElement(tag);
   if (cls) node.className = cls;
@@ -757,60 +749,61 @@ function el(tag, cls, text) {
   return node;
 }
 
-function paintReceipts() {
+function paintPrices() {
   if (!PRICES) return;
-  const store = guessStore();
-  const [currency, ...columns] = PRICES.stores[store];
+  const [currency, ...columns] = PRICES.stores[guessStore()];
+  const priceOf = key => columns[PRICES.apps[key]];
 
-  document.querySelectorAll("[data-receipt]").forEach(box => {
-    const key = box.closest("[data-store]").dataset.store;
-    const price = columns[PRICES.apps[key]];
-    if (price == null) return;
-    const kind = box.dataset.receipt;
-    const name = box.closest(".app").querySelector("h2").textContent;
-
-    // Name and amount pairs: a list for a screen reader, two columns to the eye.
-    const lines = (cls, rows) => {
-      const dl = el("dl", cls);
-      rows.forEach(([label, amount]) => {
-        const pair = el("div");
-        pair.append(el("dt", null, label), el("dd", null, money(amount, currency)));
-        dl.append(pair);
-      });
-      return dl;
-    };
-    const items = lines("receipt__lines", [
-      [t(`receipt.whole.${kind}`), price],
-      [t("receipt.updates"), 0],
-      [t("receipt.family"), 0],
-      [t(`receipt.iap.${kind}`), 0],
-    ]);
-    items.setAttribute("aria-label", t("receipt.aria").replace("{app}", name));
-    const total = lines("receipt__lines receipt__lines--total", [[t("receipt.total"), price]]);
-
-    const refund = el("p", "receipt__refund", t("receipt.refund.pre"));
-    const link = el("a", null, t("receipt.refund.link"));
-    link.href = RECEIPT_REFUND_URL;
-    link.rel = "noopener";
-    refund.append(link, t("receipt.refund.post"));
-
-    // The paper inside carries the torn edge; the box outside, its shadow.
-    const paper = el("div", "receipt__paper");
-    paper.append(
-      el("p", "receipt__brand", "Minta Cafè"),
-      el("p", "receipt__store", t("receipt.store").replace("{country}", countryName(store))),
-      items,
-      total,
-      el("p", "receipt__motto", t("receipt.motto.coffee")),
-      el("p", "receipt__motto receipt__motto--yours", t(`receipt.motto.${kind}`)),
-      refund,
-    );
-    box.replaceChildren(paper);
-    box.hidden = false;
+  document.querySelectorAll("[data-price]").forEach(node => {
+    const price = priceOf(node.dataset.price);
+    if (price != null) node.textContent = money(price, currency);
   });
+
+  // The receipt: priced like the app it names (any game: they all cost the same).
+  const box = document.querySelector("[data-receipt]");
+  const price = box && priceOf(box.dataset.receipt);
+  if (price == null) return;
+
+  // Name and amount pairs: a list for a screen reader, two columns to the eye.
+  const lines = (cls, rows) => {
+    const dl = el("dl", cls);
+    rows.forEach(([label, amount]) => {
+      const pair = el("div");
+      pair.append(el("dt", null, label), el("dd", null, money(amount, currency)));
+      dl.append(pair);
+    });
+    return dl;
+  };
+  const items = lines("receipt__lines", [
+    [t("receipt.whole"), price],
+    [t("receipt.noads"), 0],
+    [t("receipt.iap"), 0],
+    [t("receipt.updates"), 0],
+    [t("receipt.family"), 0],
+  ]);
+  items.setAttribute("aria-label", t("receipt.aria"));
+
+  const refund = el("p", "receipt__refund", t("receipt.refund.pre"));
+  const link = el("a", null, t("receipt.refund.link"));
+  link.href = REFUND_URL;
+  link.rel = "noopener";
+  refund.append(link, t("receipt.refund.post"));
+
+  // The paper inside carries the torn edge; the box outside, its shadow.
+  const paper = el("div", "receipt__paper");
+  paper.append(
+    el("p", "receipt__brand", "Minta Cafè"),
+    el("p", "receipt__addr", "mintacafe.com"),
+    items,
+    lines("receipt__lines receipt__lines--total", [[t("receipt.total"), price]]),
+    el("p", "receipt__thanks", t("receipt.thanks")),
+    refund,
+  );
+  box.replaceChildren(paper);
+  box.hidden = false;
 }
 
-document.addEventListener("langchange", paintReceipts);
+document.addEventListener("langchange", paintPrices);
 
 /* ── 5. Ploma: it opens in the time it really takes ───────── */
 /* The window goes, and comes back after exactly as long as Ploma takes from
@@ -1004,7 +997,7 @@ addEventListener("load", () => {
 
 /* ── Go ───────────────────────────────────────────────────── */
 
-applyLang();   // its "langchange" also paints the receipts
+applyLang();   // its "langchange" also paints the prices
 wireStores();
 if (board) newBoard();
 if (boost) applyBoost();

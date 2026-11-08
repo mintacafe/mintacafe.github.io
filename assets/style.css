@@ -227,9 +227,8 @@ a:hover { color: var(--terracotta); }
 .btn__stack small { font-size: .68rem; opacity: .8; }
 .btn__stack strong { font-size: 1.05rem; font-weight: 650; }
 
-/* With a link the button shows; without one, a plain line says it's coming.
-   The receipt comes first: you read what you pay, then you go and buy it. */
-.store { display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; }
+/* With a link the button shows; without one, a plain line says it's coming. */
+.store { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
 .store.is-soon .btn--store { display: none; }
 .store:not(.is-soon) .soon { display: none; }
 .soon {
@@ -242,10 +241,10 @@ a:hover { color: var(--terracotta); }
 }
 
 /* ── The receipt ──────────────────────────────────────────── */
-/* A café's till roll: what you pay and what you don't. Plain paper and the
-   till's own type, no colour of the app's: it's the same café for every one.
-   The zigzag is a mask on the paper, so the shadow lives on the box around it
-   (a mask would cut a box-shadow off). */
+/* One, beside "How we sell things": a café's till roll with what a game costs
+   and what it doesn't. Plain paper and the till's own type. The zigzag is a
+   mask on the paper, so the shadow lives on the box around it (a mask would
+   cut a box-shadow off). */
 
 .receipt {
   --roll:      #FFFDF6;
@@ -281,7 +280,7 @@ a:hover { color: var(--terracotta); }
   text-align: center; font-weight: 700; letter-spacing: .32em; text-transform: uppercase;
   font-size: .82rem; padding-left: .32em; /* the tracking after the last letter */
 }
-.receipt__store { text-align: center; color: var(--roll-ink-2); margin-bottom: .7rem !important; }
+.receipt__addr { text-align: center; color: var(--roll-ink-2); margin-bottom: .7rem !important; }
 .receipt__lines {
   margin: 0; padding: .5rem 0;
   border-top: 1px dashed var(--roll-rule);
@@ -290,8 +289,7 @@ a:hover { color: var(--terracotta); }
 .receipt__lines > div { display: flex; justify-content: space-between; gap: 1rem; }
 .receipt__lines dd { margin: 0; white-space: nowrap; }
 .receipt__lines--total { padding: .45rem 0 0; font-weight: 700; font-size: .9rem; }
-.receipt__motto { text-align: center; white-space: pre-line; margin-top: 1rem !important; }
-.receipt__motto--yours { margin-top: .55rem !important; font-weight: 700; }
+.receipt__thanks { text-align: center; white-space: pre-line; margin-top: 1.1rem !important; }
 .receipt__refund {
   text-align: center; margin-top: .75rem !important;
   font-size: .68rem; color: var(--roll-ink-2); text-wrap: balance;
@@ -345,6 +343,18 @@ a:hover { color: var(--terracotta); }
 .vitrina a:hover .vitrina__glass { transform: translateY(-4px); }
 .vitrina__glass img { display: block; width: auto; }
 .vitrina__name { font-weight: 700; font-size: .98rem; }
+/* A Mac app's window doesn't say whose it is, so its icon sits on the corner,
+   half on and half off, and rises with it on hover. */
+.vitrina__glass, .vitrina__badge { grid-area: 1 / 1; }
+.vitrina__name { grid-area: 2 / 1; }
+.vitrina .vitrina__badge {   /* .vitrina: above the rules that size a screen's img */
+  width: calc(var(--wide-h) * .27); height: auto; z-index: 1;
+  filter: drop-shadow(0 6px 9px rgba(30, 50, 40, .3));
+  align-self: end; justify-self: start;
+  margin: 0 0 calc(var(--wide-h) * -.07) calc(var(--wide-h) * -.07);
+  transition: transform .25s ease;
+}
+.vitrina a:hover .vitrina__badge { transform: translateY(-4px); }
 .vitrina a:hover .vitrina__name { color: var(--terracotta); }
 
 /* A phone, the same as in the rooms, smaller. */
@@ -403,8 +413,8 @@ a:hover { color: var(--terracotta); }
 .aparador.is-stopped .aparador__pause .i-play { display: inline; }
 
 @media (prefers-reduced-motion: reduce) {
-  .vitrina__glass { transition: none; }
-  .vitrina a:hover .vitrina__glass { transform: none; }
+  .vitrina__glass, .vitrina__badge { transition: none; }
+  .vitrina a:hover .vitrina__glass, .vitrina a:hover .vitrina__badge { transform: none; }
 }
 
 /* Printed like a café's carta: a card with a second rule inside the edge. */
@@ -425,6 +435,15 @@ a:hover { color: var(--terracotta); }
   border: 1px solid var(--line); pointer-events: none;
 }
 @media (max-width: 780px) { .carta { grid-template-columns: minmax(0, 1fr); } }
+/* The house phrase, at the foot of the menu. */
+.carta__foot {
+  grid-column: 1 / -1;
+  margin: .4rem 0 .6rem; padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+  text-align: center; text-wrap: balance;
+  color: var(--ink-2); font-size: 1.02rem;
+}
+.carta__foot strong { color: var(--ink); font-weight: 680; }
 
 .carta__group { margin-bottom: 1rem; }
 .carta__title {
@@ -436,27 +455,38 @@ a:hover { color: var(--terracotta); }
 
 .carta__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .1rem; }
 .dish {
-  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
-  gap: .95rem;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+  /* The outer rows take up the icon's extra height, so name and line stay together. */
+  grid-template-rows: 1fr auto auto 1fr; column-gap: .95rem; row-gap: 0;
   margin: 0 -.75rem; padding: .55rem .75rem;
   border-radius: 20px;
   color: var(--ink); text-decoration: none;
   transition: background-color .2s ease;
 }
 .dish:hover { background: var(--dish-hover); color: var(--ink); }
-.dish__icon { width: 56px; height: 56px; }
-.dish__text { display: grid; line-height: 1.28; }
+.dish__icon { width: 56px; height: 56px; grid-row: 1 / -1; }
+.dish__name, .dish__line { line-height: 1.28; }
 .dish__name { font-weight: 720; font-size: 1.14rem; }
 .dish__line { color: var(--ink-2); font-size: .96rem; }
 .dish__soon { margin-left: .3rem; font-size: .76rem; font-weight: 700; color: var(--clay); }
+/* Two rows: the name and its price, like a menu's, then the line and the
+   "play it here" tag, if any. The wrappers step aside (display: contents) so
+   all four sit on the dish's own grid, and every price lines up with its name. */
+.dish__text, .dish__side { display: contents; }
+.dish__name  { grid-column: 2; grid-row: 2; align-self: baseline; }
+.dish__line  { grid-column: 2; grid-row: 3; align-self: start; }
+.dish__price { grid-column: 3; grid-row: 2; align-self: baseline; justify-self: end;
+               font-weight: 620; font-size: 1.04rem; color: var(--ink);
+               font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dish__price:empty { display: none; }
 .dish__tag {
+  grid-column: 3; grid-row: 3; align-self: start; justify-self: end; margin-top: .15rem;
   font-size: .78rem; font-weight: 700; white-space: nowrap;
   color: var(--leaf); padding: .25em .75em; border-radius: 999px;
   background: color-mix(in srgb, var(--mint) 28%, transparent);
 }
 @media (prefers-color-scheme: dark) { .dish__tag { color: var(--mint); background: color-mix(in srgb, var(--mint) 16%, transparent); } }
 @media (max-width: 380px) {
-  .dish { grid-template-columns: auto minmax(0, 1fr); }
   .dish__tag { display: none; }
 }
 
@@ -570,7 +600,11 @@ a:hover { color: var(--terracotta); }
 }
 .plm-open__btn:hover { border-color: var(--say); }
 .plm-open__btn img { width: 32px; height: 32px; }
-.plm-open__time { margin: 0; min-width: 14ch; font-size: .9rem; font-weight: 680; color: var(--say); }
+/* The line keeps its room even when empty (a hidden copy holds it), so the
+   button doesn't jump sideways each time the line comes and goes. */
+.plm-open__time { margin: 0; display: grid; font-size: .9rem; font-weight: 680; color: var(--say); }
+.plm-open__time > * { grid-area: 1 / 1; }
+.plm-open__sizer { visibility: hidden; }
 /* Closed: the window goes, its place stays. */
 .plm.is-closed { visibility: hidden; }
 
@@ -885,11 +919,20 @@ html[lang="ca"] .plm .only-en { display: none; }
 .promise > h2, .brewing > h2 { text-align: center; }
 .promise > .lede, .brewing > .lede { text-align: center; margin: 0 auto 2.6rem; }
 
+/* The receipt on one side, the rules on the other; on a phone, one above. */
+.promise__body {
+  display: grid; grid-template-columns: 19.5rem minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+}
+@media (max-width: 760px) {
+  .promise__body { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+}
 .rules {
   list-style: none; margin: 0; padding: 0;
   display: grid; gap: 1.8rem 2.4rem;
   grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
 }
+.promise__body .rules { width: 100%; }
 .rules li { position: relative; padding-left: 2rem; }
 .rules li::before {
   content: ""; position: absolute; left: 0; top: .32em;
