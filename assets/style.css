@@ -152,8 +152,27 @@ a:hover { color: var(--terracotta); }
 .head.has-dock { border-bottom-color: var(--line); }
 
 .brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--ink); flex: none; }
-.brand__mark { width: 30px; height: 30px; color: var(--leaf); flex: none; }
-@media (prefers-color-scheme: dark) { .brand__mark { color: var(--mint); } }
+/* The house mark: a porcelain cup of coffee with a mint leaf in front. By
+   night the cup stays white, as a real one would, and loses its outline. */
+.brand__mark {
+  width: 30px; height: 30px; flex: none; overflow: visible;
+  --mk-line: var(--leaf); --mk-china: #FFFDF6; --mk-coffee: #6E3F24; --mk-steam: #E2B94F;
+  --mk-leaf: #4FA57E; --mk-leaf-lit: #6CC29B; --mk-vein: #2E6B4E;
+}
+@media (prefers-color-scheme: dark) {
+  .brand__mark {
+    --mk-line: var(--ink); --mk-china: var(--ink); --mk-coffee: #5A3320; --mk-steam: var(--gold);
+    --mk-leaf: #5FB891; --mk-leaf-lit: #86D3AE; --mk-vein: #245A41;
+  }
+}
+.brand__mark .mk-steam  { fill: none; stroke: var(--mk-steam); stroke-width: 1.25; stroke-linecap: round; }
+.brand__mark .mk-china  { fill: var(--mk-china); stroke: var(--mk-line); stroke-linejoin: round; }
+.brand__mark .mk-handle { fill: none; stroke: var(--mk-line); stroke-width: 2.4; stroke-linecap: round; }
+.brand__mark .mk-coffee { fill: var(--mk-coffee); }
+/* The leaf's edge in the page's colour lifts it off the cup. */
+.brand__mark .mk-leaf   { fill: var(--mk-leaf); stroke: var(--bg); stroke-width: 1.5; stroke-linejoin: round; paint-order: stroke; }
+.brand__mark .mk-leaf-lit { fill: var(--mk-leaf-lit); }
+.brand__mark .mk-vein   { fill: none; stroke: var(--mk-vein); stroke-width: .54; stroke-linecap: round; opacity: .7; }
 .brand__name { font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em; white-space: nowrap; }
 
 /* The dock: every app's icon, one click from anywhere. It waits while the menu
