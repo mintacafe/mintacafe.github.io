@@ -110,6 +110,12 @@ repositori de Minta Cafè) des d'App Store Connect: **cal tornar-lo a generar si
 jocs**, i `--comprova` el compara amb el que diu la botiga de debò. Sense aquest fitxer no surt el
 tiquet: millor cap que un d'equivocat.
 
+La regla «Preu rodó» («res no acaba en .99») és certa a totes les botigues perquè
+`Eines/preus-rodons.py` fixa a mà, a App Store Connect, els països on Apple deriva un preu
+d'aparador (14,99 zł, 39 kr, 2.990 pesos xilens, 99.000 ₫) a l'esglaó rodó de just a sobre (15 zł,
+40 kr, 3.000 pesos, 100.000 ₫). Aquests ja no els mou Apple. Quan surti una app o canviï un preu:
+primer `preus-rodons.py --posa` i després `preus-web.py`.
+
 Les regles «Sense anuncis» i «Sense seguiment» diuen que a dins no hi ha codi d'anuncis ni cap
 llibreria d'altres, només el nostre codi i el d'Apple. Comprovat el 8/11/2026 a les nou apps (i a
 MintaKit): només importen marcs d'Apple, MintaKit i els seus mòduls, i cap no fa servir la xarxa. Si
